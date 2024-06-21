@@ -84,7 +84,7 @@ fabric.properties
 # Ignore everything but code style settings and run configurations
 # that are supposed to be shared within teams.
 
-.idea/*
+cqrs_design_pattern_with_springboot/.idea/aws.xml
 
 !.idea/codeStyles
 !.idea/runConfigurations
