@@ -8,6 +8,8 @@ En esta sección, presentamos una serie de microservicios fundamentales que form
 - [Cards](cards) El microservicio de tarjetas administra todo lo relacionado con las tarjetas de crédito y débito de los usuarios. Incluye operaciones como la emisión de nuevas tarjetas, la consulta de saldo, y la gestión de transacciones, asegurando una experiencia fluida y segura.
 - [Loans](loans) Este microservicio está diseñado para la gestión de préstamos. Facilita la solicitud, aprobación, y seguimiento de préstamos, proporcionando a los usuarios un sistema claro y accesible para manejar sus necesidades crediticias.
 
+![](https://drive.google.com/uc?export=view&id=1jgI5ygjp7F1ZvClYBxqRiykrVJH39PJz)
+
 Cada uno de estos microservicios se ha desarrollado con Spring Boot, utilizando Spring Initializr para la configuración inicial, asegurando así una integración eficiente y un desarrollo ágil.
 
 ### SWAGGER
