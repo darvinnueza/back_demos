@@ -28,6 +28,9 @@ Password: *(vacío)*
 
 Este acceso te permitirá verificar y manipular los datos almacenados en las bases de datos de prueba de cada microservicio.
 
+## PRUEBAS UNITARIAS
+Para realizar las pruebas unitarias de los microservicios, se adjunta el archivo [MASTER MICROSERVICES WITH SPRINGBOOT V1.postman_collection.json](unit_test/MASTER%20MICROSERVICES%20WITH%20SPRINGBOOT%20V1.postman_collection.json) de Postman.
+
 ## ANEXOS
 - [Spring Initializr](https://start.spring.io/)
 - [Modelmapper](https://modelmapper.org/)

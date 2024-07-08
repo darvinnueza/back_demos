@@ -1,8 +1,8 @@
 package com.eazybytes.accounts.audit;
 
 import java.util.Optional;
-import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
+import org.springframework.data.domain.AuditorAware;
 
 @Component("auditAwareImpl")
 public class AuditAwareImpl implements AuditorAware<String> {
