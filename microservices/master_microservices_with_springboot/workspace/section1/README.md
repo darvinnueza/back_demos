@@ -15,8 +15,16 @@ Cada uno de estos microservicios se ha desarrollado con Spring Boot, utilizando 
 ### SWAGGER
 Swagger proporciona una interfaz de usuario interactiva para explorar y probar las APIs de nuestros microservicios. A través de estas interfaces, puedes acceder a la documentación detallada de cada microservicio y realizar llamadas a las APIs de manera sencilla.
 - [Accounts](http://localhost:8080/swagger-ui/index.html): Explora y prueba las operaciones disponibles para gestionar cuentas de usuario, incluyendo la creación, actualización y consulta de cuentas.
+  
+  ![](https://drive.google.com/uc?export=view&id=1jgZ6dCgQ5aee_BIQiq_j19bmqnLTCSme)
+
 - [Cards](http://localhost:9000/swagger-ui/index.html): Accede a la documentación y pruebas para gestionar tarjetas de crédito y débito, como la emisión de nuevas tarjetas y la consulta de saldo.
+
+  ![](https://drive.google.com/uc?export=view&id=1jjRj4dLOqROl0dSRtX7wJc2ao8PrMbXV)
+
 - [Loans](http://localhost:8090/swagger-ui/index.html): Consulta la documentación y realiza pruebas de las operaciones relacionadas con la gestión de préstamos, incluyendo la solicitud, aprobación y seguimiento de préstamos.
+
+  ![](https://drive.google.com/uc?export=view&id=1jleYHP3tvxce1_jqvmbv_iCiQCnG-t2x)
 
 ### H2-CONSOLE
 H2 Console es una herramienta web que te permite interactuar con las bases de datos en memoria de nuestros microservicios. Puedes usarla para consultar y gestionar datos en las bases de datos de prueba para cada microservicio.
