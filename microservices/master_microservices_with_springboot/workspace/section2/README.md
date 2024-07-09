@@ -205,7 +205,7 @@ networks:
   eazybank:
     driver: "bridge"
 ```
-### COMANDOS DOCKER
+### COMANDOS DOCKER COMPOSE
 Para la ejecución de todos estos comandos nos ubicamos en la raíz del archivo [docker-compose.yml](docker-compose.yml).
 1. Iniciar y ejecutar los contenedores en modo detached, basado en la configuración especificada en [docker-compose.yml](docker-compose.yml).
    
