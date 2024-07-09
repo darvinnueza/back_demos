@@ -1,0 +1,40 @@
+services:
+  accunts:
+    image: "darvinueza/accounts:s2"
+    container_name: acounts-ms
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - eazybank
+
+  loans:
+    image: "darvinueza/loans:s2"
+    container_name: loans-ms
+    ports:
+      - "8090:8090"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - eazybank
+
+  cards:
+    image: "darvinueza/cards:s2"
+    container_name: cards-ms
+    ports:
+      - "9000:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - eazybank
+
+networks:
+  eazybank:
+    driver: "bridge"
