@@ -1,6 +1,7 @@
 IMPLEMENTACIÓN, PORTABILIDAD Y ESCALABILIDAD DE MICROSERVICIOS UTILIZANDO DOCKER
 ===
 Dockerfile, Buildpacks y Google Jib son herramientas que facilitan la creación y despliegue de imágenes de contenedores para aplicaciones.
+![](https://drive.google.com/uc?export=view&id=1ooV4-zb8bIhgpVKCKq3RWMu07aVmNhSD)
 ## Comparación de Enfoques: Dockerfile, Buildpacks y Jib
 ### Dockerfile 
 Es un archivo de texto que define una serie de instrucciones para construir una imagen Docker. Permite especificar el sistema operativo base, copiar archivos, instalar dependencias y configurar el entorno, proporcionando un control detallado sobre el proceso de construcción del contenedor.
