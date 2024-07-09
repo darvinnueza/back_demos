@@ -75,6 +75,7 @@ Es una herramienta de código abierto diseñada para construir imágenes Docker 
 
 ### BUILDPACKS
 1. Agrega esta configuración del `pom.xml` para el `spring-boot-maven-plugin` permite la generación de una imagen Docker con el nombre `darvinueza/${project.artifactId}:s2`.
+   
    ```
    <build>
        <plugins>
@@ -99,16 +100,19 @@ Es una herramienta de código abierto diseñada para construir imágenes Docker 
    </build>
    ```
 2. Ejecuta el comando de Maven desde la ubicación donde se encuentra el `pom.xml` para generar la imagen de Docker sin necesidad de un Dockerfile.
+   
    ```
    mvn spring-boot:build-image
    ```
 3. Ejecuta el comando de Docker. Esto iniciará el contenedor de Docker basado en la imagen especificada, para el microservicio `loans`.
+   
    ```
    docker run -p 8090:8090 darvinueza/loans:s2
    ```
    
 ### GOOGLE JIB
 1. Agrega esta configuración del `pom.xml` para el `jib-maven-plugin` permite la construcción de una imagen Docker para el proyecto Maven sin necesidad de un Dockerfile. La imagen generada se etiquetará como `darvinueza/${project.artifactId}:s2`. El plugin Jib se encarga de optimizar y automatizar el proceso de construcción de la imagen, facilitando el despliegue de aplicaciones Java en contenedores.
+   
    ```
    <build>
        <plugins>
@@ -128,10 +132,12 @@ Es una herramienta de código abierto diseñada para construir imágenes Docker 
    </build>
    ```
 2. Ejecuta el comando de Maven desde la ubicación donde se encuentra el `pom.xml` para generar la imagen de Docker sin necesidad de un Dockerfile.
+   
    ```
    mvn compile jib:dockerBuild
    ```
 3. Ejecuta el comando de Docker. Esto iniciará el contenedor de Docker basado en la imagen especificada, para el microservicio `cards`.
+   
    ```
    docker run -p 9000:9000 darvinueza/cards:s2
    ```
