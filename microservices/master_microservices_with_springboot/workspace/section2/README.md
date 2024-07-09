@@ -37,6 +37,7 @@ Es una herramienta de código abierto diseñada para construir imágenes Docker 
 ## IMPLEMENTACIÓN
 ### DOCKERFILE
 1. Crea el archivo `Dockerfile` dentro de cualquier microservicio. Para este ejemplo, utilizaremos el archivo [Dockerfile](accounts/Dockerfile) del microservicio `accounts`.
+   
    ```
    # Start with a base image containing java runtime
    FROM openjdk:17-jdk-slim
@@ -51,19 +52,23 @@ Es una herramienta de código abierto diseñada para construir imágenes Docker 
    ENTRYPOINT ["java", "-jar", "accounts-1.0.jar"]
    ```
 2. Crea una imagen Docker del microservicio `accounts` utilizando el Dockerfile en el directorio actual (.) y la etiqueta con el nombre `darvinueza/accounts:s2`.
+   
    ```
    cd accounts
    docker build . -t darvinueza/accounts:s2
    ```
 3. Proporciona detalles sobre una imagen de Docker específica.
+   
    ```
    docker inspect image [IMAGE_ID]
    ```
 4. Inicia un contenedor Docker a partir de la imagen `darvinueza/accounts` con la etiqueta `s2`. El puerto `8080` del contenedor se mapea al puerto `8080` de la máquina host, lo que permite acceder al servicio del contenedor a través del puerto `8080` del host.
+   
    ```
    docker run -p 8080:8080 darvinueza/accounts:s2
    ```
 5. Inicia un contenedor Docker en segundo plano ("-d").
+   
    ```
    docker run -d -p 8080:8080 darvinueza/accounts:s2
    ```
