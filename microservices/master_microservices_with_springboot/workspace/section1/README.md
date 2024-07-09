@@ -21,17 +21,23 @@ Swagger proporciona una interfaz de usuario interactiva para explorar y probar l
 - [Loans](http://localhost:8090/swagger-ui/index.html): Consulta la documentación y realiza pruebas de las operaciones relacionadas con la gestión de préstamos, incluyendo la solicitud, aprobación y seguimiento de préstamos.
   ![](https://drive.google.com/uc?export=view&id=1jleYHP3tvxce1_jqvmbv_iCiQCnG-t2x)
 
-### H2-CONSOLE
+### DATABASE
+#### H2-CONSOLE
 H2 Console es una herramienta web que te permite interactuar con las bases de datos en memoria de nuestros microservicios. Puedes usarla para consultar y gestionar datos en las bases de datos de prueba para cada microservicio.
 
-JDBC URL: `jdbc:h2:mem:testdb` <br/>
-User Name: `sa` <br/>
-Password: *(vacío)*
 - [Accounts](http://localhost:8080/h2-console/login.jsp): Accede a la base de datos en memoria para el microservicio de cuentas. Puedes consultar y gestionar los datos relacionados con las cuentas de usuario.
+  ![](https://drive.google.com/uc?export=view&id=1joNWVUB4tdAyvq75Ac7nOfOyqnLXPFz7)
 - [Cards](http://localhost:9000/h2-console/login.jsp): Explora la base de datos en memoria para el microservicio de tarjetas. Aquí puedes ver y modificar datos de tarjetas de crédito y débito.
+  ![](https://drive.google.com/uc?export=view&id=1jpHR57XzT46OW1Gu-1O_VX6fLaU4658e)
 - [Loans](http://localhost:8090/h2-console/login.jsp): Interactúa con la base de datos en memoria para el microservicio de préstamos. Consulta y gestiona la información relacionada con los préstamos.
+  ![](https://drive.google.com/uc?export=view&id=1jouna9oSTR07pUAJIebLRbpLahzWdZng)
 
 Este acceso te permitirá verificar y manipular los datos almacenados en las bases de datos de prueba de cada microservicio.
+
+##### CREDENCIALES
+**JDBC URL:** `jdbc:h2:mem:testdb` <br/>
+**User Name:** `sa` <br/>
+**Password:** *(vacío)*
 
 ## PRUEBAS UNITARIAS
 Para realizar las pruebas unitarias de los microservicios, se adjunta el archivo [MASTER MICROSERVICES WITH SPRINGBOOT V1.postman_collection.json](unit_test/MASTER%20MICROSERVICES%20WITH%20SPRINGBOOT%20V1.postman_collection.json) de Postman.
