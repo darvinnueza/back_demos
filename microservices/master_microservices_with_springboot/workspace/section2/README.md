@@ -144,19 +144,23 @@ Es una herramienta de código abierto diseñada para construir imágenes Docker 
 ## COMANDOS DOCKER
 ### Push de Imágenes Locales Docker hacia Docker Hub
 Este comando sube la imagen Docker etiquetada como `darvinueza/accounts:s2` a [Docker Hub](https://hub.docker.com), lo que permite compartir y distribuir esta imagen con otros usuarios o servidores.
+
 ```
 docker image push darvinueza/accounts:s2
 ```
 Este comando sube la imagen Docker etiquetada como `darvinueza/cards:s2` a [Docker Hub](https://hub.docker.com).
+
 ```
 docker image push darvinueza/cards:s2
 ```
 Este comando sube la imagen Docker etiquetada como `darvinueza/loans:s2` a [Docker Hub](https://hub.docker.com).
+
 ```
 docker image push darvinueza/loans:s2
 ```
 ## DOCKERCOMPOSE
 Docker Compose es una herramienta para definir y ejecutar aplicaciones multi-contenedor en Docker. Permite configurar múltiples servicios en un solo archivo YAML [docker-compose.yml](docker-compose.yml) y gestionar el ciclo de vida de la aplicación con comandos simples.
+
 ```
 services:
   accunts:
@@ -202,10 +206,12 @@ networks:
 ### COMANDOS DOCKER
 Para la ejecución de todos estos comandos nos ubicamos en la raíz del archivo [docker-compose.yml](docker-compose.yml).
 1. Iniciar y ejecutar los contenedores en modo detached, basado en la configuración especificada en [docker-compose.yml](docker-compose.yml).
+   
    ```
    docker compose up -d
    ```
 2. Para detener los contenedores en ejecución y elimina los contenedores, redes y volúmenes definidos en el archivo [docker-compose.yml](docker-compose.yml).
+   
    ```
    docker compose down
    ```
