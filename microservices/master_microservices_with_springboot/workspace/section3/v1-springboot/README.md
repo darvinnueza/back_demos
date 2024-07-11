@@ -20,7 +20,8 @@ Por ejemplo:
    ...
    ```
 2. Controlador de Spring Boot que expone un endpoint para obtener el valor de la propiedad `build.version` del archivo de configuración en un campo privado llamado `buildVersion`.
-   ```
+   
+    ```
    public class AccountsController {
    
        ...
@@ -46,6 +47,7 @@ La interfaz `Environment` proporciona métodos para acceder a las propiedades de
 Por ejemplo:
 
 1. Controlador de Spring Boot que expone un endpoint para obtener el valor de la variable de entorno `JAVA_HOME`. Utiliza la interfaz `Environment` para acceder a las propiedades del entorno.
+   
    ```
    public class AccountsController {
    
@@ -73,6 +75,7 @@ La anotación `@ConfigurationProperties` permite enlazar grupos completos de pro
 Por ejemplo: 
 
 1. Editar el archivo [application.yml](accounts/src/main/resources/application.yml)
+   
    ```
    ...
    
@@ -87,11 +90,13 @@ Por ejemplo:
    ...
    ```
 2. Crea una clase de datos inmutable utilizada en Spring Boot para enlazar propiedades de configuración desde archivos de propiedades o archivos YAML. Utiliza la anotación `@ConfigurationProperties` con el prefijo accounts para mapear automáticamente los valores de configuración a los campos de la clase.
+   
    ```
    @ConfigurationProperties(prefix = "accounts")
    public record AccountsContactInfoDto(String message, Map<String, String> contactDetails, List<String> onCallSupport) { }
    ```
 3. Controlador de Spring Boot que expone un endpoint para acceder a los datos de contacto. Inyecta `AccountsContactInfoDto` para obtener la configuración y usa el método `getContactInfo()` para proporcionar estos datos a los clientes.
+   
    ```
    public class AccountsController {
    
@@ -112,6 +117,7 @@ Por ejemplo:
    }
    ```
 4. Clase principal de la aplicación Spring Boot. Habilita la carga de propiedades para `AccountsContactInfoDto` y arranca la aplicación con `SpringApplication.run()`, permitiendo que las propiedades configuradas en los archivos de configuración se inyecten en el bean `AccountsContactInfoDto`.
+   
    ```
    ...
    @EnableConfigurationProperties(value = {AccountsContactInfoDto.class})
