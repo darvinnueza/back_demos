@@ -212,6 +212,4 @@ SPRING_PROFILES_ACTIVE=prod;BUILD_VERSION=1.5;
 5. Teniendo en cuenta que ni las propiedades de Spring Boot ni las variables de entorno soportan la encriptación de la configuración, ¿cómo se deben gestionar de forma segura los secretos? 
 6. Después de modificar los datos de configuración, ¿cómo se puede asegurar que la aplicación pueda leerlos en tiempo de ejecución sin necesitar un reinicio completo?
 
-## SPRING CLOUD CONFIG
-
 
