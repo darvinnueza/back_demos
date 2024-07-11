@@ -183,9 +183,9 @@ Este proyecto se configura y ejecuta utilizando varias opciones que determinan s
 ```
 --spring.profiles.active=prod --build.version=1.1
 ```
-![](https://drive.google.com/uc?export=view&id=1p3uHHF9zAvJxM5r7eeUlwvfH55Y6xjaZ)
 - `--spring.profiles.active=prod`: Activa el perfil de Spring correspondiente al entorno de producción, asegurando que la aplicación use configuraciones específicas para producción. 
 - `--build.version=1.1`: Especifica la versión de construcción del proyecto como 1.1. Esta versión puede ser utilizada por la aplicación para mostrar información de versión o para otros propósitos internos.
+![](https://drive.google.com/uc?export=view&id=1p3uHHF9zAvJxM5r7eeUlwvfH55Y6xjaZ)
 ### Opciones de la Máquina Virtual (VM Options)
 ```
 -Dspring.profiles.active=prod -Dbuild.version=1.3
