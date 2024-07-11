@@ -138,6 +138,7 @@ Los perfiles son ideales para preparar nuestra aplicación para diferentes entor
 El perfil predeterminado está siempre activo. Spring Boot carga todas las propiedades del archivo `application.properties` o [application.yml](accounts/src/main/resources/application.yml) en el perfil predeterminado. Podemos crear otros perfiles creando archivos de propiedades como los siguientes:
 - [application_prod.yml](accounts/src/main/resources/application_prod.yml) → para el perfil prod (producción)
 - [application_qa.yml](accounts/src/main/resources/application_qa.yml) → para el perfil QA (calidad)
+
 Para activar un perfil específico, usamos la propiedad `spring.profiles.active` de la siguiente manera:
 ```
 spring:
