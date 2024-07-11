@@ -1,4 +1,4 @@
-CREACIÓN DE MICROSERVICIOS USANDO SPRING BOOT
+CONSTRUYENDO MICROSERVICIOS CON SPRING BOOT
 ==
 Spring Boot es un marco poderoso y ampliamente utilizado para desarrollar aplicaciones Java. Con su enfoque simplificado y su compatibilidad con diversas herramientas y bibliotecas, Spring Boot se ha convertido en una opción popular para construir microservicios escalables y eficientes. Una de las maneras más rápidas y efectivas de iniciar un proyecto con Spring Boot es utilizando Spring Initializr, una herramienta que permite generar rápidamente la estructura básica de un proyecto Spring Boot con las dependencias necesarias.
 
