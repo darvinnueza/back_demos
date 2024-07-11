@@ -10,6 +10,7 @@ Puedes usar la anotación `@Value` para inyectar directamente valores de propied
 Por ejemplo:
 
 1. Editar el archivo [application.yml](accounts/src/main/resources/application.yml)
+   
    ```
    ...
    
