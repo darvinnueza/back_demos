@@ -179,6 +179,7 @@ BUILD _VERSION="1.3"; java -jar accounts-1.0.jar
 Este proyecto se configura y ejecuta utilizando varias opciones que determinan su comportamiento en el entorno de producción. Las opciones se establecen a través de argumentos del programa, opciones de la máquina virtual Java (JVM) y variables de entorno. A continuación se detallan estas configuraciones:
 
 ![](https://drive.google.com/uc?export=view&id=1QGNQLfIwFM8S0n2MYTq9lWnHlYE4o5sp)
+
 ### Argumentos del Programa (Program Arguments)
 ```
 --spring.profiles.active=prod --build.version=1.1
@@ -186,20 +187,22 @@ Este proyecto se configura y ejecuta utilizando varias opciones que determinan s
 - `--spring.profiles.active=prod`: Activa el perfil de Spring correspondiente al entorno de producción, asegurando que la aplicación use configuraciones específicas para producción. 
 - `--build.version=1.1`: Especifica la versión de construcción del proyecto como 1.1. Esta versión puede ser utilizada por la aplicación para mostrar información de versión o para otros propósitos internos.
 ![](https://drive.google.com/uc?export=view&id=1p3uHHF9zAvJxM5r7eeUlwvfH55Y6xjaZ)
+
 ### Opciones de la Máquina Virtual (VM Options)
 ```
 -Dspring.profiles.active=prod -Dbuild.version=1.3
 ```
-![](https://drive.google.com/uc?export=view&id=1oyxQctZypfkRdR8n5SEdfw-R1ZxKxyAx)
 - `-Dspring.profiles.active=prod`: Similar al argumento del programa, esta opción activa el perfil de Spring para el entorno de producción, pero se establece a nivel de la JVM.
 - `-Dbuild.version=1.3`: Define la versión de construcción del proyecto como 1.3 a nivel de la JVM, lo que puede sobreescribir la versión establecida en los argumentos del programa.
+![](https://drive.google.com/uc?export=view&id=1oyxQctZypfkRdR8n5SEdfw-R1ZxKxyAx)
+
 ### Variables de Entorno (Environment Variables)
 ```
 SPRING_PROFILES_ACTIVE=prod;BUILD_VERSION=1.5;
 ```
-![](https://drive.google.com/uc?export=view&id=1p2TbI3lTwrw7Qoui8Y5sV7H6Zy2PIeQr)
 - `SPRING_PROFILES_ACTIVE=prod`: Establece el perfil activo de Spring como prod a través de una variable de entorno, reforzando el uso de configuraciones de producción.
 - `BUILD_VERSION=1.5`: Define la versión de construcción del proyecto como 1.5 a través de una variable de entorno. Esta configuración suele tener la mayor prioridad y probablemente será la versión efectiva utilizada por la aplicación.
+![](https://drive.google.com/uc?export=view&id=1p2TbI3lTwrw7Qoui8Y5sV7H6Zy2PIeQr)
 
 ## DESVENTAJAS DE LAS CONFIGURACIONES EXTERNALIZADAS UTILIZANDO SOLO SPRING BOOT
 1. Los argumentos de CLI (Command-Line Interface), las propiedades de JVM y las variables de entorno son formas efectivas de externalizar la configuración y mantener la inmutabilidad del build de la aplicación. Sin embargo, utilizar estos enfoques a menudo implica ejecutar comandos por separado y configurar manualmente la aplicación, lo cual puede introducir errores potenciales durante el despliegue. 
