@@ -169,14 +169,15 @@ BUILD _VERSION="1.3"; java -jar accounts-1.0.jar
 
 ## DESCRIPCIÓN GENERAL DEL PROYECTO
 Este proyecto se configura y ejecuta utilizando varias opciones que determinan su comportamiento en el entorno de producción. Las opciones se establecen a través de argumentos del programa, opciones de la máquina virtual Java (JVM) y variables de entorno. A continuación se detallan estas configuraciones:
+
 ![](https://drive.google.com/uc?export=view&id=1QGNQLfIwFM8S0n2MYTq9lWnHlYE4o5sp)
 ### Argumentos del Programa (Program Arguments)
-![](https://drive.google.com/uc?export=view&id=1p3uHHF9zAvJxM5r7eeUlwvfH55Y6xjaZ)
-- `--spring.profiles.active=prod`: Activa el perfil de Spring correspondiente al entorno de producción, asegurando que la aplicación use configuraciones específicas para producción. 
-- `--build.version=1.1`: Especifica la versión de construcción del proyecto como 1.1. Esta versión puede ser utilizada por la aplicación para mostrar información de versión o para otros propósitos internos.
 ```
 --spring.profiles.active=prod --build.version=1.1
 ```
+![](https://drive.google.com/uc?export=view&id=1p3uHHF9zAvJxM5r7eeUlwvfH55Y6xjaZ)
+- `--spring.profiles.active=prod`: Activa el perfil de Spring correspondiente al entorno de producción, asegurando que la aplicación use configuraciones específicas para producción. 
+- `--build.version=1.1`: Especifica la versión de construcción del proyecto como 1.1. Esta versión puede ser utilizada por la aplicación para mostrar información de versión o para otros propósitos internos.
 ### Opciones de la Máquina Virtual (VM Options)
 ![](https://drive.google.com/uc?export=view&id=1oyxQctZypfkRdR8n5SEdfw-R1ZxKxyAx)
 - `-Dspring.profiles.active=prod`: Similar al argumento del programa, esta opción activa el perfil de Spring para el entorno de producción, pero se establece a nivel de la JVM.
