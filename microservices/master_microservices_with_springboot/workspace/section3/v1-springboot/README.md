@@ -147,30 +147,31 @@ spring:
 ```
 Un punto importante a tener en cuenta es que, una vez que la aplicación está construida y empaquetada, no debe ser modificada. Cualquier cambio de configuración necesario, como actualizar credenciales o manejadores de base de datos, debe hacerse externamente.
 
-## ¿CÓMO EXTERNALIZAR CONFIGURACIONES USANDO ARGUMENTOS DE LÍNEA DE COMANDOS?
+## EXTERNALIZAR CONFIGURACIONES
+### ¿CÓMO EXTERNALIZAR CONFIGURACIONES USANDO ARGUMENTOS DE LÍNEA DE COMANDOS?
 Spring Boot convierte automáticamente los argumentos de línea de comandos en pares clave/valor y los agrega al objeto Environment. En una aplicación de producción, esta fuente de propiedades tiene la mayor precedencia. Puedes personalizar la configuración de la aplicación especificando argumentos de línea de comandos al ejecutar el JAR que construiste anteriormente.
 ```
 java -jar accounts-1.0.jar --build.version="1.1"
 ```
 El argumento de línea de comandos sigue la misma convención de nombres que la propiedad correspondiente de Spring, utilizando el prefijo `--` para los argumentos de CLI (Command-Line Interface).
 
-## ¿CÓMO EXTERNALIZAR CONFIGURACIONES UTILIZANDO PROPIEDADES DEL SISTEMA JVM?
+### ¿CÓMO EXTERNALIZAR CONFIGURACIONES UTILIZANDO PROPIEDADES DEL SISTEMA JVM?
 Las propiedades del sistema JVM, al igual que los argumentos de línea de comandos, pueden sobrescribir las propiedades de Spring con una prioridad más baja. Este enfoque permite externalizar la configuración sin necesidad de reconstruir el artefacto JAR. La propiedad del sistema JVM sigue la misma convención de nombres que la propiedad correspondiente de Spring, con el prefijo `-D para los argumentos de JVM. En la aplicación, el mensaje definido como una propiedad del sistema JVM será utilizado, teniendo prioridad sobre los archivos de propiedades.
 ```
 java -Dbuild.version="1.2" -jar accounts-1.0.jar
 ```
 En el escenario en el que se especifican tanto una propiedad del sistema JVM como un argumento de línea de comandos, las reglas de precedencia dictan que Spring dará prioridad al valor proporcionado como argumento de línea de comandos. Esto significa que el valor especificado a través del CLI (Command-Line Interface) será utilizado por la aplicación, teniendo prioridad sobre las propiedades de la JVM.
 
-## ¿CÓMO EXTERNALIZAR CONFIGURACIONES UTILIZANDO VARIABLES DE ENTORNO?
+### ¿CÓMO EXTERNALIZAR CONFIGURACIONES UTILIZANDO VARIABLES DE ENTORNO?
 Las variables de entorno se utilizan ampliamente para la configuración externalizada, ya que ofrecen portabilidad en diferentes sistemas operativos, siendo universalmente compatibles. La mayoría de los lenguajes de programación, incluyendo Java, proporcionan mecanismos para acceder a las variables de entorno, como el método `System.getenv()`.
 
 Para mapear una clave de propiedad de Spring a una variable de entorno, necesitas convertir todas las letras a mayúsculas y reemplazar cualquier punto o guion con guiones bajos. Spring Boot manejará este mapeo correctamente de forma interna. Por ejemplo, una variable de entorno llamada `BUILD_VERSION` será reconocida como la propiedad `build.version`. Esta característica se conoce como binding relajado.
 
-### WINDOWS
+#### WINDOWS
 ```
 env:BUILD _VERSION="1.3"; java -jar accounts-1.0.jar
 ```
-### LINUX BASED OS
+#### LINUX BASED OS
 ```
 BUILD _VERSION="1.3"; java -jar accounts-1.0.jar
 ```
@@ -211,5 +212,3 @@ SPRING_PROFILES_ACTIVE=prod;BUILD_VERSION=1.5;
 4. Cuando el número de instancias de la aplicación crece, manejar la configuración de manera distribuida para cada instancia se vuelve un desafío. ¿Cómo se pueden superar estos desafíos? 
 5. Teniendo en cuenta que ni las propiedades de Spring Boot ni las variables de entorno soportan la encriptación de la configuración, ¿cómo se deben gestionar de forma segura los secretos? 
 6. Después de modificar los datos de configuración, ¿cómo se puede asegurar que la aplicación pueda leerlos en tiempo de ejecución sin necesitar un reinicio completo?
-
-

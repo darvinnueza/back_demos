@@ -1,0 +1,44 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: "configserver"
+  profiles:
+    #active: native
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/darvinnueza/focus-config.git
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+        #native:
+          #search-locations: "classpath:/config"
+          #search-locations: "file:////Users/darvin/Documents/GitHub/my_demos/back_demos/MASTER_MICROSERVICES_WITH_SPRINGBOOT_DOCKER_KUBERNETES/workspace/backend/section6/v2-spring-cloud-config/config"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+encrypt:
+  key: 93f7dfea57e8d95e51a7f054a7cec53741d58eef22ad03213df508d6fd366d3d
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
