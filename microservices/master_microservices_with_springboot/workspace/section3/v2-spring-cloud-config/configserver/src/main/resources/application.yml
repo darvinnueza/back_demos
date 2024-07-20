@@ -33,7 +33,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh
+        include: busrefresh
   health:
     readiness-state:
       enabled: true
