@@ -44,7 +44,7 @@ Veamos un enfoque para actualizar la configuración, que implica enviar una soli
            include: refresh
    ```
 
-![](https://drive.google.com/uc?export=view&id=1pTeJONjw3avkWM73lU5k4vYnOcRSZXq0)
+![](https://drive.google.com/uc?export=view&id=1p_KOOGT96DVwIB4oFzS4ESjrVkITTkgx)
 
 Invocaste el mecanismo de actualización en el Servicio de Cuentas y funcionó correctamente, ya que solo había una aplicación con una instancia. Sin embargo, en un entorno de producción, donde puede haber múltiples servicios, ¿qué sucederá? Si un proyecto tiene muchos microservicios, el equipo podría preferir un método automatizado y eficiente para actualizar la configuración en lugar de activar manualmente cada instancia de aplicación. Vamos a evaluar las otras opciones disponibles.
 
