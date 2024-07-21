@@ -35,7 +35,19 @@ Incorpora componentes que ayudan a comprender las interacciones complejas entre 
 
 Veamos un enfoque para actualizar la configuración, que implica enviar una solicitud `POST` específica a una instancia en ejecución del microservicio. Esta solicitud iniciará la recarga de los datos de configuración modificados, permitiendo una recarga en caliente de la aplicación. A continuación, se presentan los pasos a seguir:
 
-1. **Agregar la dependencia de actuator en los servicios Config Client:** Agrega la dependencia de Spring Boot Actuator en el archivo pom.xml de los microservicios individuales como cuentas, préstamos, tarjetas para exponer el endpoint `/refresh`.
+1. **Agregar la dependencia de actuator en los servicios Config Client:** Agrega la dependencia de Spring Boot Actuator en el archivo `pom.xml` de los microservicios individuales como accounts, loans, cards, para exponer el endpoint `/refresh`.
+   ```
+   ...
+   <dependencies>
+       ...
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-actuator</artifactId>
+	   </dependency>
+       ...
+   <dependencies>
+   ...
+   ```
 2. **Habilitar la API /refresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/refresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) utilizando la siguiente configuración:
    ```
    management:
@@ -54,7 +66,7 @@ Invocaste el mecanismo de actualización en el Servicio de Cuentas y funcionó c
 
 A continuación se presentan los pasos a seguir:
 
-1. **Agregar la dependencia de Actuator en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Boot Actuator en el archivo `pom.xml` de cada microservicio, como accounts, loans y cards, para exponer el endpoint `/busrefresh`.
+1. **Agregar la dependencia de Actuator en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Boot Actuator en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards, para exponer el endpoint `/busrefresh`.
 2. **Habilitar la API /busrefresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/busrefresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) utilizando la configuración a continuación:
    ```
    management:
@@ -63,16 +75,33 @@ A continuación se presentan los pasos a seguir:
          exposure:
            include: busrefresh
    ```
+3. **Agregar la dependencia de Spring Cloud Bus en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Cloud Bus `spring-cloud-starter-bus-amqp` en el archivo `pom.xml` de cada microservicio, como cuentas, préstamos, tarjetas y el servidor de configuración.
+   ```
+   ...
+   <dependencies>
+       ...
+       <dependency>
+           <groupId>org.springframework.cloud</groupId>
+           <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+       </dependency>
+       ...
+   <dependencies>
+   ...
+   ```
+4. **Configurar RabbitMQ:** Utilizando Docker, configura el servicio RabbitMQ. Si el servicio no se inicia con los valores predeterminados, configura los detalles de la conexión a RabbitMQ en el archivo `application.yml` de cada microservicio individual y del servidor de configuración.
+   ```
+   spring:
+     rabbitmq:
+       host: "localhost"
+       port: 5672
+       username: "guest"
+       password: "guest"
+   ```
 
+![](https://drive.google.com/uc?export=view&id=1pb1OKyBdw-wCttiXlx3ZsQcvVZOtR3Ai)
 
+Aunque este enfoque reduce considerablemente el trabajo manual, aún hay un paso manual involucrado, que es invocar el endpoint `/actuator/busrefresh` en alguna de las instancias del microservicio. Veamos cómo podemos evitarlo y automatizar completamente el proceso.
 
-
-
-
-
-```
-
-```
 
 http://localhost:8071/accounts/dev
 http://localhost:8071/accounts/qa
