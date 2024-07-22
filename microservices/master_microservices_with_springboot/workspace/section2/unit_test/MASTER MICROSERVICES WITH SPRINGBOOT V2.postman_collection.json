@@ -1,0 +1,489 @@
+{
+	"info": {
+		"_postman_id": "36ae42df-b961-4687-83e8-78e5f839aae3",
+		"name": "MASTER MICROSERVICES WITH SPRINGBOOT V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13395590"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "CreateAccount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ian Vinueza\",\n    \"email\": \"ianchin@gmail.com\",\n    \"mobileNumber\": \"0987081772\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FetchAccountDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/fetch?mobileNumber=0987081772",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0987081772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAccountDetails",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ian Vinueza Flores\",\n    \"email\": \"ianchin@hotmail.com\",\n    \"mobileNumber\": \"0987081772\",\n    \"accountsDto\": {\n        \"accountNumber\": 1781124175,\n        \"accountType\": \"Current\",\n        \"branchAddress\": \"124 Main Street, New York\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAcoounDetails",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/delete?mobileNumber=0987081772",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0987081772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "build-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/build-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"build-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "java-version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/java-version",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"java-version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/contact-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contact-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "loans",
+			"item": [
+				{
+					"name": "CreateLoan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/create?mobileNumber=0987081772",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"create"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0987081772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FetchLoanDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/fetch?mobileNumber=0987081772",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0987081772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateLoanDetails",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileNumber\": \"0987081772\",\n    \"loanNumber\": \"100686864951\",\n    \"loanType\": \"Vehicle Loan\",\n    \"totalLoan\": 100000,\n    \"amountPaid\": 10000,\n    \"outstandingAmount\": 90000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/api/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAcoounDetails",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/delete?mobileNumber=0987081772",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0987081772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "build-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/build-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"build-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "java-version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/api/java-version",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"java-version"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cards",
+			"item": [
+				{
+					"name": "CreateCard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/api/create?mobileNumber=0987081772",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"create"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0987081772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FetchCardDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/api/fetch?mobileNumber=0987081772",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0987081772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCardDetails",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileNumber\": \"0987081772\",\n    \"cardNumber\": \"100409187611\",\n    \"cardType\": \"Credit Card\",\n    \"totalLimit\": 100000,\n    \"amountUsed\": 0,\n    \"availableAmount\": 100000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCardDetails",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/api/delete?mobileNumber=0987081772",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0987081772"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "build-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/api/build-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"build-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "java-version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/api/java-version",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"java-version"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
