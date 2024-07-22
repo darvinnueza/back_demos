@@ -197,7 +197,7 @@ A continuación, se presentan los pasos a seguir:
    ```
 6. **Configurar un WebHook en GitHub:** Configura un webhook para enviar automáticamente una solicitud POST al endpoint `/monitor` del Config Service después de cada nuevo push al repositorio de configuración [master-microservices-config](https://github.com/darvinnueza/master-microservices-config).
 
-![](https://drive.google.com/uc?export=view&id=1pbTCKFQk5fPTeslaYILk_x5LlH3Cj95q)
+![](https://drive.google.com/uc?export=view&id=1pedazCkmzGrSemQIH8HTLEPZJgl9Ow3m)
 
 > **NOTA**
 >
