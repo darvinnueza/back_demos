@@ -62,11 +62,23 @@ Veamos un enfoque para actualizar la configuración, que implica enviar una soli
 Invocaste el mecanismo de actualización en el Servicio de Cuentas y funcionó correctamente, ya que solo había una aplicación con una instancia. Sin embargo, en un entorno de producción, donde puede haber múltiples servicios, ¿qué sucederá? Si un proyecto tiene muchos microservicios, el equipo podría preferir un método automatizado y eficiente para actualizar la configuración en lugar de activar manualmente cada instancia de aplicación. Vamos a evaluar las otras opciones disponibles.
 
 ## UTILIZANDO SPRING CLOUD BUS
-[Spring Cloud](https://spring.io/projects/spring-cloud-bus) facilita la comunicación fluida entre todas las instancias de la aplicación conectadas al establecer un canal conveniente de transmisión de eventos. Ofrece una implementación para brokers AMQP, como `RabbitMQ` y `Kafka`, permitiendo una comunicación eficiente en todo el ecosistema de la aplicación.
+[Spring Cloud Bus](https://spring.io/projects/spring-cloud-bus) facilita la comunicación fluida entre todas las instancias de la aplicación conectadas al establecer un canal conveniente de transmisión de eventos. Ofrece una implementación para brokers AMQP, como `RabbitMQ` y `Kafka`, permitiendo una comunicación eficiente en todo el ecosistema de la aplicación.
 
 A continuación se presentan los pasos a seguir:
 
 1. **Agregar la dependencia de Actuator en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Boot Actuator en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards, para exponer el endpoint `/busrefresh`.
+   ```
+   ...
+   <dependencies>
+       ...
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-actuator</artifactId>
+	   </dependency>
+       ...
+   <dependencies>
+   ...
+   ```
 2. **Habilitar la API /busrefresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/busrefresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) utilizando la configuración a continuación:
    ```
    management:
@@ -75,7 +87,7 @@ A continuación se presentan los pasos a seguir:
          exposure:
            include: busrefresh
    ```
-3. **Agregar la dependencia de Spring Cloud Bus en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Cloud Bus `spring-cloud-starter-bus-amqp` en el archivo `pom.xml` de cada microservicio, como cuentas, préstamos, tarjetas y el servidor de configuración.
+3. **Agregar la dependencia de Spring Cloud Bus en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Cloud Bus `spring-cloud-starter-bus-amqp` en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards y el servidor de configuración (configserver).
    ```
    ...
    <dependencies>
@@ -88,7 +100,7 @@ A continuación se presentan los pasos a seguir:
    <dependencies>
    ...
    ```
-4. **Configurar RabbitMQ:** Utilizando Docker, configura el servicio RabbitMQ. Si el servicio no se inicia con los valores predeterminados, configura los detalles de la conexión a RabbitMQ en el archivo `application.yml` de cada microservicio individual y del servidor de configuración.
+4. **Configurar RabbitMQ:** Utilizando Docker, configura el servicio RabbitMQ. Si el servicio no se inicia con los valores predeterminados, configura los detalles de la conexión a RabbitMQ en el archivo `application.yml` de cada microservicio individual y del servidor de configuración (configserver).
    ```
    spring:
      rabbitmq:
@@ -102,6 +114,72 @@ A continuación se presentan los pasos a seguir:
 
 Aunque este enfoque reduce considerablemente el trabajo manual, aún hay un paso manual involucrado, que es invocar el endpoint `/actuator/busrefresh` en alguna de las instancias del microservicio. Veamos cómo podemos evitarlo y automatizar completamente el proceso.
 
+## UTILIZANDO SPRING CLOUD BUS Y SPRING CLOUD CONFIG MONITOR
+[Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/) ofrece la biblioteca Monitor, que permite activar eventos de cambio de configuración en el Config Service. Al exponer el endpoint `/monitor`, facilita la propagación de estos eventos a todas las aplicaciones que estén escuchando a través del Bus. La biblioteca Monitor permite notificaciones push desde proveedores de repositorios de código populares como GitHub, GitLab y Bitbucket. Puedes configurar webhooks en estos servicios para que envíen automáticamente una solicitud POST al Config Service después de cada nuevo push al repositorio de configuración. 
+
+A continuación, se presentan los pasos a seguir:
+
+1. **Agregar la dependencia de Actuator en los servicios del Config Server y Config Client:** Incluye la dependencia de Spring Boot Actuator en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards y el servidor de configuración (configserver), para exponer el endpoint `/busrefresh`.
+   ```
+   ...
+   <dependencies>
+       ...
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-actuator</artifactId>
+	   </dependency>
+       ...
+   <dependencies>
+   ...
+   ```
+2. **Habilitar la API /busrefresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/busrefresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) utilizando la configuración a continuación:
+   ```
+   management:
+     endpoints:
+       web:
+         exposure:
+           include: busrefresh
+   ```
+3. **Agregar la dependencia de Spring Cloud Bus en los servicios del Config Server y Config Client:** Incluye la dependencia de Spring Cloud Bus `spring-cloud-starter-bus-amqp` en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards y el servidor de configuración (configserver).
+   ```
+   ...
+   <dependencies>
+       ...
+       <dependency>
+           <groupId>org.springframework.cloud</groupId>
+           <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+       </dependency>
+       ...
+   <dependencies>
+   ...
+   ```
+4. **Agregar la dependencia de Spring Cloud Config Monitor en el Config Server:** Incluye la dependencia de Spring Cloud Config Monitor `spring-cloud-config-monitor` en el archivo `pom.xml` del servidor de configuración (configserver), lo que expone el endpoint `/monitor`.
+   ```
+   ...
+   <dependencies>
+       ...
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-monitor</artifactId>
+        </dependency>
+       ...
+   <dependencies>
+   ...
+   ```
+5. **Configurar RabbitMQ:** Utilizando Docker, configura el servicio RabbitMQ. Si el servicio no se inicia con los valores predeterminados, configura los detalles de la conexión a RabbitMQ en el archivo `application.yml` de cada microservicio y del servidor de configuración (configserver).
+   ```
+   spring:
+     rabbitmq:
+       host: "localhost"
+       port: 5672
+       username: "guest"
+       password: "guest"
+   ```
+6. **Configurar un WebHook en GitHub:** Configura un webhook para enviar automáticamente una solicitud POST al endpoint `/monitor` del Config Service después de cada nuevo push al repositorio de configuración [master-microservices-config](https://github.com/darvinnueza/master-microservices-config).
+
+![](https://drive.google.com/uc?export=view&id=1pbTCKFQk5fPTeslaYILk_x5LlH3Cj95q)
+
+En esta solución, no hay ningún paso manual involucrado; todo el proceso está automatizado.
 
 http://localhost:8071/accounts/dev
 http://localhost:8071/accounts/qa
