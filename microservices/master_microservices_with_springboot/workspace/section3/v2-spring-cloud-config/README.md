@@ -7,7 +7,6 @@ La configuración centralizada gira en torno a dos elementos clave:
 - Un almacén de datos diseñado para manejar datos de configuración, asegurando durabilidad, gestión de versiones y, potencialmente, control de acceso.
 - Un servidor que supervisa los datos de configuración dentro del almacén de datos, facilitando su gestión y distribución a múltiples aplicaciones.
 
-
 ## ¿QUÉ ES SPRING CLOUD?
 Spring Cloud proporciona marcos de trabajo para que los desarrolladores construyan rápidamente algunos de los patrones comunes de los microservicios.
 
@@ -180,6 +179,111 @@ A continuación, se presentan los pasos a seguir:
 ![](https://drive.google.com/uc?export=view&id=1pbTCKFQk5fPTeslaYILk_x5LlH3Cj95q)
 
 En esta solución, no hay ningún paso manual involucrado; todo el proceso está automatizado.
+
+## SERVIDOR DE CONFIGURACIÓN
+
+En el [Config Server](configserver), actualiza el archivo `pom.xml` como se muestra a continuación y asegúrate de reemplazar los `...` con el contenido existente en tu archivo `pom.xml`.
+
+1. **Define la versión de Spring Cloud:** En la sección `<properties>`, agrega la versión de Spring Cloud que deseas utilizar.
+   ```
+   <properties>
+      ...
+      <spring-cloud.version>2023.0.1</spring-cloud.version>
+      ...
+   </properties>
+   ```
+2. **Configura la gestión de dependencias:** En la sección `<dependencyManagement>`, agrega la configuración para importar las dependencias de Spring Cloud.
+   ```
+   <dependencyManagement>
+      <dependencies>
+         <dependencies>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         <dependencies>
+		</dependencies>
+   <dependencyManagement>
+   ```
+3. **Agrega las dependencias necesarias:** En la sección `<dependencies>`, incluye las dependencias de Spring Cloud que necesitas, como `spring-cloud-config-server`.
+   ```
+   <dependencies>
+       ...
+         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-server</artifactId>
+         </dependency>
+       ...
+   <dependencies>
+   ```
+
+En [Config Server](configserver), actualiza el archivo `application.yml` como se muestra a continuación.
+```
+spring:
+  application:
+    name: "configserver"
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/darvinnueza/master-microservices-config.git
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+```
+
+## ACTUALIZACIÓN DE LOS MICROSERVICIOS PARA LEER PROPIEDADES DESDE EL CONFIG SERVER
+
+En todos los microservicios [accounts](accounts), [loans](loans) y [cards](cards), actualiza el archivo `pom.xml` como se muestra a continuación y asegúrate de reemplazar los `...` con el contenido existente en tu archivo `pom.xml`.
+
+1. **Define la versión de Spring Cloud:** En la sección `<properties>`, agrega la versión de Spring Cloud que deseas utilizar.
+   ```
+   <properties>
+      ...
+      <spring-cloud.version>2023.0.1</spring-cloud.version>
+      ...
+   </properties>
+   ```
+2. **Configura la gestión de dependencias:** En la sección `<dependencyManagement>`, agrega la configuración para importar las dependencias de Spring Cloud.
+   ```
+   <dependencyManagement>
+      <dependencies>
+         <dependencies>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         <dependencies>
+		</dependencies>
+   <dependencyManagement>
+   ```
+3. **Agrega las dependencias necesarias:** En la sección `<dependencies>`, incluye las dependencias de Spring Cloud que necesitas, como `spring-cloud-starter-config`.
+   ```
+   <dependencies>
+       ...
+         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+         </dependency>
+       ...
+   <dependencies>
+   ```
+En todos los microservicios [accounts](accounts), [loans](loans) y [cards](cards), actualiza el archivo `application.yml` como se muestra a continuación y asegúrate de reemplazar `"microservice_name"` con el nombre adecuado para cada microservicio.
+```
+spring:
+  application:
+    name: "microservice_name"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+```
+
+
 
 http://localhost:8071/accounts/dev
 http://localhost:8071/accounts/qa

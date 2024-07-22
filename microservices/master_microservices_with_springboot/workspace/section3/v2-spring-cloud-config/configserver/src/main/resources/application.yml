@@ -14,7 +14,7 @@ spring:
           # search-locations: "classpath:/config"
           # search-locations: "file:////Users/darvin/Documents/GitHub/my_demos/back_demos/MASTER_MICROSERVICES_WITH_SPRINGBOOT_DOCKER_KUBERNETES/workspace/backend/section6/v2-spring-cloud-config/config"
         git:
-          uri: https://github.com/darvinnueza/focus-config.git
+          uri: https://github.com/darvinnueza/master-microservices-config.git
           default-label: main
           timeout: 5
           clone-on-start: true
