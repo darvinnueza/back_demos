@@ -30,6 +30,9 @@ Incorpora componentes que ayudan a comprender las interacciones complejas entre 
 
 ## ACTUALIZAR LAS CONFIGURACIONES EN TIEMPO DE EJECUCIÓN 
 ### UTILIZANDO LA RUTA /refresh
+
+![](https://drive.google.com/uc?export=view&id=1p_KOOGT96DVwIB4oFzS4ESjrVkITTkgx)
+
 ¿Qué sucede cuando se realizan nuevas actualizaciones en el repositorio de Git que soporta el servicio de configuración? En una aplicación Spring Boot típica, modificar una propiedad requeriría un reinicio. Sin embargo, [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/) introduce la capacidad de actualizar dinámicamente la configuración en las aplicaciones cliente durante el tiempo de ejecución. Cuando se realiza un cambio en el repositorio de configuración, todas las aplicaciones integradas conectadas al servidor de configuración pueden ser notificadas, lo que les solicita recargar las secciones relevantes afectadas por la modificación de la configuración.
 
 Veamos un enfoque para actualizar la configuración, que implica enviar una solicitud `POST` específica a una instancia en ejecución del microservicio. Esta solicitud iniciará la recarga de los datos de configuración modificados, permitiendo una recarga en caliente de la aplicación. A continuación, se presentan los pasos a seguir:
@@ -55,12 +58,14 @@ Veamos un enfoque para actualizar la configuración, que implica enviar una soli
          exposure:
            include: refresh
    ```
-
-![](https://drive.google.com/uc?export=view&id=1p_KOOGT96DVwIB4oFzS4ESjrVkITTkgx)
-
-Invocaste el mecanismo de actualización en el Servicio de Cuentas y funcionó correctamente, ya que solo había una aplicación con una instancia. Sin embargo, en un entorno de producción, donde puede haber múltiples servicios, ¿qué sucederá? Si un proyecto tiene muchos microservicios, el equipo podría preferir un método automatizado y eficiente para actualizar la configuración en lugar de activar manualmente cada instancia de aplicación. Vamos a evaluar las otras opciones disponibles.
+> **NOTA**
+> 
+> Invocaste el mecanismo de actualización en el Servicio `accounts` y funcionó correctamente, ya que solo había una aplicación con una instancia. Sin embargo, en un entorno de producción, donde puede haber múltiples servicios, ¿qué sucederá? Si un proyecto tiene muchos microservicios, el equipo podría preferir un método automatizado y eficiente para actualizar la configuración en lugar de activar manualmente cada instancia de aplicación. Vamos a evaluar las otras opciones disponibles.
 
 ## UTILIZANDO SPRING CLOUD BUS
+
+![](https://drive.google.com/uc?export=view&id=1pb1OKyBdw-wCttiXlx3ZsQcvVZOtR3Ai)
+
 [Spring Cloud Bus](https://spring.io/projects/spring-cloud-bus) facilita la comunicación fluida entre todas las instancias de la aplicación conectadas al establecer un canal conveniente de transmisión de eventos. Ofrece una implementación para brokers AMQP, como `RabbitMQ` y `Kafka`, permitiendo una comunicación eficiente en todo el ecosistema de la aplicación.
 
 A continuación se presentan los pasos a seguir:
@@ -109,11 +114,27 @@ A continuación se presentan los pasos a seguir:
        password: "guest"
    ```
 
-![](https://drive.google.com/uc?export=view&id=1pb1OKyBdw-wCttiXlx3ZsQcvVZOtR3Ai)
+### Instalar RabbitMQ
 
-Aunque este enfoque reduce considerablemente el trabajo manual, aún hay un paso manual involucrado, que es invocar el endpoint `/actuator/busrefresh` en alguna de las instancias del microservicio. Veamos cómo podemos evitarlo y automatizar completamente el proceso.
+![](https://drive.google.com/uc?export=view&id=1pd6JZhlzPeKZK8hw4dkzrvBT_3SPMQGR)
+
+La última [versión](https://github.com/rabbitmq/rabbitmq-server/releases) de RabbitMQ es la 3.13.5. Consulta el registro de cambios para las notas de la versión. Revisa la línea de soporte de [RabbitMQ para conocer qué series de versiones](https://www.rabbitmq.com/release-information) están soportadas.
+
+¿Experimentando con RabbitMQ en tu estación de trabajo? Prueba la imagen Docker de la comunidad:
+
+```
+# latest RabbitMQ 3.13
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.13-management
+```
+
+> **NOTA**
+>
+> Aunque este enfoque reduce considerablemente el trabajo manual, aún hay un paso manual involucrado, que es invocar el endpoint `/actuator/busrefresh` en alguna de las instancias del microservicio. Veamos cómo podemos evitarlo y automatizar completamente el proceso.
 
 ## UTILIZANDO SPRING CLOUD BUS Y SPRING CLOUD CONFIG MONITOR
+
+![](https://drive.google.com/uc?export=view&id=1pbTCKFQk5fPTeslaYILk_x5LlH3Cj95q)
+
 [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/) ofrece la biblioteca Monitor, que permite activar eventos de cambio de configuración en el Config Service. Al exponer el endpoint `/monitor`, facilita la propagación de estos eventos a todas las aplicaciones que estén escuchando a través del Bus. La biblioteca Monitor permite notificaciones push desde proveedores de repositorios de código populares como GitHub, GitLab y Bitbucket. Puedes configurar webhooks en estos servicios para que envíen automáticamente una solicitud POST al Config Service después de cada nuevo push al repositorio de configuración. 
 
 A continuación, se presentan los pasos a seguir:
@@ -178,7 +199,9 @@ A continuación, se presentan los pasos a seguir:
 
 ![](https://drive.google.com/uc?export=view&id=1pbTCKFQk5fPTeslaYILk_x5LlH3Cj95q)
 
-En esta solución, no hay ningún paso manual involucrado; todo el proceso está automatizado.
+> **NOTA**
+>
+> En esta solución, no hay ningún paso manual involucrado; todo el proceso está automatizado.
 
 ## SERVIDOR DE CONFIGURACIÓN
 
@@ -283,19 +306,7 @@ spring:
 
 ```
 
-
-
-http://localhost:8071/accounts/dev
-http://localhost:8071/accounts/qa
-http://localhost:8071/accounts/prod
-
-http://localhost:8071/cards/dev
-http://localhost:8071/cards/qa
-http://localhost:8071/cards/prod
-
-http://localhost:8071/loans/dev
-http://localhost:8071/loans/qa
-http://localhost:8071/loans/prod
-
 ## ANEXOS
 - [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/)
+- [Rabbitmq](https://www.rabbitmq.com/docs/download)
+- [Hookdeck](https://hookdeck.com/)

@@ -7,8 +7,7 @@ import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "cards")
-@Getter
-@Setter
+@Getter @Setter
 public class CardsContactInfoDto {
 
     private String message;
