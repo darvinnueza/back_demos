@@ -1,5 +1,5 @@
 services:
-  accunts:
+  accounts:
     image: "darvinueza/accounts:s3"
     container_name: acounts-ms
     ports:

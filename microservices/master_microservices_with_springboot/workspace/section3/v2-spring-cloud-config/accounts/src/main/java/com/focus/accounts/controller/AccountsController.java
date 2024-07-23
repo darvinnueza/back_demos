@@ -1,9 +1,12 @@
 package com.focus.accounts.controller;
 
+import com.focus.accounts.constants.AccountsConstants;
+import com.focus.accounts.dto.AccountsContactInfoDto;
+import com.focus.accounts.dto.ResponseDto;
+import com.focus.accounts.service.IAccountsService;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import com.focus.accounts.dto.CustomerDto;
-import com.focus.accounts.dto.ResponseDto;
 import org.springframework.http.HttpStatus;
 import jakarta.validation.constraints.Pattern;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,9 +17,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Content;
-import com.focus.accounts.service.IAccountsService;
-import com.focus.accounts.dto.AccountsContactInfoDto;
-import com.focus.accounts.constants.AccountsConstants;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

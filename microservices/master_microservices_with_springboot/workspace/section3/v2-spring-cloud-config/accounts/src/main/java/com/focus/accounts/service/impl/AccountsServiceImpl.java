@@ -2,6 +2,8 @@ package com.focus.accounts.service.impl;
 
 import java.util.Random;
 import java.util.Optional;
+
+import com.focus.accounts.repository.AccountsRepository;
 import lombok.AllArgsConstructor;
 import com.focus.accounts.dto.AccountsDto;
 import com.focus.accounts.dto.CustomerDto;
@@ -13,7 +15,6 @@ import com.focus.accounts.mapper.CustomerMapper;
 import com.focus.accounts.service.IAccountsService;
 import com.focus.accounts.constants.AccountsConstants;
 import com.focus.accounts.repository.CustomerRepository;
-import com.focus.accounts.repository.AccountsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.focus.accounts.exception.ResourceNotFoundException;
 import com.focus.accounts.exception.CustomerAlreadyExistsException;

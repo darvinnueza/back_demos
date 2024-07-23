@@ -305,9 +305,46 @@ spring:
     import: "optional:configserver:http://localhost:8071/"
 ```
 
-brew install hookdeck/hookdeck/hookdeck
-hookdeck login
-hookdeck listen 8071 focus-banck-source
+## LIVENESS & READINESS PROBE
+En el contexto de microservicios,` Liveness` y `Readiness` son tipos de sondas utilizadas para determinar el estado de las aplicaciones dentro de un entorno de orquestación, como Kubernetes. Aquí tienes una descripción de cada una:
+### Liveness Probe (Sonda de Vitalidad)
+La sonda de vitalidad se utiliza para comprobar si una aplicación está viva y funcionando correctamente. Si esta sonda falla, indica que la aplicación está en un estado en el que no puede recuperarse por sí misma y probablemente necesita ser reiniciada. Kubernetes utilizará esta sonda para determinar cuándo reiniciar un contenedor que no está funcionando correctamente.
+
+**Propósito:**
+- Detectar aplicaciones que están en un estado incorrecto y no pueden recuperarse. 
+- Asegurar que los contenedores sean reiniciados automáticamente cuando se detecte un fallo.
+
+**Ejemplo de uso en el fichero application.yml en el `configserver`:**
+```
+management:
+  health:
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+```
+### Readiness Probe (Sonda de Preparación)
+La sonda de preparación se utiliza para comprobar si una aplicación está lista para aceptar tráfico. A diferencia de la sonda de vitalidad, una falla en esta sonda no resultará en un reinicio del contenedor. En su lugar, indica que el contenedor no debería recibir ninguna solicitud hasta que esté listo. Kubernetes utilizará esta sonda para controlar el enrutamiento del tráfico hacia los contenedores.
+
+**Propósito:**
+- Asegurar que las aplicaciones solo reciban tráfico cuando están completamente listas.
+- Evitar el enrutamiento de solicitudes a aplicaciones que están iniciando o en un estado de mantenimiento.
+
+**Ejemplo de uso en el fichero application.yml en el `configserver`:**
+```
+management:
+  health:
+    readiness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+```
+
+En resumen, ambas sondas son cruciales para mantener la salud y disponibilidad de las aplicaciones en un entorno de microservicios, asegurando que solo los contenedores sanos y listos reciban tráfico.
 
 ## ANEXOS
 - [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/)

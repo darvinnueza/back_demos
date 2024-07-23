@@ -1,38 +1,38 @@
-package com.focus.cards.controller;
+package com.focus.loans.controller;
 
+import com.focus.loans.constants.LoansConstants;
+import com.focus.loans.dto.ErrorResponseDto;
+import com.focus.loans.dto.LoanDto;
+import com.focus.loans.dto.LoansContactInfoDto;
+import com.focus.loans.dto.ResponseDto;
+import com.focus.loans.service.ILoansService;
 import jakarta.validation.Valid;
-import com.focus.cards.dto.CardsDto;
-import com.focus.cards.dto.ResponseDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
-import com.focus.cards.dto.ErrorResponseDto;
-import com.focus.cards.service.ICardsService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Pattern;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import io.swagger.v3.oas.annotations.Operation;
-import com.focus.cards.dto.CardsContactInfoDto;
-import com.focus.cards.constants.CardsConstants;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Content;
 import org.springframework.beans.factory.annotation.Value;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.validation.annotation.Validated;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Tag(
-        name = "CARDS",
-        description = "Crud REST APIs in EasyBank to Create, Update, Fetch an Delete cards details"
+        name = "LOANS",
+        description = "Crud REST APIs in EasyBank to Create, Update, Fetch an Delete loan details"
 )
 @RestController
 @RequestMapping(path = "/api", produces = { MediaType.APPLICATION_JSON_VALUE })
 @Validated
-public class CardsController {
+public class LoansController {
 
-    private final ICardsService iCardsService;
+    private final ILoansService iLoansService;
 
     @Value("${build.version}")
     private String buildVersion;
@@ -41,15 +41,15 @@ public class CardsController {
     private Environment environment;
 
     @Autowired
-    private CardsContactInfoDto cardsContactInfoDto;
+    private LoansContactInfoDto loansContactInfoDto;
 
-    public CardsController(ICardsService iCardsService) {
-        this.iCardsService = iCardsService;
+    public LoansController(ILoansService iLoansService) {
+        this.iLoansService = iLoansService;
     }
 
     @Operation(
-            summary = "Create Card REST API",
-            description = "Create a new Card inside EasyBank."
+            summary = "Create Loan REST API",
+            description = "Create a new Loan inside EasyBank."
     )
     @ApiResponses({
             @ApiResponse(
@@ -65,14 +65,14 @@ public class CardsController {
             )
     })
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto> createCard(@RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber) {
-        iCardsService.createCard(mobileNumber);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(CardsConstants.STATUS_201, CardsConstants.MESSAGE_201));
+    public ResponseEntity<ResponseDto> createLoan(@RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber) {
+        iLoansService.createLoan(mobileNumber);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDto(LoansConstants.STATUS_201, LoansConstants.MESSAGE_201));
     }
 
     @Operation(
-            summary = "Fetch Card Details REST API",
-            description = "Fetch Card details based on a mobile number."
+            summary = "Fetch Loan Details REST API",
+            description = "Fetch Loan details based on a mobile number."
     )
     @ApiResponses({
             @ApiResponse(
@@ -88,14 +88,14 @@ public class CardsController {
             )
     })
     @GetMapping("/fetch")
-    public ResponseEntity<CardsDto> fetchCardDetails(@RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber) {
-        CardsDto cardsDto = iCardsService.fetchCard(mobileNumber);
-        return ResponseEntity.status(HttpStatus.OK).body(cardsDto);
+    public ResponseEntity<LoanDto> fetchLoanDetails(@RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber) {
+        LoanDto loanDto = iLoansService.fetchLoan(mobileNumber);
+        return ResponseEntity.status(HttpStatus.OK).body(loanDto);
     }
 
     @Operation(
-            summary = "Update Card Details REST API",
-            description = "Update Card details based on a account number."
+            summary = "Update Loan Details REST API",
+            description = "Update Loan details based on a account number."
     )
     @ApiResponses({
             @ApiResponse(
@@ -115,18 +115,18 @@ public class CardsController {
             )
     })
     @PutMapping("/update")
-    public ResponseEntity<ResponseDto> updateCardDetails(@Valid @RequestBody CardsDto cardsDto) {
-        boolean isUpdate = iCardsService.updateCard(cardsDto);
+    public ResponseEntity<ResponseDto> updateLoanDetails(@Valid @RequestBody LoanDto loanDto) {
+        boolean isUpdate = iLoansService.updateLoan(loanDto);
         if (isUpdate) {
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(CardsConstants.STATUS_200, CardsConstants.MESSAGE_200));
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(LoansConstants.STATUS_200, LoansConstants.MESSAGE_200));
         } else {
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(CardsConstants.STATUS_417, CardsConstants.MESSAGE_417_UPDATE));
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseDto(LoansConstants.STATUS_417, LoansConstants.MESSAGE_417_UPDATE));
         }
     }
 
     @Operation(
-            summary = "Delete Card details REST API",
-            description = "Delete Card details based on a mobile number."
+            summary = "Delete Loan details REST API",
+            description = "Delete Loan details based on a mobile number."
     )
     @ApiResponses({
             @ApiResponse(
@@ -146,12 +146,12 @@ public class CardsController {
             )
     })
     @DeleteMapping("/delete")
-    public ResponseEntity<ResponseDto> deleteCardDetails(@RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")  String mobileNumber) {
-        boolean isDelete = iCardsService.deleteCard(mobileNumber);
+    public ResponseEntity<ResponseDto> deleteLoanDetails(@RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")  String mobileNumber) {
+        boolean isDelete = iLoansService.deleteLoan(mobileNumber);
         if (isDelete) {
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(CardsConstants.STATUS_200, CardsConstants.MESSAGE_200));
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(LoansConstants.STATUS_200, LoansConstants.MESSAGE_200));
         } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto(CardsConstants.STATUS_417, CardsConstants.MESSAGE_417_DELETE));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto(LoansConstants.STATUS_417, LoansConstants.MESSAGE_417_DELETE));
         }
     }
 
@@ -218,7 +218,7 @@ public class CardsController {
             )
     })
     @GetMapping("/contact-info")
-    public ResponseEntity<CardsContactInfoDto> getContactInfo() {
-        return ResponseEntity.status(HttpStatus.OK).body(cardsContactInfoDto);
+    public ResponseEntity<LoansContactInfoDto> getContactInfo() {
+        return ResponseEntity.status(HttpStatus.OK).body(loansContactInfoDto);
     }
 }
