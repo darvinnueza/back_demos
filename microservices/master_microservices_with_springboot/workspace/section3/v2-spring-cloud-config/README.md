@@ -303,8 +303,11 @@ spring:
     name: "microservice_name"
   config:
     import: "optional:configserver:http://localhost:8071/"
-
 ```
+
+brew install hookdeck/hookdeck/hookdeck
+hookdeck login
+hookdeck listen 8071 focus-banck-source
 
 ## ANEXOS
 - [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/)

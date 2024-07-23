@@ -36,5 +36,5 @@ services:
       - focusbank
 
 networks:
-  eazybank:
+  focusbank:
     driver: "bridge"
