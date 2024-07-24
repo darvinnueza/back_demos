@@ -1,32 +1,10 @@
 SPRING CLOUD CONFIG
 ===
-Un servidor de configuración centralizado con [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/) puede superar todos los inconvenientes que discutimos en la diapositiva anterior. [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/) proporciona soporte tanto del lado del servidor como del cliente para la configuración externalizada en un sistema distribuido. Con el Config Server, tienes un lugar central para gestionar propiedades externas para aplicaciones en todos los entornos.
 
-La configuración centralizada gira en torno a dos elementos clave:
+![](https://drive.google.com/uc?export=view&id=1pjQ0YMo0E1nJnrO5uDiz6I33VY44M99j)
 
-- Un almacén de datos diseñado para manejar datos de configuración, asegurando durabilidad, gestión de versiones y, potencialmente, control de acceso.
-- Un servidor que supervisa los datos de configuración dentro del almacén de datos, facilitando su gestión y distribución a múltiples aplicaciones.
-
-## ¿QUÉ ES SPRING CLOUD?
-Spring Cloud proporciona marcos de trabajo para que los desarrolladores construyan rápidamente algunos de los patrones comunes de los microservicios.
-
-### SPRING CLOUD CONFIG
-Asegura que, sin importar cuántas instancias de microservicios pongas en funcionamiento, siempre tendrán la misma configuración.
-
-### SERVICE REGISTRATION & DISCOVERY
-Nuevos servicios serán registrados y posteriormente los consumidores podrán invocarlos a través de un nombre lógico en lugar de una ubicación física.
-
-### ROUTING & TRACING
-Asegura que todas las llamadas a tus microservicios pasen a través de una única "puerta de entrada" antes de que se invoque el servicio objetivo, y que lo mismo sea rastreado.
-
-### LOAD BALANCING
-El balanceo de carga distribuye de manera eficiente el tráfico de red entre múltiples servidores de backend o un grupo de servidores.
-
-### SPRING CLOUD SECURITY
-Proporciona características relacionadas con la seguridad basada en tokens en aplicaciones/Microservicios de Spring Boot.
-
-### DISTRIBUTED TRACING & MESSAGING
-Incorpora componentes que ayudan a comprender las interacciones complejas entre servicios y la comunicación asíncrona, permitiendo sistemas escalables y resilientes.
+## SPRING CLOUD CONFIG
+[Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html) es una herramienta esencial para la gestión de configuraciones centralizadas en entornos de microservicios. Ofrece soporte tanto en el servidor como en el cliente para configuraciones externalizadas, permitiendo un control centralizado y dinámico de las propiedades de configuración de las aplicaciones distribuidas. Esto garantiza una gestión eficiente y coherente de las configuraciones a lo largo de todos los microservicios y entornos.
 
 ## ACTUALIZAR LAS CONFIGURACIONES EN TIEMPO DE EJECUCIÓN 
 ### UTILIZANDO LA RUTA /refresh
@@ -50,7 +28,7 @@ Veamos un enfoque para actualizar la configuración, que implica enviar una soli
    <dependencies>
    ...
    ```
-2. **Habilitar la API /refresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/refresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) utilizando la siguiente configuración:
+2. **Habilitar la API /refresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/refresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) del servidor de configuración [configserver](configserver) utilizando la siguiente configuración.
    ```
    management:
      endpoints:
@@ -70,7 +48,7 @@ Veamos un enfoque para actualizar la configuración, que implica enviar una soli
 
 A continuación se presentan los pasos a seguir:
 
-1. **Agregar la dependencia de Actuator en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Boot Actuator en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards, para exponer el endpoint `/busrefresh`.
+1. **Agregar la dependencia de Actuator en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Boot Actuator en el archivo `pom.xml` de cada microservicio, como [accounts](accounts), [loans](loans), [cards](cards), para exponer el endpoint `/busrefresh`.
    ```
    ...
    <dependencies>
@@ -83,7 +61,7 @@ A continuación se presentan los pasos a seguir:
    <dependencies>
    ...
    ```
-2. **Habilitar la API /busrefresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/busrefresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) utilizando la configuración a continuación:
+2. **Habilitar la API /busrefresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/busrefresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) del servidor de configuración [configserver](configserver) utilizando la configuración a continuación.
    ```
    management:
      endpoints:
@@ -91,7 +69,7 @@ A continuación se presentan los pasos a seguir:
          exposure:
            include: busrefresh
    ```
-3. **Agregar la dependencia de Spring Cloud Bus en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Cloud Bus `spring-cloud-starter-bus-amqp` en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards y el servidor de configuración (configserver).
+3. **Agregar la dependencia de Spring Cloud Bus en los servicios del Config Server y Config Client:** Agrega la dependencia de Spring Cloud Bus `spring-cloud-starter-bus-amqp` en el archivo `pom.xml` de cada microservicio, como [accounts](accounts), [loans](loans), [cards](cards) y el servidor de configuración [configserver](configserver).
    ```
    ...
    <dependencies>
@@ -104,7 +82,7 @@ A continuación se presentan los pasos a seguir:
    <dependencies>
    ...
    ```
-4. **Configurar RabbitMQ:** Utilizando Docker, configura el servicio RabbitMQ. Si el servicio no se inicia con los valores predeterminados, configura los detalles de la conexión a RabbitMQ en el archivo `application.yml` de cada microservicio individual y del servidor de configuración (configserver).
+4. **Configurar RabbitMQ:** Utilizando Docker, configura el servicio RabbitMQ. Si el servicio no se inicia con los valores predeterminados, configura los detalles de la conexión a RabbitMQ en el archivo `application.yml` de cada microservicio como [accounts](accounts), [loans](loans), [cards](cards) y del servidor de configuración [configserver](configserver).
    ```
    spring:
      rabbitmq:
@@ -139,7 +117,7 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.13-ma
 
 A continuación, se presentan los pasos a seguir:
 
-1. **Agregar la dependencia de Actuator en los servicios del Config Server y Config Client:** Incluye la dependencia de Spring Boot Actuator en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards y el servidor de configuración (configserver), para exponer el endpoint `/busrefresh`.
+1. **Agregar la dependencia de Actuator en los servicios del Config Server y Config Client:** Incluye la dependencia de Spring Boot Actuator en el archivo `pom.xml` de cada microservicio, como [accounts](accounts), [loans](loans), [cards](cards) y el servidor de configuración [configserver](configserver), para exponer el endpoint `/busrefresh`.
    ```
    ...
    <dependencies>
@@ -152,7 +130,7 @@ A continuación, se presentan los pasos a seguir:
    <dependencies>
    ...
    ```
-2. **Habilitar la API /busrefresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/busrefresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) utilizando la configuración a continuación:
+2. **Habilitar la API /busrefresh:** La biblioteca Spring Boot Actuator proporciona un endpoint de configuración llamado `/actuator/busrefresh` que puede activar un evento de actualización. De forma predeterminada, este endpoint no está expuesto, por lo que debes habilitarlo explícitamente en el archivo [application.yml](configserver/src/main/resources/application.yml) del servidor de configuración [configserver](configserver) utilizando la configuración a continuación.
    ```
    management:
      endpoints:
@@ -160,7 +138,7 @@ A continuación, se presentan los pasos a seguir:
          exposure:
            include: busrefresh
    ```
-3. **Agregar la dependencia de Spring Cloud Bus en los servicios del Config Server y Config Client:** Incluye la dependencia de Spring Cloud Bus `spring-cloud-starter-bus-amqp` en el archivo `pom.xml` de cada microservicio, como accounts, loans, cards y el servidor de configuración (configserver).
+3. **Agregar la dependencia de Spring Cloud Bus en los servicios del Config Server y Config Client:** Incluye la dependencia de Spring Cloud Bus `spring-cloud-starter-bus-amqp` en el archivo `pom.xml` de cada microservicio, como [accounts](accounts), [loans](loans), [cards](cards) y el servidor de configuración [configserver](configserver).
    ```
    ...
    <dependencies>
@@ -186,7 +164,7 @@ A continuación, se presentan los pasos a seguir:
    <dependencies>
    ...
    ```
-5. **Configurar RabbitMQ:** Utilizando Docker, configura el servicio RabbitMQ. Si el servicio no se inicia con los valores predeterminados, configura los detalles de la conexión a RabbitMQ en el archivo `application.yml` de cada microservicio y del servidor de configuración (configserver).
+5. **Configurar RabbitMQ:** Utilizando Docker, configura el servicio RabbitMQ. Si el servicio no se inicia con los valores predeterminados, configura los detalles de la conexión a RabbitMQ en el archivo `application.yml` de cada microservicio como [accounts](accounts), [loans](loans), [cards](cards) y del servidor de configuración [configserver](configserver).
    ```
    spring:
      rabbitmq:
@@ -226,7 +204,7 @@ En el [Config Server](configserver), actualiza el archivo `pom.xml` como se mues
             <type>pom</type>
             <scope>import</scope>
          <dependencies>
-		</dependencies>
+      <dependencies>
    <dependencyManagement>
    ```
 3. **Agrega las dependencias necesarias:** En la sección `<dependencies>`, incluye las dependencias de Spring Cloud que necesitas, como `spring-cloud-config-server`.
@@ -241,7 +219,7 @@ En el [Config Server](configserver), actualiza el archivo `pom.xml` como se mues
    <dependencies>
    ```
 
-En [Config Server](configserver), actualiza el archivo `application.yml` como se muestra a continuación.
+En [Config Server](configserver), actualiza el archivo [application.yml](configserver/src/main/resources/application.yml) como se muestra a continuación.
 ```
 spring:
   application:
@@ -282,7 +260,7 @@ En todos los microservicios [accounts](accounts), [loans](loans) y [cards](cards
             <type>pom</type>
             <scope>import</scope>
          <dependencies>
-		</dependencies>
+      <dependencies>
    <dependencyManagement>
    ```
 3. **Agrega las dependencias necesarias:** En la sección `<dependencies>`, incluye las dependencias de Spring Cloud que necesitas, como `spring-cloud-starter-config`.
@@ -314,7 +292,7 @@ La sonda de vitalidad se utiliza para comprobar si una aplicación está viva y 
 - Detectar aplicaciones que están en un estado incorrecto y no pueden recuperarse. 
 - Asegurar que los contenedores sean reiniciados automáticamente cuando se detecte un fallo.
 
-**Ejemplo de uso en el fichero application.yml en el `configserver`:**
+**Ejemplo de uso en el fichero [application.yml](configserver/src/main/resources/application.yml) en el [configserver](configserver):**
 ```
 management:
   health:
@@ -332,7 +310,7 @@ La sonda de preparación se utiliza para comprobar si una aplicación está list
 - Asegurar que las aplicaciones solo reciban tráfico cuando están completamente listas.
 - Evitar el enrutamiento de solicitudes a aplicaciones que están iniciando o en un estado de mantenimiento.
 
-**Ejemplo de uso en el fichero application.yml en el `configserver`:**
+**Ejemplo de uso en el fichero [application.yml](configserver/src/main/resources/application.yml) en el [configserver](configserver):**
 ```
 management:
   health:
