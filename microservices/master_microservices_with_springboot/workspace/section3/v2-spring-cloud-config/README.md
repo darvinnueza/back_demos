@@ -283,13 +283,14 @@ spring:
     import: "optional:configserver:http://localhost:8071/"
 ```
 
-## LIVENESS & READINESS PROBE
+## ANEXOS
+### LIVENESS & READINESS PROBE
 En el contexto de microservicios,` Liveness` y `Readiness` son tipos de sondas utilizadas para determinar el estado de las aplicaciones dentro de un entorno de orquestación, como Kubernetes. Aquí tienes una descripción de cada una:
-### Liveness Probe (Sonda de Vitalidad)
+#### Liveness Probe (Sonda de Vitalidad)
 La sonda de vitalidad se utiliza para comprobar si una aplicación está viva y funcionando correctamente. Si esta sonda falla, indica que la aplicación está en un estado en el que no puede recuperarse por sí misma y probablemente necesita ser reiniciada. Kubernetes utilizará esta sonda para determinar cuándo reiniciar un contenedor que no está funcionando correctamente.
 
 **Propósito:**
-- Detectar aplicaciones que están en un estado incorrecto y no pueden recuperarse. 
+- Detectar aplicaciones que están en un estado incorrecto y no pueden recuperarse.
 - Asegurar que los contenedores sean reiniciados automáticamente cuando se detecte un fallo.
 
 **Ejemplo de uso en el fichero [application.yml](configserver/src/main/resources/application.yml) en el [configserver](configserver):**
@@ -303,7 +304,7 @@ management:
       probes:
         enabled: true
 ```
-### Readiness Probe (Sonda de Preparación)
+#### Readiness Probe (Sonda de Preparación)
 La sonda de preparación se utiliza para comprobar si una aplicación está lista para aceptar tráfico. A diferencia de la sonda de vitalidad, una falla en esta sonda no resultará en un reinicio del contenedor. En su lugar, indica que el contenedor no debería recibir ninguna solicitud hasta que esté listo. Kubernetes utilizará esta sonda para controlar el enrutamiento del tráfico hacia los contenedores.
 
 **Propósito:**
@@ -324,7 +325,41 @@ management:
 
 En resumen, ambas sondas son cruciales para mantener la salud y disponibilidad de las aplicaciones en un entorno de microservicios, asegurando que solo los contenedores sanos y listos reciban tráfico.
 
-## ANEXOS
+### COMANDOS COMUNES
+#### HOOKDECK
+Instala Hookdeck usando Homebrew.
+```
+brew install hookdeck/hookdeck/hookdeck
+```
+Inicia sesión en tu cuenta de Hookdeck.
+```
+hookdeck login
+```
+Escucha eventos en el puerto `8071` para la fuente `focus-banck-source`.
+```
+hookdeck listen 8071 focus-banck-source
+```
+#### MAVEN
+Compila el proyecto Maven y construye una imagen Docker usando Jib.
+```
+mvn compile jib:dockerBuild
+```
+#### DOCKER
+Sube varias imágenes Docker al repositorio Docker Hub.
+```
+docker image push darvinueza/configserver:s3 && docker image push darvinueza/accounts:s3 && docker image push darvinueza/loans:s3 && docker image push darvinueza/cards:s3
+```
+#### DOCKER COMPOSE
+Inicia todos los servicios definidos en el archivo `docker-compose.yml` en segundo plano.
+```
+docker compose up -d 
+```
+Detiene y elimina los contenedores, redes y volúmenes definidos en el archivo `docker-compose.yml`.
+```
+docker compose down
+```
+
+### DOCUMENTACIÓN
 - [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/)
 - [Rabbitmq](https://www.rabbitmq.com/docs/download)
 - [Hookdeck](https://hookdeck.com/)
