@@ -359,6 +359,28 @@ Detiene y elimina los contenedores, redes y volúmenes definidos en el archivo `
 docker compose down
 ```
 
+### SWAGGER
+- [Accounts Microservice](http://localhost:8080/swagger-ui/index.html)
+- [Loans Microservice](http://localhost:8090/swagger-ui/index.html)
+- [Cards Microservice](http://localhost:9000/swagger-ui/index.html)
+
+### CONFIG SERVER
+#### ACCOUNTS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/accounts/dev)
+- [Calidad](http://localhost:8071/accounts/qa)
+- [Producción](http://localhost:8071/accounts/prod)
+#### LOANS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/loans/dev)
+- [Calidad](http://localhost:8071/loans/qa)
+- [Producción](http://localhost:8071/loans/prod)
+#### CARDS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/loans/dev)
+- [Calidad](http://localhost:8071/loans/qa)
+- [Producción](http://localhost:8071/loans/prod)
+
+### RABITMQ
+- [RabbitMQ](http://localhost:15672/#/)
+
 ### DOCUMENTACIÓN
 - [Spring Cloud Config](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/)
 - [Rabbitmq](https://www.rabbitmq.com/docs/download)

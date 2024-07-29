@@ -5,7 +5,7 @@ create table if not exists `customer` (
     `mobile_number` varchar(20) not null,
     `created_at` date not null,
     `created_by` varchar(20) not null,
-    `updated_up` date default null,
+    `updated_at` date default null,
     `updated_by` varchar(20) default null
 );
 
@@ -16,6 +16,6 @@ create table if not exists `accounts` (
     `branch_address` varchar(200) not null,
     `created_at` date not null,
     `created_by` varchar(20) not null,
-    `updated_up` date default null,
+    `updated_at` date default null,
     `updated_by` varchar(20) default null
 );
