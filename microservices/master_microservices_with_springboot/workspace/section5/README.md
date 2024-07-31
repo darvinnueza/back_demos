@@ -31,7 +31,7 @@ El descubrimiento de servicios es el proceso mediante el cual los servicios encu
 ## DESCUBRIMIENTO DE SERVICIOS Y BALANCEO DE CARGA DEL LADO DEL CLIENTE
 En el descubrimiento de servicios del lado del cliente, las aplicaciones son responsables de registrarse en un registro de servicios durante el inicio y desregistrarse al apagarse. Cuando una aplicación necesita comunicarse con un servicio de respaldo, consulta el registro de servicios para obtener la dirección IP asociada. Si hay múltiples instancias del servicio disponibles, el registro devuelve una lista de direcciones IP. La aplicación cliente luego selecciona una de estas direcciones en función de su propia estrategia de balanceo de carga. La figura a continuación ilustra el flujo de trabajo de este proceso.
 
-![](https://drive.google.com/uc?export=view&id=1rhPKt0y6kWsvvnlrqpcPpnqes2p3K1TM)
+![](https://drive.google.com/uc?export=view&id=1rkLUxdoJWfRw-EqZrhqlMhUFP8AmkyAU)
 
 El descubrimiento de servicios del lado del cliente es un patrón arquitectónico en el que las aplicaciones cliente son responsables de localizar y conectarse a los servicios de los que dependen. En este enfoque, la aplicación cliente se comunica directamente con un registro de servicios para descubrir las instancias de servicio disponibles y obtener la información necesaria para establecer conexiones.
 
@@ -81,8 +81,8 @@ A continuación se detallan los pasos para construir una aplicación de servidor
    ```
 3. **Agrega la anotación de Eureka Server:** En la clase principal de tu proyecto, anótala con `@EnableEurekaServer. Esta anotación configura la aplicación para que actúe como un servidor Eureka.
 4. **Compila y ejecuta el servidor Eureka:** Compila tu proyecto y ejecútalo como una aplicación Spring Boot. Abre un navegador web y navega a http://localhost:8070. Deberías ver el panel de control del servidor Eureka, que muestra información sobre las instancias de servicios registrados.
-   
-   []()
+
+   ![](https://drive.google.com/uc?export=view&id=1rhPKt0y6kWsvvnlrqpcPpnqes2p3K1TM)
 
 ## PASOS PARA REGISTRAR UN MICROSERVICIO COMO CLIENTE DE EUREKA
 A continuación se detallan los pasos para que una aplicación de microservicios se registre y funcione como un cliente de Eureka:
