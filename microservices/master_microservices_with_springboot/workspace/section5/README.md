@@ -82,7 +82,7 @@ A continuación se detallan los pasos para construir una aplicación de servidor
 3. **Agrega la anotación de Eureka Server:** En la clase principal de tu proyecto, anótala con `@EnableEurekaServer. Esta anotación configura la aplicación para que actúe como un servidor Eureka.
 4. **Compila y ejecuta el servidor Eureka:** Compila tu proyecto y ejecútalo como una aplicación Spring Boot. Abre un navegador web y navega a http://localhost:8070. Deberías ver el panel de control del servidor Eureka, que muestra información sobre las instancias de servicios registrados.
 
-   ![](https://drive.google.com/uc?export=view&id=1rhPKt0y6kWsvvnlrqpcPpnqes2p3K1TM)
+  ![](https://drive.google.com/uc?export=view&id=1rhPKt0y6kWsvvnlrqpcPpnqes2p3K1TM)
 
 ## PASOS PARA REGISTRAR UN MICROSERVICIO COMO CLIENTE DE EUREKA
 A continuación se detallan los pasos para que una aplicación de microservicios se registre y funcione como un cliente de Eureka:
