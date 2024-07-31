@@ -8,5 +8,3 @@ Hay múltiples soluciones disponibles en el ecosistema de Spring Boot para manej
 1. [Configurar Spring Boot con propiedades y perfiles](v1-springboot/README.md#cómo-leer-propiedades-en-aplicaciones-springboot)
 2. [Aplicar configuración externa con Spring Boot](v1-springboot/README.md#externalizar-configuraciones)
 3. [Implementar un servidor de configuración con Spring Cloud Config Server](v2-spring-cloud-config/README.md)
-
-## ANEXOS
