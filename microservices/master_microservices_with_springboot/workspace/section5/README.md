@@ -83,6 +83,7 @@ A continuación se detallan los pasos para construir una aplicación de servidor
 4. **Compila y ejecuta el servidor Eureka:** Compila tu proyecto y ejecútalo como una aplicación Spring Boot. Abre un navegador web y navega a http://localhost:8070. Deberías ver el panel de control del servidor Eureka, que muestra información sobre las instancias de servicios registrados.
 
   ![](https://drive.google.com/uc?export=view&id=1rhPKt0y6kWsvvnlrqpcPpnqes2p3K1TM)
+
 ## PASOS PARA REGISTRAR UN MICROSERVICIO COMO CLIENTE DE EUREKA
 A continuación se detallan los pasos para que una aplicación de microservicios se registre y funcione como un cliente de Eureka:
 1. **Configura un nuevo proyecto Spring Boot:** Comienza creando un nuevo proyecto Spring Boot utilizando tu IDE preferido o mediante [Spring Initializr](https://start.spring.io/). Asegúrate de incluir la dependencia de Maven `spring-cloud-starter-netflix-eureka-client`.
@@ -112,7 +113,7 @@ A continuación se detallan los pasos para que una aplicación de microservicios
    ```
 3. **Construye y ejecuta la aplicación:** Compila tu proyecto y ejecútalo como una aplicación Spring Boot. Abre un navegador web y accede a http://localhost:8070. Deberías ver que el microservicio se ha registrado correctamente como una aplicación. Puedes confirmar esto en el panel de control del servidor Eureka.
 
-   []()
+  ![](https://drive.google.com/uc?export=view&id=1rl8l1t7RzSIYqtZQoxF53knIGfsHraY9)
 
 ## FEIGN CLIENT
 Feign Client es una solución que proporciona una manera declarativa de consumir APIs REST. Permite a los desarrolladores definir interfaces Java que representan los servicios a los que desean conectarse. Con Feign, no es necesario manejar manualmente los detalles de la implementación de HTTP, como las solicitudes y respuestas. En su lugar, Feign genera automáticamente la implementación de estas interfaces, haciendo que el código sea más limpio y fácil de mantener.
