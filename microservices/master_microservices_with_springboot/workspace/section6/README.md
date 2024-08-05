@@ -39,7 +39,7 @@ Spring Cloud Gateway es una biblioteca basada en Spring que facilita la creació
 
 ### ARQUITECTURA INTERNA
 
-![](https://drive.google.com/uc?export=view&id=1rtyH3vkh1K61mjGLz5Tl_q_83G7LeofT)
+![](https://drive.google.com/uc?export=view&id=1rvEv6wPaOOWq9WW7o56m01m0jTeEPaaI)
 
 El diagrama ilustra la arquitectura interna del Spring Cloud Gateway, mostrando cómo las solicitudes de los clientes son manejadas y procesadas a través del sistema antes de llegar a los microservicios de backend. A continuación, se detallan los componentes y su funcionamiento:
 
