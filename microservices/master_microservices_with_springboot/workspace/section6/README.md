@@ -1,7 +1,7 @@
 GATEWAY, ROUTING & CROSS CUTTING CONCERNS EN MICROSERVICES
 ===
 
-![](https://drive.google.com/uc?export=view&id=1rstuE2b7tWQfjNDHx5yTfnDpor2v-AqY)
+![](https://drive.google.com/uc?export=view&id=1ruR9bkVHXBzAch_VHgAIeaoi4x4akMIz)
 
 ## ALGUNAS TAREAS IMPORTANTES QUE REALIZA EL API GATEWAY
 Un API Gateway actúa como un intermediario entre los clientes y los servicios de backend, proporcionando una capa adicional de seguridad, control y eficiencia. Este componente es esencial en arquitecturas de microservicios, ya que facilita la gestión de las peticiones y respuestas entre los diversos servicios, mejorando así el rendimiento y la seguridad de la aplicación.
