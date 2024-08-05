@@ -15,7 +15,7 @@
 	<artifactId>loans</artifactId>
 	<version>1.0</version>
 	<name>loans</name>
-	<description>Microservice for Accounts</description>
+	<description>Microservice for Loans</description>
 
 	<packaging>jar</packaging>
 
