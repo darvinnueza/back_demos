@@ -57,7 +57,7 @@ El diagrama ilustra la arquitectura interna del Spring Cloud Gateway, mostrando 
 
 5. **Gateway Handler Mapping using Routing Configs**: Este componente maneja el mapeo de las rutas y la configuración de enrutamiento. Basándose en la solicitud entrante, decide a qué microservicio debe enviarse la solicitud y aplica las configuraciones de enrutamiento necesarias.
 
-### Flujo de Proceso
+### FLUJO DE PROCESO
 
 1. Los clientes envían una solicitud al Spring Cloud Gateway.
 2. Las solicitudes pasan por los **Predicates**, que verifican si cumplen con las condiciones predefinidas.
@@ -65,6 +65,9 @@ El diagrama ilustra la arquitectura interna del Spring Cloud Gateway, mostrando 
 4. Las solicitudes filtradas son enviadas a los microservicios correspondientes.
 5. Las respuestas de los microservicios pasan por los **Post Filters**.
 6. Finalmente, las respuestas filtradas y modificadas son enviadas de vuelta a los clientes.
+
+## PASOS PARA CREAR SPRING CLOUD GATEWAY
+
 
 ## ANEXOS
 ### DOCUMENTACIÓN
