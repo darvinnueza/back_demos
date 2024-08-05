@@ -1,5 +1,8 @@
 GATEWAY, ROUTING & CROSS CUTTING CONCERNS EN MICROSERVICES
 ===
+
+![](https://drive.google.com/uc?export=view&id=1rstuE2b7tWQfjNDHx5yTfnDpor2v-AqY)
+
 ## SPRING CLOUD GATEWAY
 Spring Cloud Gateway es una biblioteca basada en Spring que facilita la creación de un API Gateway, actuando como un punto de entrada único para todas las solicitudes que van hacia tus microservicios. Ofrece capacidades de enrutamiento, control de tráfico, y procesamiento de solicitudes, entre otras funciones. Es parte del ecosistema de Spring Cloud, que proporciona herramientas para construir aplicaciones distribuidas y basadas en microservicios.
 
@@ -28,7 +31,12 @@ Un API Gateway actúa como un intermediario entre los clientes y los servicios d
 
 9. **Protocol Conversion (Conversión de Protocolo)**: Convierte protocolos de comunicación para asegurar la compatibilidad entre clientes y servicios backend.
 
-**Exception Handling (Manejo de Excepciones)**: Gestiona errores y excepciones que pueden ocurrir durante el procesamiento de solicitudes, proporcionando respuestas adecuadas a los clientes.
-**Circuit Breaker (Interruptor de Circuito)**: Ayuda a prevenir fallos en cascada al cortar el tráfico a servicios problemáticos cuando se detectan fallos repetidos.
-**Logging & Monitoring (Monitoreo y Registro)**: Utiliza herramientas de observabilidad como Grafana para registrar y monitorear las solicitudes y respuestas, ayudando a mantener la salud y el rendimiento del sistema.
-**Cache**: Almacena respuestas frecuentes en caché para mejorar el rendimiento y reducir la carga en los servicios backend.
+10. **Otros:**
+    - **Exception Handling (Manejo de Excepciones)**: Gestiona errores y excepciones que pueden ocurrir durante el procesamiento de solicitudes, proporcionando respuestas adecuadas a los clientes.
+    - **Circuit Breaker (Interruptor de Circuito)**: Ayuda a prevenir fallos en cascada al cortar el tráfico a servicios problemáticos cuando se detectan fallos repetidos.
+    - **Logging & Monitoring (Monitoreo y Registro)**: Utiliza herramientas de observabilidad como Grafana para registrar y monitorear las solicitudes y respuestas, ayudando a mantener la salud y el rendimiento del sistema.
+    - **Cache**: Almacena respuestas frecuentes en caché para mejorar el rendimiento y reducir la carga en los servicios backend.
+
+## ANEXOS
+### DOCUMENTACIÓN
+- [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)
