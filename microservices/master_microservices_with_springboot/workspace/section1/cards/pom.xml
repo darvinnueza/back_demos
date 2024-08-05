@@ -15,7 +15,7 @@
 	<artifactId>cards</artifactId>
 	<version>1.0</version>
 	<name>cards</name>
-	<description>Microservice for Accounts</description>
+	<description>Microservice for Cards</description>
 
 	<properties>
 		<java.version>17</java.version>
