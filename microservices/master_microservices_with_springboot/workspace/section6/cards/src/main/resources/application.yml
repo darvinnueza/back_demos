@@ -49,3 +49,9 @@ info:
     name: "cards"
     description: "Cards Application"
     version: "1.0"
+
+logging:
+  level:
+    com:
+      focus:
+        cards: DEBUG

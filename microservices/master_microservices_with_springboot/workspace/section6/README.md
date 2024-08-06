@@ -94,22 +94,89 @@ A continuación, se describen los pasos para construir una aplicación que funci
    </dependencies>
    ...
    ```
-2. **Configura las propiedades:** En el archivo de propiedades o YAML de la aplicación [application.yml](), añade las siguientes configuraciones:
+2. **Configura las propiedades:** En el archivo de propiedades o YAML de la aplicación [application.yml](gatewayserver/src/main/resources/application.yml), añade las siguientes configuraciones:
    ```
    spring:
+     cloud:
+       gateway:
+         discovery:
+           locator:
+             enabled: false
+             lowerCaseServiceId: true
    
    eureka:
      instance:
-       hostname: localhost
+       preferIpAddress: true
      client:
-       fetchRegistry: false
-       registerWithEureka: false
+       fetchRegistry: true
+       registerWithEureka: true
        serviceUrl:
-         defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+         defaultZone: http://localhost:8070/eureka/
    ```
-3. asd
+3. **Configurar el enrutamiento:** Realiza las configuraciones de enrutamiento utilizando `RouteLocatorBuilder` como se muestra a continuación:
+   ```
+   ...
+   @Bean
+   public RouteLocator routeConfig(RouteLocatorBuilder routeLocatorBuilder) {
+     return routeLocatorBuilder.routes()
+         .route(p -> p.path("/focus/accounts/**")
+             .filters(f -> f.rewritePath("/focus/accounts/(?<segment>.*)", "/${segment}")
+                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+             .uri("lb://ACCOUNTS"))
+         .route(p -> p.path("/focus/loans/**")
+             .filters(f -> f.rewritePath("/focus/loans/(?<segment>.*)", "/${segment}")
+                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+             .uri("lb://LOANS"))
+         .route(p -> p.path("/focus/cards/**")
+             .filters(f -> f.rewritePath("/focus/cards/(?<segment>.*)", "/${segment}")
+                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+             .uri("lb://CARDS"))
+         .build();
+   }
+   ...
+   ``` 
+4. **Compila y ejecuta la aplicación:** Construye tu proyecto y ejecútalo como una aplicación Spring Boot. Invoca las APIs utilizando `http://localhost:8072`, que es la ruta del gateway.
 
+## CROSS-CUTTING CONCERNS
+En el contexto de microservicios, Cross-Cutting Concerns (Preocupaciones Transversales) se refiere a aquellos aspectos o funcionalidades que afectan a múltiples microservicios y que deben ser gestionados de manera consistente a lo largo de toda la arquitectura. Dado que cada microservicio es una unidad independiente con su propia lógica y base de datos, estas preocupaciones transversales deben ser tratadas de manera centralizada o uniforme para asegurar la coherencia y eficiencia del sistema en su conjunto.
 
+### EJEMPLOS DE CROSS-CUTTING CONCERNS
+#### Tracing (Trazado):
+- **Propósito:** Permite seguir el rastro de una solicitud a través de diferentes microservicios para entender cómo fluye a través del sistema y diagnosticar problemas. 
+- **Implementación:** Usualmente se implementa mediante la generación y propagación de IDs de correlación a lo largo de las solicitudes y respuestas entre servicios.
+#### Logging (Registro):
+- **Propósito:** Captura y almacena información sobre el funcionamiento de los microservicios, incluyendo errores, advertencias y eventos importantes.
+- **Implementación:** Puede requerir un sistema centralizado de registro para consolidar y analizar los logs de todos los microservicios, utilizando herramientas como ELK Stack (Elasticsearch, Logstash, Kibana) o soluciones en la nube.
+#### Security (Seguridad):
+- **Propósito:** Asegura que solo los usuarios y servicios autorizados puedan acceder a los recursos y operaciones de los microservicios.
+- **Implementación:** Puede incluir autenticación, autorización, y políticas de seguridad que se aplican a nivel de gateway o mediante servicios de seguridad centralizados.
+
+## DIAGRAMA DE SECUENCIA PARA LA IMPLEMENTACIÓN DE CROSS-CUTTING CONCERNS
+
+![](https://drive.google.com/uc?export=view&id=1rvz5_PF7fsqv8ilo7mI3cq2rjWJGjksR)
+
+1. **Clients (Clientes):**
+    - El cliente hace una solicitud para obtener detalles del cliente usando el endpoint `/fetchCustomerDetails` proporcionando el `mobileNumber`.
+
+2. **API Gateway:**
+    - El gateway recibe la solicitud y genera un `correlationId` que será utilizado para rastrear esta solicitud a través de los diferentes microservicios.
+    - Propaga el `correlationId` y el `mobileNumber` a los microservicios correspondientes usando el endpoint `/fetchCustomerDetails`.
+
+3. **Microservicio de Cuentas (Accounts Microservice):**
+    - Recibe la solicitud con `correlationId` y `mobileNumber` y realiza alguna operación para obtener detalles de la cuenta.
+    - Luego, envía la solicitud al microservicio de Tarjetas para obtener detalles adicionales.
+
+4. **Microservicio de Tarjetas (Cards Microservice):**
+    - Recibe la solicitud con `correlationId` y `mobileNumber` para obtener detalles de la tarjeta.
+    - Envia la respuesta de vuelta al microservicio de Cuentas con el `correlationId`.
+
+5. **Microservicio de Préstamos (Loans Microservice):**
+    - Similarmente, recibe la solicitud con `correlationId` y `mobileNumber` para obtener detalles de préstamos.
+    - Envia la respuesta con `correlationId`.
+
+6. **Respuestas:**
+    - Las respuestas de los microservicios de Tarjetas y Préstamos son enviadas de vuelta al microservicio de Cuentas, y de ahí al API Gateway.
+    - Finalmente, el API Gateway responde al cliente incluyendo el `correlationId` para que pueda ser rastreado.
 
 ## ANEXOS
 ### DOCUMENTACIÓN

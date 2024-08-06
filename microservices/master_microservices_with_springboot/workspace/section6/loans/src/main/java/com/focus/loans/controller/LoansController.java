@@ -1,18 +1,20 @@
 package com.focus.loans.controller;
 
-import com.focus.loans.constants.LoansConstants;
-import com.focus.loans.dto.ErrorResponseDto;
-import com.focus.loans.dto.LoanDto;
-import com.focus.loans.dto.LoansContactInfoDto;
-import com.focus.loans.dto.ResponseDto;
-import com.focus.loans.service.ILoansService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import jakarta.validation.Valid;
+import com.focus.loans.dto.LoanDto;
+import com.focus.loans.dto.ResponseDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
-import jakarta.validation.constraints.Pattern;
+import com.focus.loans.dto.ErrorResponseDto;
+import com.focus.loans.service.ILoansService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Pattern;
+import com.focus.loans.dto.LoansContactInfoDto;
 import org.springframework.http.ResponseEntity;
 import io.swagger.v3.oas.annotations.Operation;
+import com.focus.loans.constants.LoansConstants;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -31,6 +33,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RequestMapping(path = "/api", produces = { MediaType.APPLICATION_JSON_VALUE })
 @Validated
 public class LoansController {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoansController.class);
 
     private final ILoansService iLoansService;
 
@@ -88,7 +92,10 @@ public class LoansController {
             )
     })
     @GetMapping("/fetch")
-    public ResponseEntity<LoanDto> fetchLoanDetails(@RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber) {
+    public ResponseEntity<LoanDto> fetchLoanDetails(
+            @RequestHeader("correlation-id") String correlationId,
+            @RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits") String mobileNumber) {
+        logger.debug("correlation-id found:{}", correlationId);
         LoanDto loanDto = iLoansService.fetchLoan(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK).body(loanDto);
     }
