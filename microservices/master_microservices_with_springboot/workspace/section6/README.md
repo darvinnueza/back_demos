@@ -220,6 +220,23 @@ docker compose down
 - [Accounts Microservice](http://localhost:8080/swagger-ui/index.html)
 - [Loans Microservice](http://localhost:8090/swagger-ui/index.html)
 - [Cards Microservice](http://localhost:9000/swagger-ui/index.html)
+### CONFIGURATION FILES
+#### Archivos de Configuración de Entorno para Servicios de Cuentas (accounts)
+- [accounts-dev.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/accounts-dev.yml): Configuración específica para el entorno de desarrollo del servicio de cuentas.
+- [accounts-qa.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/accounts-qa.yml): Configuración específica para el entorno de pruebas (QA) del servicio de cuentas.
+- [accounts-prod.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/accounts-prod.yml): Configuración específica para el entorno de producción del servicio de cuentas.
+#### Archivos de Configuración de Entorno para Servicios de Tarjetas (cards)
+- [cards-dev.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/cards-dev.yml): Configuración específica para el entorno de desarrollo del servicio de tarjetas. 
+- [cards-qa.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/cards-qa.yml): Configuración específica para el entorno de pruebas (QA) del servicio de tarjetas. 
+- [cards-prod.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/cards-prod.yml): Configuración específica para el entorno de producción del servicio de tarjetas.
+### Archivos de Configuración de Entorno para Servicios de Préstamos (loans)
+- [loans-dev.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/loans-dev.yml): Configuración específica para el entorno de desarrollo del servicio de préstamos. 
+- [loans-qa.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/loans-qa.yml): Configuración específica para el entorno de pruebas (QA) del servicio de préstamos. 
+- [loans-prod.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/loans-prod.yml): Configuración específica para el entorno de producción del servicio de préstamos.
+### Archivos de Configuración para el Servidor de Eureka
+- [eurekaserver.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/eurekaserver.yml): Configuración para el servidor de Eureka, que actúa como servidor de registro de servicios para todos los microservicios.
+### Archivos de Configuración para el Servidor de Gateway
+- [gatewayserver.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/gatewayserver.yml): Configuración para el servidor de API Gateway, que maneja el enrutamiento y la comunicación entre los microservicios.
 ### CONFIG SERVER
 #### ACCOUNTS ENVIRONMENTS
 - [Desarrollo](http://localhost:8071/accounts/dev)
