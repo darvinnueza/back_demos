@@ -179,5 +179,61 @@ En el contexto de microservicios, Cross-Cutting Concerns (Preocupaciones Transve
     - Finalmente, el API Gateway responde al cliente incluyendo el `correlationId` para que pueda ser rastreado.
 
 ## ANEXOS
+### COMANDOS COMUNES
+#### HOOKDECK
+Instala Hookdeck usando Homebrew.
+```
+brew install hookdeck/hookdeck/hookdeck
+```
+Inicia sesión en tu cuenta de Hookdeck.
+```
+hookdeck login
+```
+Escucha eventos en el puerto `8071` para la fuente `focus-banck-source`.
+```
+hookdeck listen 8071 focus-banck-source
+```
+#### MAVEN
+Compila el proyecto Maven y construye una imagen Docker usando Jib.
+```
+mvn compile jib:dockerBuild
+```
+#### DOCKER
+Sube varias imágenes Docker al repositorio Docker Hub.
+```
+docker image push darvinueza/configserver:s6 && docker image push darvinueza/accounts:s6 && docker image push darvinueza/loans:s6 && docker image push darvinueza/cards:s6 && docker image push darvinueza/eurekaserver:s6 && docker image push darvinueza/gatewayserver:s6
+```
+#### DOCKER COMPOSE
+Inicia todos los servicios definidos en el archivo `docker-compose.yml` en segundo plano.
+```
+docker compose up -d
+```
+Detiene y elimina los contenedores, redes y volúmenes definidos en el archivo `docker-compose.yml`.
+```
+docker compose down
+```
+### SWAGGER
+- [Accounts Microservice](http://localhost:8080/swagger-ui/index.html)
+- [Loans Microservice](http://localhost:8090/swagger-ui/index.html)
+- [Cards Microservice](http://localhost:9000/swagger-ui/index.html)
+### CONFIG SERVER
+#### ACCOUNTS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/accounts/dev)
+- [Calidad](http://localhost:8071/accounts/qa)
+- [Producción](http://localhost:8071/accounts/prod)
+#### LOANS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/loans/dev)
+- [Calidad](http://localhost:8071/loans/qa)
+- [Producción](http://localhost:8071/loans/prod)
+#### CARDS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/loans/dev)
+- [Calidad](http://localhost:8071/loans/qa)
+- [Producción](http://localhost:8071/loans/prod)
+## EUREKA SERVER
+- [Eureka](http://localhost:8070/)
+### RABITMQ
+- [RabbitMQ](http://localhost:15672/#/)
+### UNIT TEST
+- [Postman](unit_test)
 ### DOCUMENTACIÓN
 - [Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)
