@@ -69,6 +69,7 @@ El diagrama ilustra la arquitectura interna del Spring Cloud Gateway, mostrando 
 ## PASOS PARA CREAR SPRING CLOUD GATEWAY
 A continuación, se describen los pasos para construir una aplicación que funcione como un API Gateway utilizando Spring Cloud Gateway y registrarla como cliente en Eureka:
 1. **Configura un nuevo proyecto Spring Boot:** Comienza creando un nuevo proyecto Spring Boot utilizando tu IDE preferido o mediante [Spring Initializr](https://start.spring.io/). Incluye las dependencias de Maven `spring-cloud-starter-gateway`, `spring-cloud-starter-config` y `spring-cloud-starter-netflix-eureka-client`.
+
    ```
    ...
    <dependencies>
@@ -95,6 +96,7 @@ A continuación, se describen los pasos para construir una aplicación que funci
    ...
    ```
 2. **Configura las propiedades:** En el archivo de propiedades o YAML de la aplicación [application.yml](gatewayserver/src/main/resources/application.yml), añade las siguientes configuraciones:
+
    ```
    spring:
      cloud:
@@ -114,6 +116,7 @@ A continuación, se describen los pasos para construir una aplicación que funci
          defaultZone: http://localhost:8070/eureka/
    ```
 3. **Configurar el enrutamiento:** Realiza las configuraciones de enrutamiento utilizando `RouteLocatorBuilder` como se muestra a continuación:
+
    ```
    ...
    @Bean
