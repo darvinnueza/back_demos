@@ -43,4 +43,3 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eurekaserver:8070/eureka/
     extends:
       service: microservice-configserver-config
-
