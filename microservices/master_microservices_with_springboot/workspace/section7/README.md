@@ -13,10 +13,9 @@ Resilience4J es una biblioteca ligera para la tolerancia a fallos, diseñada par
 - **Bulkhead:** Restringe el número de solicitudes concurrentes salientes a un servicio para evitar sobrecargas.
 
 ## ESCENARIO TÍPICO EN MICROSERVICIOS
+Cuando un microservicio responde lentamente o deja de funcionar, puede provocar la saturación de los hilos de recursos en el servidor de borde y en los servicios intermedios. Esto, a su vez, afecta negativamente el rendimiento general de la red de microservicios.
 
 ![](https://drive.google.com/uc?export=view&id=1s7aFfZKwa1G0CtU9YVttcYLYLF0KqQ6Q)
-
-Cuando un microservicio responde lentamente o deja de funcionar, puede provocar la saturación de los hilos de recursos en el servidor de borde y en los servicios intermedios. Esto, a su vez, afecta negativamente el rendimiento general de la red de microservicios.
 
 Para manejar este tipo de situaciones, podemos utilizar el patrón Circuit Breaker.
 
