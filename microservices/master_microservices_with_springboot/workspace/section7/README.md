@@ -27,12 +27,15 @@ El CircuitBreaker se implementa mediante una máquina de estados finitos con tre
 ![](https://drive.google.com/uc?export=view&id=1sCXnzgriaH1sz0wVj8iGdF3m35X3GngI)
 
 1. **CLOSED (CERRADO):** En este estado, el Circuit Breaker permite que las solicitudes pasen al servicio. Se considera que el sistema está funcionando correctamente.
+
 2. **OPEN (ABIERTO):** En este estado, el Circuit Breaker ha detectado que el servicio está fallando repetidamente. Por lo tanto, bloquea todas las solicitudes para evitar que el servicio sobrecargado reciba más tráfico y para proteger el sistema en su conjunto.
+
 3. **HALF_OPEN (SEMI_ABIERTO):** En este estado de transición, el Circuit Breaker permite un número limitado de solicitudes para probar si el servicio ha recuperado su estabilidad. Si las solicitudes en este estado son exitosas, el Circuit Breaker puede volver al estado CLOSED. Si aún hay fallos, regresa al estado OPEN.
 
 Además de estos estados normales, hay dos estados especiales:
 
 - **DISABLED (DESACTIVADO):** En este estado, el Circuit Breaker no realiza ninguna acción y permite que todas las solicitudes pasen al servicio sin intervención. Esto se puede utilizar para desactivar temporalmente el Circuit Breaker por razones de mantenimiento o configuración.
+
 - **FORCED_OPEN (FORZADO_ABIERTO):** Este estado es similar al estado OPEN, pero se activa manualmente, independientemente del estado actual del Circuit Breaker. Se utiliza para forzar la interrupción del servicio cuando se necesita una intervención rápida y no se quiere esperar a que el Circuit Breaker entre en estado OPEN por sí mismo.
 
 ## ANEXOS
