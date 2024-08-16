@@ -59,11 +59,11 @@ Para descargar Oracle SOA Suite 12c desde el sitio de Oracle, sigue estos pasos:
 
 3. **Seleccionar la Plataforma:** Selecciona la plataforma (sistema operativo) para la que necesitas la descarga. Oracle SOA Suite está disponible para varias plataformas, como Windows, Linux, etc.
 
-  ![](https://drive.google.com/uc?export=view&id=18aQX4hwFUXA2GMRKvNXBMJTHBozFglYC)
+   ![](https://drive.google.com/uc?export=view&id=18aQX4hwFUXA2GMRKvNXBMJTHBozFglYC)
 
 4. **Aceptar el Contrato de Licencia:** Antes de descargar, Oracle te pedirá que revises y aceptes el acuerdo de licencia. Asegúrate de leer los términos y, si estás de acuerdo, marca la casilla correspondiente.
 
-  ![](https://drive.google.com/uc?export=view&id=1d83rE0DcPvi500OGqgeoeshSOvVZw603)
+   ![](https://drive.google.com/uc?export=view&id=1d83rE0DcPvi500OGqgeoeshSOvVZw603)
 
 unzip V983385-01_1of2.zip
 unzip V983385-01_2of2.zip 
