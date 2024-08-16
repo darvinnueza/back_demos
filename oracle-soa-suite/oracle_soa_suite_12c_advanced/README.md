@@ -52,9 +52,15 @@ Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
      ![](https://drive.google.com/uc?export=view&id=1sAXe_iSU8B0lkhUPw6FKWmpyH44CZ8pm)
    - Selecciona la versión que deseas descargar. Asegúrate de que sea compatible con tu sistema operativo y requisitos.
 
-     ![](https://drive.google.com/uc?export=view&id=18aQX4hwFUXA2GMRKvNXBMJTHBozFglYC)
+     ![](https://drive.google.com/uc?export=view&id=1Z-E0VwkVtzRt__T2jvmymusFHBy6JvRj)
 
-3. asd
+3. **Seleccionar la Plataforma:** Selecciona la plataforma (sistema operativo) para la que necesitas la descarga. Oracle SOA Suite está disponible para varias plataformas, como Windows, Linux, etc.
+
+![](https://drive.google.com/uc?export=view&id=18aQX4hwFUXA2GMRKvNXBMJTHBozFglYC)
+
+4. **Aceptar el Contrato de Licencia:** Antes de descargar, Oracle te pedirá que revises y aceptes el acuerdo de licencia. Asegúrate de leer los términos y, si estás de acuerdo, marca la casilla correspondiente.
+
+![](https://drive.google.com/uc?export=view&id=1d83rE0DcPvi500OGqgeoeshSOvVZw603)
 
 
 unzip V983385-01_1of2.zip
