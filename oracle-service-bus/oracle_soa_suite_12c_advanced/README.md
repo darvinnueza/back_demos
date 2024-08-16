@@ -1,0 +1,60 @@
+ORACLE_SOA_12C_ADVANCED
+===
+
+Require Java JDK 8
+Download an Install Oracle SOA
+Now we are able to start
+
+
+## INSTALACIÓN DEL JDK 8 EN CENTOS 9
+Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
+1. Descargar el Archivo JDK, asegúrate de tener el archivo `.tar.gz` adecuado para tu sistema operativo. En mi caso, necesito el archivo `jdk-8u202-linux-arm64-vfp-hflt.tar.gz`. Si aún no lo has descargado, puedes obtenerlo desde la [página oficial de Oracle](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html).
+
+2. Navegar al Directorio del Archivo, para ello abre una terminal y navega al directorio donde está ubicado el archivo tar.gz. Por ejemplo:
+   ```
+   cd /path/to/your/file
+   ```
+3. Extraer el Archivo, use el comando `tar` para extraer el archivo:
+   ```
+   tar -xzvf jdk-11.0.23_linux-aarch64_bin.tar.gz
+   ```
+   - **x** descomprime el archivo.
+   - **z** indica que el archivo está comprimido con gzip.
+   - **v** muestra el progreso en la terminal.
+   - **f** indica que estás especificando el nombre del archivo.
+4. Mover el JDK a un Directorio de Instalación, es una buena práctica mover el JDK extraído a un directorio estándar, como `/usr/local/java`. Primero, crea el directorio si no existe.
+   ```
+   sudo mkdir -p /usr/local/java
+   ```
+5. Luego, mueve el directorio del JDK extraído.
+   ```
+   sudo mv jdk-11.0.23 /usr/local/java/
+   ```
+6. Configurar las Variables de Entorno:
+
+    - Para que el sistema reconozca el JDK, debes configurar las variables de entorno. Abre el archivo de configuración de tu shell (`.bashrc`, `.bash_profile`, o `.zshrc`, dependiendo del shell que uses):
+
+      ```
+      vim ~/.bashrc
+      ```
+    - Agrega las siguientes líneas al final del archivo:
+      ```
+      export JAVA_HOME=/usr/local/java/jdk-11.0.23/
+      export PATH=$JAVA_HOME/bin:$PATH
+      ```
+    - Guarda y cierra el archivo. Luego, recarga la configuración del archivo:
+      ```
+      source ~/.bashrc
+      ```
+
+
+/usr/local/java/jdk1.8.0_241/
+
+https://edelivery.oracle.com/
+
+tar -xzvf jdk-8u202-linux-arm64-vfp-hflt.tar.gz
+
+
+unzip V983385-01_1of2.zip
+
+unzip V983385-01_2of2.zip 
