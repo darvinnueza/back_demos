@@ -51,11 +51,10 @@ Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
 
      ![](https://drive.google.com/uc?export=view&id=1sAXe_iSU8B0lkhUPw6FKWmpyH44CZ8pm)
    - Selecciona la versión que deseas descargar. Asegúrate de que sea compatible con tu sistema operativo y requisitos.
-     ![]()
 
-3. 
+     ![](https://drive.google.com/uc?export=view&id=18aQX4hwFUXA2GMRKvNXBMJTHBozFglYC)
 
-
+3. asd
 
 
 unzip V983385-01_1of2.zip
