@@ -44,6 +44,8 @@ Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
       ```
 
 ## INSTALACIÓN ORACLE SOA SUITE (OSB)
+### DESCARGAR ORACLE SOA SUITE 12C
+Para descargar Oracle SOA Suite 12c desde el sitio de Oracle, sigue estos pasos:
 1. **Accede a Oracle eDelivery:** Visita [Oracle eDelivery](https://edelivery.oracle.com/) y inicia sesión con tus credenciales de Oracle. Si no tienes una cuenta, deberás registrarte.
 
 2. **Buscar Oracle SOA Suite:** 
