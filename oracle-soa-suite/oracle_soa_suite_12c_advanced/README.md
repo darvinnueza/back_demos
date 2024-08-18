@@ -74,7 +74,16 @@ Para descargar Oracle SOA Suite 12c desde el sitio de Oracle, sigue estos pasos:
 Una vez descargados los archivos, sigue las instrucciones del instalador para configurar y desplegar Oracle SOA Suite 12c en tu sistema.
 ### INSTALACIÓN SOA QUICK START
 1. Descomprime ambos archivos `V983385-01_1of2.zip` y `V983385-01_2of2.zip` con el comando `unzip`.
-   
+
    ```
    unzip V983385-01_1of2.zip && unzip V983385-01_2of2.zip 
    ```
+2. En la misma terminal o símbolo del sistema, ejecuta el siguiente comando.
+
+   ```
+   java -jar fmw_12.2.1.4.0_soa_quickstart.jar 
+   ```
+
+3. Verifica que el directorio de inventario y el grupo del sistema operativo sean correctos y haz clic en OK para proceder con la creación del inventario central y continuar con la instalación.
+
+   ![](https://drive.google.com/uc?export=view&id=1IviEpMZwWQ7kKIX2IskiFb4_9WPOedFv)
