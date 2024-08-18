@@ -112,8 +112,12 @@ Una vez descargados los archivos, sigue las instrucciones del instalador para co
 
    ![](https://drive.google.com/uc?export=view&id=1J4iHLhxqG7JLx-ZYZwqgpSdTraXfc7t8)
 
-7. Clic en Install.
+7. Clic en Next.
 
    ![](https://drive.google.com/uc?export=view&id=1JPTWAeBsK0JraSHa4oKhGaGS838PLKUX)
 
-8. 
+8. Clic en Install.
+
+   ![](https://drive.google.com/uc?export=view&id=1JYj__rNyzXJ2MsyBt_UZ9bLe8BXnIsqr)
+
+9. 
