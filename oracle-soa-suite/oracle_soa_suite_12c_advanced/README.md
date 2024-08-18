@@ -124,3 +124,8 @@ Puedes usar la ubicación predeterminada sugerida o elegir una diferente, como p
 11. Verás una barra de progreso que indica el estado de la instalación. Una vez que la instalación se complete, haz clic en **Next**.
 
     ![](https://drive.google.com/uc?export=view&id=1J_Mk__7Kp8ex0tboAyLffmshAcck1P4Y)
+
+12. Se te presenta una opción para iniciar JDeveloper inmediatamente después de la instalación. Esta casilla está marcada por defecto. Si deseas iniciar JDeveloper, deja marcada la casilla `Start JDeveloper`.
+Si prefieres no iniciar JDeveloper en este momento, desmarca la casilla. Haz clic en **Finish** para completar el proceso de instalación y cerrar el asistente de instalación.
+
+    ![](https://drive.google.com/uc?export=view&id=1Jd6mDa01q-vKZoK02tmjbO0fAxBQ6uFI)
