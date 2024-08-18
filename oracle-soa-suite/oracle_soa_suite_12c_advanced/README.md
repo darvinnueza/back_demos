@@ -74,24 +74,20 @@ Para descargar Oracle SOA Suite 12c desde el sitio de Oracle, sigue estos pasos:
 Una vez descargados los archivos, sigue las instrucciones del instalador para configurar y desplegar Oracle SOA Suite 12c en tu sistema.
 ### INSTALACIÓN SOA QUICK START
 1. Como usuario `root`, crea los siguientes directorios.
-   
    ```
    mkdir -p /opt/oracle/osb/middleware/oracle_home
    ```
 
 2. Como usuario `root`, asigna permisos al usuario y grupo, en mi caso es  `darvin` para el directorio `/opt/oracle/` y todos sus subdirectorios.
-
    ```
    chown -R darvin:darvin /opt/oracle/
    ```
 
 3. Descomprime ambos archivos `V983385-01_1of2.zip` y `V983385-01_2of2.zip` con el comando `unzip`.
-
    ```
    unzip V983385-01_1of2.zip && unzip V983385-01_2of2.zip 
    ```
 4. En la misma terminal o símbolo del sistema, ejecuta el siguiente comando.
-
    ```
    java -jar fmw_12.2.1.4.0_soa_quickstart.jar 
    ```
@@ -129,3 +125,17 @@ Puedes usar la ubicación predeterminada sugerida o elegir una diferente, como p
 Si prefieres no iniciar JDeveloper en este momento, desmarca la casilla. Haz clic en **Finish** para completar el proceso de instalación y cerrar el asistente de instalación.
 
     ![](https://drive.google.com/uc?export=view&id=1Jd6mDa01q-vKZoK02tmjbO0fAxBQ6uFI)
+
+
+## ANEXOS
+### ABRIR ORACLE JDEVELOPER DESDE LA TERMINAL
+Para abrir Oracle JDeveloper desde la instalación ubicada en `/opt/oracle/osb/middleware/oracle_home/jdeveloper/jdev/bin`, sigue estos pasos:
+1. Abre la terminal en tu sistema operativo y utiliza el comando `cd` para cambiar al directorio donde está instalado JDeveloper. Ingresa el siguiente comando en la terminal.
+   ```
+   cd /opt/oracle/osb/middleware/oracle_home/jdeveloper/jdev/bin
+   ```
+
+2. Una vez que estés en el directorio correcto, ejecuta el siguiente comando para iniciar JDeveloper.
+   ```
+   ./jdev
+   ```
