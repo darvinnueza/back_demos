@@ -73,17 +73,39 @@ Para descargar Oracle SOA Suite 12c desde el sitio de Oracle, sigue estos pasos:
 ## INSTALACIÓN ORACLE SOA SUITE (OSB)
 Una vez descargados los archivos, sigue las instrucciones del instalador para configurar y desplegar Oracle SOA Suite 12c en tu sistema.
 ### INSTALACIÓN SOA QUICK START
-1. Descomprime ambos archivos `V983385-01_1of2.zip` y `V983385-01_2of2.zip` con el comando `unzip`.
+1. Como usuario `root`, crea los siguientes directorios.
+   
+   ```
+   mkdir -p /opt/oracle/osb
+   ```
+
+2. Como usuario `root`, asigna permisos al usuario y grupo, en mi caso es  `darvin` para el directorio `/opt/oracle/` y todos sus subdirectorios.
+
+   ```
+   chown -R darvin:darvin /opt/oracle/
+   ```
+
+3. Descomprime ambos archivos `V983385-01_1of2.zip` y `V983385-01_2of2.zip` con el comando `unzip`.
 
    ```
    unzip V983385-01_1of2.zip && unzip V983385-01_2of2.zip 
    ```
-2. En la misma terminal o símbolo del sistema, ejecuta el siguiente comando.
+4. En la misma terminal o símbolo del sistema, ejecuta el siguiente comando.
 
    ```
    java -jar fmw_12.2.1.4.0_soa_quickstart.jar 
    ```
 
-3. Verifica que el directorio de inventario y el grupo del sistema operativo sean correctos y haz clic en OK para proceder con la creación del inventario central y continuar con la instalación.
+5. Verifica que el directorio de inventario y el grupo del sistema operativo sean correctos y haz clic en OK para proceder con la creación del inventario central y continuar con la instalación.
 
    ![](https://drive.google.com/uc?export=view&id=1IviEpMZwWQ7kKIX2IskiFb4_9WPOedFv)
+
+4. Click en Next.
+
+   ![](https://drive.google.com/uc?export=view&id=1J1EVFDcT9hla1XVzArclWH-K4SJg5Umk)
+
+5. Click en Next.
+
+   ![](https://drive.google.com/uc?export=view&id=1J2lZu2k8K24PQPTkpJSJ_5q_HFWLHGvQ)
+
+6. Click en Next.
