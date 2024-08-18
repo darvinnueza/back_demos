@@ -119,8 +119,8 @@ Puedes usar la ubicación predeterminada sugerida o elegir una diferente, como p
 
 10. Se mostrará un resumen de las opciones seleccionadas, incluyendo la ubicación de instalación, el espacio en disco requerido y disponible, y los componentes que se instalarán. Revisa los detalles y, si todo es correcto, haz clic en **Install** para comenzar la instalación.
 
-   ![](https://drive.google.com/uc?export=view&id=1JYj__rNyzXJ2MsyBt_UZ9bLe8BXnIsqr)
+    ![](https://drive.google.com/uc?export=view&id=1JYj__rNyzXJ2MsyBt_UZ9bLe8BXnIsqr)
 
 11. Verás una barra de progreso que indica el estado de la instalación. Una vez que la instalación se complete, haz clic en **Next**.
 
-   ![](https://drive.google.com/uc?export=view&id=1J_Mk__7Kp8ex0tboAyLffmshAcck1P4Y)
+    ![](https://drive.google.com/uc?export=view&id=1J_Mk__7Kp8ex0tboAyLffmshAcck1P4Y)
