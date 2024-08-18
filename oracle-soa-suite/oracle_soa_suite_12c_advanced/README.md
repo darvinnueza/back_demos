@@ -65,5 +65,14 @@ Para descargar Oracle SOA Suite 12c desde el sitio de Oracle, sigue estos pasos:
 
    ![](https://drive.google.com/uc?export=view&id=1d83rE0DcPvi500OGqgeoeshSOvVZw603)
 
+5. **Descarga del Software:** Haz clic en los enlaces para descargar los archivos requeridos. Según la versión y la plataforma, es posible que necesites descargar varios archivos. Para este manual, deberás descargar los siguientes archivos.
+   - Oracle Fusion Middleware 12c (12.2.1.4.0) SOA Quick Start, 1.8 GB
+   - Oracle Fusion Middleware 12c (12.2.1.4.0) SOA Quick Start, 1.2 GB
+
+   ![](https://drive.google.com/uc?export=view&id=1IjuYR7lzJY_Q7pruuOSRwa_P5Ke--YFb)
+
+
+
+
 unzip V983385-01_1of2.zip
 unzip V983385-01_2of2.zip 
