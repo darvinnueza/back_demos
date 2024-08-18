@@ -100,24 +100,27 @@ Una vez descargados los archivos, sigue las instrucciones del instalador para co
 
    ![](https://drive.google.com/uc?export=view&id=1IviEpMZwWQ7kKIX2IskiFb4_9WPOedFv)
 
-4. Clic en Next.
+6. Al iniciar el instalador, verás una pantalla de bienvenida. No se requieren acciones aquí más allá de hacer clic en el botón **Next** para continuar.
 
    ![](https://drive.google.com/uc?export=view&id=1J1EVFDcT9hla1XVzArclWH-K4SJg5Umk)
 
-5. Clic en Next.
+7. Si no deseas buscar actualizaciones, selecciona *Skip Auto Updates* y haz clic en **Next**.
 
    ![](https://drive.google.com/uc?export=view&id=1J2lZu2k8K24PQPTkpJSJ_5q_HFWLHGvQ)
 
-6. Selecciona el directorio `/opt/oracle/osb/middleware/oracle_home` y haz clic en Next para continuar.
+8. Debes especificar el `Oracle Home`, que es el directorio donde se instalará Oracle Fusion Middleware.
+Puedes usar la ubicación predeterminada sugerida o elegir una diferente, como por ejemplo `/opt/oracle/osb/middleware/oracle_home`. Haz clic en **Next** para continuar.
 
    ![](https://drive.google.com/uc?export=view&id=1J4iHLhxqG7JLx-ZYZwqgpSdTraXfc7t8)
 
-7. Clic en Next.
+9.  El instalador comprobará que el sistema operativo y la versión de Java sean compatibles, si todos los requisitos se cumplen, verás una marca verde junto a cada verificación. Haz clic en **Next** para continuar.
 
    ![](https://drive.google.com/uc?export=view&id=1JPTWAeBsK0JraSHa4oKhGaGS838PLKUX)
 
-8. Clic en Install.
+10.  Se mostrará un resumen de las opciones seleccionadas, incluyendo la ubicación de instalación, el espacio en disco requerido y disponible, y los componentes que se instalarán. Revisa los detalles y, si todo es correcto, haz clic en **Install** para comenzar la instalación.
 
    ![](https://drive.google.com/uc?export=view&id=1JYj__rNyzXJ2MsyBt_UZ9bLe8BXnIsqr)
 
-9. 
+11.  Verás una barra de progreso que indica el estado de la instalación. Una vez que la instalación se complete, haz clic en **Next**.
+
+   ![](https://drive.google.com/uc?export=view&id=1J_Mk__7Kp8ex0tboAyLffmshAcck1P4Y)
