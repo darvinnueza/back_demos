@@ -76,7 +76,7 @@ Una vez descargados los archivos, sigue las instrucciones del instalador para co
 1. Como usuario `root`, crea los siguientes directorios.
    
    ```
-   mkdir -p /opt/oracle/osb
+   mkdir -p /opt/oracle/osb/middleware/oracle_home
    ```
 
 2. Como usuario `root`, asigna permisos al usuario y grupo, en mi caso es  `darvin` para el directorio `/opt/oracle/` y todos sus subdirectorios.
@@ -100,12 +100,20 @@ Una vez descargados los archivos, sigue las instrucciones del instalador para co
 
    ![](https://drive.google.com/uc?export=view&id=1IviEpMZwWQ7kKIX2IskiFb4_9WPOedFv)
 
-4. Click en Next.
+4. Clic en Next.
 
    ![](https://drive.google.com/uc?export=view&id=1J1EVFDcT9hla1XVzArclWH-K4SJg5Umk)
 
-5. Click en Next.
+5. Clic en Next.
 
    ![](https://drive.google.com/uc?export=view&id=1J2lZu2k8K24PQPTkpJSJ_5q_HFWLHGvQ)
 
-6. Click en Next.
+6. Selecciona el directorio `/opt/oracle/osb/middleware/oracle_home` y haz clic en Next para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1J4iHLhxqG7JLx-ZYZwqgpSdTraXfc7t8)
+
+7. Clic en Install.
+
+   ![](https://drive.google.com/uc?export=view&id=1JPTWAeBsK0JraSHa4oKhGaGS838PLKUX)
+
+8. 
