@@ -1,8 +1,6 @@
 INSTALACIÓN ORACLE SOA SUITE 12c
 ===
 
-![](https://drive.google.com/uc?export=view&id=1pOQW3YRrGBGJbpaN5syIkTtCcyK8VG39)
-
 ## INSTALACIÓN DEL JDK 8 EN CENTOS 9
 Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
 1. Descargar el Archivo JDK, asegúrate de tener el archivo `.tar.gz` adecuado para tu sistema operativo. En mi caso, necesito el archivo `jdk-8u202-linux-arm64-vfp-hflt.tar.gz`. Si aún no lo has descargado, puedes obtenerlo desde la [página oficial de Oracle](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html).
