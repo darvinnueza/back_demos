@@ -1,7 +1,7 @@
-INSTALACIÓN ORACLE SOA SUITE 12c
+INSTALACIÓN ORACLE SOA SUITE 12c EN CENTOS 9
 ===
 
-## INSTALACIÓN DEL JDK 8 EN CENTOS 9
+## INSTALACIÓN DEL JDK 8
 Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
 1. Descargar el Archivo JDK, asegúrate de tener el archivo `.tar.gz` adecuado para tu sistema operativo. En mi caso, necesito el archivo `jdk-8u202-linux-arm64-vfp-hflt.tar.gz`. Si aún no lo has descargado, puedes obtenerlo desde la [página oficial de Oracle](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html).
 
@@ -9,7 +9,7 @@ Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
    ```
    cd /path/to/your/file
    ```
-3. Extraer el Archivo, use el comando `tar` para extraer el archivo:
+3. Extraer el Archivo, use el comando `tar` para extraer el archivo.
    ```
    tar -xzvf jdk-8u251-linux-x64.tar.gz
    ```
@@ -28,17 +28,17 @@ Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
    ```
 6. Configurar las Variables de Entorno:
 
-    - Para que el sistema reconozca el JDK, debes configurar las variables de entorno. Abre el archivo de configuración de tu shell (`.bashrc`, `.bash_profile`, o `.zshrc`, dependiendo del shell que uses):
+    - Para que el sistema reconozca el JDK, debes configurar las variables de entorno. Abre el archivo de configuración de tu shell (`.bashrc`, `.bash_profile`, o `.zshrc`, dependiendo del shell que uses).
 
       ```
       vim ~/.bashrc
       ```
-    - Agrega las siguientes líneas al final del archivo:
+    - Agrega las siguientes líneas al final del archivo.
       ```
       export JAVA_HOME=/usr/local/java/jdk1.8.0_251
       export PATH=$JAVA_HOME/bin:$PATH
       ```
-    - Guarda y cierra el archivo. Luego, recarga la configuración del archivo:
+    - Guarda y cierra el archivo. Luego, recarga la configuración del archivo.
       ```
       source ~/.bashrc
       ```
@@ -126,6 +126,49 @@ Si prefieres no iniciar JDeveloper en este momento, desmarca la casilla. Haz cli
 
     ![](https://drive.google.com/uc?export=view&id=1Jd6mDa01q-vKZoK02tmjbO0fAxBQ6uFI)
 
+## REPOSITORY CREATION UTILITY (RCU)
+Este manual te guiará a través de los pasos necesarios para crear y configurar un repositorio de base de datos para Oracle Fusion Middleware utilizando la herramienta Repository Creation Utility (RCU). Este proceso incluye la creación de esquemas de base de datos necesarios y la configuración de tablaspaces en una base de datos Oracle.
+
+1. **Pantalla de Bienvenida:** La pantalla de bienvenida del RCU te da una breve introducción sobre lo que esta herramienta puede hacer. Haz clic en **.Next**. para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1JtUdda8yn6HxopO70a-5gaMuWu3cFg6y)
+
+2. **Seleccionar la Acción de Creación del Repositorio:** Aquí puedes seleccionar las acciones que deseas realizar con RCU. Selecciona *Create Repository*, luego, selecciona *System Load and Product Load (necesitas privilegios de DBA)* y haz clic en **Next** para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1K73qsLylBz4XjCQGdOJ48besnKB56XtV)
+
+3. **Configuración de Conexión a la Base de Datos:** En esta pantalla, se configuran los detalles de la conexión a la base de datos. Configura los siguientes parámetros:
+   
+   - Host Name: localhost
+   - Port: 1521
+   - Service Name: xe
+   - Username: sys
+   - Password: tu_contraseña
+   - Role: SYSDBA
+
+   Haz clic en **Next** para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1KNInp6m3DI7FAwdtUMZ5xMQ8GQYuywrK)
+
+4. **Advertencia:** Verás un mensaje advirtiendo que la base de datos seleccionada es Oracle XE, que no está certificada para uso en entornos de producción con Oracle Fusion Middleware. Haz clic en **Ignore** para continuar si estás de acuerdo. El RCU verificará los prerrequisitos globales. 
+
+   ![](https://drive.google.com/uc?export=view&id=1Jyb5BB_M9BRDSegPwCH8E8kLUPwp07rM)
+
+5. Una vez completada la verificación, haz clic en **OK** para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1K6uKIAeHlGjHYBUHTvpSALyBuBvaVXzN)
+
+6. **Selección de Componentes:** Aquí seleccionarás los componentes de Oracle Fusion Middleware que deseas instalar. Especifica un prefijo único para los esquemas creados (ejemplo: DEV). Marca los componentes que deseas incluir, como *Oracle AS Repository Components, SOA Suite, etc*. Haz clic en Next para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1KDlTQNsiEtIbGJe4IcdxrUGYCxm1RJGB)
+
+7. **Verificación de Prerrequisitos:** El RCU verificará los prerrequisitos para los componentes seleccionados. Haz clic en **OK** para proceder.
+
+   ![](https://drive.google.com/uc?export=view&id=1JtTCffSjNRHu-s5aSDWBJb2tgZzYDrwm)
+
+8. **Configuración de Contraseñas de Esquema Descripción:** Configura las contraseñas para los esquemas principales y auxiliares. Selecciona *Use same passwords for all schemas*. Ingresa y confirma la contraseña y haz clic en **Next** para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1K7vAgKx5cvqh65gRto1_ek8B1d_OklLh)
 
 ## ANEXOS
 ### ABRIR ORACLE JDEVELOPER DESDE LA TERMINAL
