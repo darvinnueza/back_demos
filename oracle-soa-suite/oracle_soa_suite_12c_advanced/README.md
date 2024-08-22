@@ -24,7 +24,7 @@ Para instalar el JDK desde un archivo tar.gz en CentOS 9, sigue estos pasos:
    ```
 5. Luego, mueve el directorio del JDK extraído.
    ```
-   sudo mv jdk-11.0.23 /usr/local/java/
+   sudo mv jdk1.8.0_251/ /usr/local/java/
    ```
 6. Configurar las Variables de Entorno:
 
@@ -75,12 +75,12 @@ Una vez descargados los archivos, sigue las instrucciones del instalador para co
 ### INSTALACIÓN SOA QUICK START
 1. Como usuario `root`, crea los siguientes directorios.
    ```
-   mkdir -p /opt/oracle/osb/middleware/oracle_home
+   mkdir -p /opt/u01/middleware/oracle_home
    ```
 
 2. Como usuario `root`, asigna permisos al usuario y grupo, en mi caso es  `darvin` para el directorio `/opt/oracle/` y todos sus subdirectorios.
    ```
-   chown -R darvin:darvin /opt/oracle/
+   chown -R darvin:darvin /opt/u01/
    ```
 
 3. Descomprime ambos archivos `V983385-01_1of2.zip` y `V983385-01_2of2.zip` con el comando `unzip`.
@@ -129,6 +129,20 @@ Si prefieres no iniciar JDeveloper en este momento, desmarca la casilla. Haz cli
 ## REPOSITORY CREATION UTILITY (RCU)
 Este manual te guiará a través de los pasos necesarios para crear y configurar un repositorio de base de datos para Oracle Fusion Middleware utilizando la herramienta Repository Creation Utility (RCU). Este proceso incluye la creación de esquemas de base de datos necesarios y la configuración de tablaspaces en una base de datos Oracle.
 
+### EJECUCIÓN DEL ARCHIVO RCU
+Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de Oracle, es necesario ejecutar la **Utilidad de Creación de Repositorio (RCU)**. A continuación, se detallan los pasos para ejecutar el archivo `rcu` ubicado en el sistema:
+
+1. **Fichero Rcu:** Para ejecutar la utilidad, abre una terminal y navega hasta el directorio donde se encuentra el archivo rcu. 
+   ```
+   cd /opt/oracle/osb/middleware/oracle_home/oracle_common/bin
+   ```
+2. **Iniciar la Ejecución:** Luego, utiliza el siguiente comando para iniciar el proceso.
+   ```
+   ./rcu
+   ```
+
+### UTILIDAD DE CREACIÓN DE REPOSITORIO
+
 1. **Pantalla de Bienvenida:** La pantalla de bienvenida del RCU te da una breve introducción sobre lo que esta herramienta puede hacer. Haz clic en **.Next**. para continuar.
 
    ![](https://drive.google.com/uc?export=view&id=1JtUdda8yn6HxopO70a-5gaMuWu3cFg6y)
@@ -141,7 +155,7 @@ Este manual te guiará a través de los pasos necesarios para crear y configurar
    
    - Host Name: localhost
    - Port: 1521
-   - Service Name: xe
+   - Service Name: xepdb1
    - Username: sys
    - Password: tu_contraseña
    - Role: SYSDBA
@@ -158,11 +172,11 @@ Este manual te guiará a través de los pasos necesarios para crear y configurar
 
    ![](https://drive.google.com/uc?export=view&id=1K6uKIAeHlGjHYBUHTvpSALyBuBvaVXzN)
 
-6. **Selección de Componentes:** Aquí seleccionarás los componentes de Oracle Fusion Middleware que deseas instalar. Especifica un prefijo único para los esquemas creados (ejemplo: DEV). Marca los componentes que deseas incluir, como *Oracle AS Repository Components, SOA Suite, etc*. Haz clic en Next para continuar.
+6.  **Selección de Componentes:** Aquí seleccionarás los componentes de Oracle Fusion Middleware que deseas instalar. Especifica un prefijo único para los esquemas creados (ejemplo: DEV). Marca los componentes que deseas incluir, como *Oracle AS Repository Components, SOA Suite, etc*. Haz clic en Next para continuar.
 
    ![](https://drive.google.com/uc?export=view&id=1KDlTQNsiEtIbGJe4IcdxrUGYCxm1RJGB)
 
-7. **Verificación de Prerrequisitos:** El RCU verificará los prerrequisitos para los componentes seleccionados. Haz clic en **OK** para proceder.
+7.  **Verificación de Prerrequisitos:** El RCU verificará los prerrequisitos para los componentes seleccionados. Haz clic en **OK** para proceder.
 
    ![](https://drive.google.com/uc?export=view&id=1JtTCffSjNRHu-s5aSDWBJb2tgZzYDrwm)
 
@@ -170,10 +184,37 @@ Este manual te guiará a través de los pasos necesarios para crear y configurar
 
    ![](https://drive.google.com/uc?export=view&id=1K7vAgKx5cvqh65gRto1_ek8B1d_OklLh)
 
+9. **Custom Variables:** En este paso, configura las variables personalizadas para los componentes seleccionados. He elegido el perfil de base de datos 'Small', adecuado para entornos de desarrollo o pruebas. Para 'Healthcare Integration', selecciona 'Yes' o 'No' según tus necesidades; en este caso, he seleccionado 'No'. Una vez configuradas las opciones, haz clic en **Next** para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1b8i1fUf-3X8gEg1Gl-Q16pA2SB_bPlA3)
+
+10. **Map Tablespaces:** En este paso, se te presenta un mapeo de los tablespaces para los componentes seleccionados. Cada componente tiene un esquema propietario y un tablespace por defecto asignado. Aquí puedes ver que los tablespaces como DEV_STB, DEV_IAS_OPSS, DEV_ESS, etc. Cada componente también tiene un temporary tablespace asignado, generalmente DEV_IAS_TEMP. Haz clic en Next para continuar.
+
+   ![](https://drive.google.com/uc?export=view&id=1bE3BicF8eDseBYH90zfqkpZoRSnVxtlD)
+
+11. **Crear Tablespaces:** Al hacer clic en **OK**, la utilidad creará los tablespaces necesarios si aún no existen.
+
+   ![](https://drive.google.com/uc?export=view&id=1bE3BicF8eDseBYH90zfqkpZoRSnVxtlD)
+
+## ASISTENTE DE CONFIGURACIÓN
+
+
 ## ANEXOS
+### IMPLEMENTACIÓN DE ORACLE XE 18C EN UN CONTENEDOR DOCKER
+El comando docker login container-registry.oracle.com autentica al usuario en el registro de contenedores de Oracle, permitiendo el acceso a imágenes oficiales de Oracle tras ingresar las credenciales.
+```
+docker login container-registry.oracle.com
+```
+Este comando lanza un contenedor Docker con Oracle Database Express Edition 18.4.0, exponiendo los puertos 1521 y 5500, configurando la contraseña de la base de datos, estableciendo el conjunto de caracteres a AL32UTF8, y montando el volumen local en /opt/u01/oracle-data para el almacenamiento persistente de datos.
+
+```
+docker run -d --name oracle-db -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=OsB2023 -e ORACLE_CHARACTERSET=AL32UTF8 -v /opt/u01/oracle-data:/opt/oracle/oradata container-registry.oracle.com/database/express:18.4.0-xe
+```
+
 ### ABRIR ORACLE JDEVELOPER DESDE LA TERMINAL
 Para abrir Oracle JDeveloper desde la instalación ubicada en `/opt/oracle/osb/middleware/oracle_home/jdeveloper/jdev/bin`, sigue estos pasos:
 1. Abre la terminal en tu sistema operativo y utiliza el comando `cd` para cambiar al directorio donde está instalado JDeveloper. Ingresa el siguiente comando en la terminal.
+
    ```
    cd /opt/oracle/osb/middleware/oracle_home/jdeveloper/jdev/bin
    ```
@@ -182,3 +223,7 @@ Para abrir Oracle JDeveloper desde la instalación ubicada en `/opt/oracle/osb/m
    ```
    ./jdev
    ```
+
+
+Access Oracle XE: 123456
+Access Schemas: welcome01

@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="UserDataRestService">RestService</doc>
+   <grammars>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp" schemaLocation="MySqlCorp_table.xsd"/>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/create">
+         <method name="POST" soa:wsdlOperation="insert">
+            <request>
+               <representation mediaType="application/json" element="cns:UserdataCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp"/>
+            </request>
+            <response status="201">
+               <representation mediaType="application/xml" element="cns:UserdataCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/update">
+         <method name="PUT" soa:wsdlOperation="update">
+            <request>
+               <representation mediaType="application/json" element="cns:UserdataCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:UserdataCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/delete">
+         <method name="DELETE" soa:wsdlOperation="delete">
+            <request soa:paramElement="pns:UserdataCollection" xmlns:pns="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp">
+               <param name="id" style="query" soa:expression="$msg.UserdataCollection/top:Userdata/top:id" type="xsd:int"/>
+               <param name="firstName" style="query" soa:expression="$msg.UserdataCollection/top:Userdata/top:firstName" type="xsd:string"/>
+               <param name="lastName" style="query" soa:expression="$msg.UserdataCollection/top:Userdata/top:lastName" type="xsd:string"/>
+               <param name="age" style="query" soa:expression="$msg.UserdataCollection/top:Userdata/top:age" type="xsd:int"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:UserdataCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/findAll">
+         <method name="GET" soa:wsdlOperation="MySqlCorpSelect">
+            <request soa:paramElement="pns:MySqlCorpSelectInputParameters" xmlns:pns="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp"/>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:UserdataCollection" xmlns:cns="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>
