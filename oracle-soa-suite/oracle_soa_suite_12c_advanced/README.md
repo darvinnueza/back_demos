@@ -192,11 +192,11 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
 10. **Map Tablespaces:** En este paso, se te presenta un mapeo de los tablespaces para los componentes seleccionados. Cada componente tiene un esquema propietario y un tablespace por defecto asignado. Aquí puedes ver que los tablespaces como DEV_STB, DEV_IAS_OPSS, DEV_ESS, etc. Cada componente también tiene un temporary tablespace asignado, generalmente DEV_IAS_TEMP. Haz clic en Next para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1dPjVhZFH4882OMFwlqP67c_mxLF5etSQ)
+    ![](https://drive.google.com/uc?export=view&id=1dPjVhZFH4882OMFwlqP67c_mxLF5etSQ)
 
 11. **Crear Tablespaces:** Al hacer clic en **OK**, la utilidad creará los tablespaces necesarios si aún no existen.
 
-   ![](https://drive.google.com/uc?export=view&id=1dPbqE9fIM_P3HE0Wzn1zFBhlvZWTP5SY)
+    ![](https://drive.google.com/uc?export=view&id=1dPbqE9fIM_P3HE0Wzn1zFBhlvZWTP5SY)
 
 ## ASISTENTE DE CONFIGURACIÓN
 
