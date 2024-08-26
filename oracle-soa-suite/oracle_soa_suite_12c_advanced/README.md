@@ -94,37 +94,37 @@ Una vez descargados los archivos, sigue las instrucciones del instalador para co
 
 5. Verifica que el directorio de inventario y el grupo del sistema operativo sean correctos y haz clic en OK para proceder con la creación del inventario central y continuar con la instalación.
 
-   ![](https://drive.google.com/uc?export=view&id=1IviEpMZwWQ7kKIX2IskiFb4_9WPOedFv)
+   ![](https://drive.google.com/uc?export=view&id=1ckF97orYBGptl1Eh4Ed5In2Qtl-tFpRV)
 
 6. Al iniciar el instalador, verás una pantalla de bienvenida. No se requieren acciones aquí más allá de hacer clic en el botón **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1J1EVFDcT9hla1XVzArclWH-K4SJg5Umk)
+   ![](https://drive.google.com/uc?export=view&id=1cmRPuIy5VQPZYfNSZNqpD5soeemtKugO)
 
 7. Si no deseas buscar actualizaciones, selecciona *Skip Auto Updates* y haz clic en **Next**.
 
-   ![](https://drive.google.com/uc?export=view&id=1J2lZu2k8K24PQPTkpJSJ_5q_HFWLHGvQ)
+   ![](https://drive.google.com/uc?export=view&id=1cjvhITC7pPRHiaCI0ArEYUAvmaAGDTrd)
 
 8. Debes especificar el `Oracle Home`, que es el directorio donde se instalará Oracle Fusion Middleware.
 Puedes usar la ubicación predeterminada sugerida o elegir una diferente, como por ejemplo `/opt/oracle/osb/middleware/oracle_home`. Haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1J4iHLhxqG7JLx-ZYZwqgpSdTraXfc7t8)
+   ![](https://drive.google.com/uc?export=view&id=)
 
-9. El instalador comprobará que el sistema operativo y la versión de Java sean compatibles, si todos los requisitos se cumplen, verás una marca verde junto a cada verificación. Haz clic en **Next** para continuar.
+1. El instalador comprobará que el sistema operativo y la versión de Java sean compatibles, si todos los requisitos se cumplen, verás una marca verde junto a cada verificación. Haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1JPTWAeBsK0JraSHa4oKhGaGS838PLKUX)
+   ![](https://drive.google.com/uc?export=view&id=)
 
-10. Se mostrará un resumen de las opciones seleccionadas, incluyendo la ubicación de instalación, el espacio en disco requerido y disponible, y los componentes que se instalarán. Revisa los detalles y, si todo es correcto, haz clic en **Install** para comenzar la instalación.
+2.  Se mostrará un resumen de las opciones seleccionadas, incluyendo la ubicación de instalación, el espacio en disco requerido y disponible, y los componentes que se instalarán. Revisa los detalles y, si todo es correcto, haz clic en **Install** para comenzar la instalación.
 
-    ![](https://drive.google.com/uc?export=view&id=1JYj__rNyzXJ2MsyBt_UZ9bLe8BXnIsqr)
+    ![](https://drive.google.com/uc?export=view&id=)
 
-11. Verás una barra de progreso que indica el estado de la instalación. Una vez que la instalación se complete, haz clic en **Next**.
+3.  Verás una barra de progreso que indica el estado de la instalación. Una vez que la instalación se complete, haz clic en **Next**.
 
-    ![](https://drive.google.com/uc?export=view&id=1J_Mk__7Kp8ex0tboAyLffmshAcck1P4Y)
+    ![](https://drive.google.com/uc?export=view&id=)
 
-12. Se te presenta una opción para iniciar JDeveloper inmediatamente después de la instalación. Esta casilla está marcada por defecto. Si deseas iniciar JDeveloper, deja marcada la casilla `Start JDeveloper`.
+4.  Se te presenta una opción para iniciar JDeveloper inmediatamente después de la instalación. Esta casilla está marcada por defecto. Si deseas iniciar JDeveloper, deja marcada la casilla `Start JDeveloper`.
 Si prefieres no iniciar JDeveloper en este momento, desmarca la casilla. Haz clic en **Finish** para completar el proceso de instalación y cerrar el asistente de instalación.
 
-    ![](https://drive.google.com/uc?export=view&id=1Jd6mDa01q-vKZoK02tmjbO0fAxBQ6uFI)
+    ![](https://drive.google.com/uc?export=view&id=)
 
 ## REPOSITORY CREATION UTILITY (RCU)
 Este manual te guiará a través de los pasos necesarios para crear y configurar un repositorio de base de datos para Oracle Fusion Middleware utilizando la herramienta Repository Creation Utility (RCU). Este proceso incluye la creación de esquemas de base de datos necesarios y la configuración de tablaspaces en una base de datos Oracle.
