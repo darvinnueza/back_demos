@@ -107,24 +107,24 @@ Una vez descargados los archivos, sigue las instrucciones del instalador para co
 8. Debes especificar el `Oracle Home`, que es el directorio donde se instalará Oracle Fusion Middleware.
 Puedes usar la ubicación predeterminada sugerida o elegir una diferente, como por ejemplo `/opt/oracle/osb/middleware/oracle_home`. Haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1d1psjXKRNMM7-1EX1LFkTEIMJhF63xuV)
 
-1. El instalador comprobará que el sistema operativo y la versión de Java sean compatibles, si todos los requisitos se cumplen, verás una marca verde junto a cada verificación. Haz clic en **Next** para continuar.
+9. El instalador comprobará que el sistema operativo y la versión de Java sean compatibles, si todos los requisitos se cumplen, verás una marca verde junto a cada verificación. Haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1d5jV_j3PQzhs7wYHFgrx-0V-8QxxwO_j)
 
-2.  Se mostrará un resumen de las opciones seleccionadas, incluyendo la ubicación de instalación, el espacio en disco requerido y disponible, y los componentes que se instalarán. Revisa los detalles y, si todo es correcto, haz clic en **Install** para comenzar la instalación.
+10.  Se mostrará un resumen de las opciones seleccionadas, incluyendo la ubicación de instalación, el espacio en disco requerido y disponible, y los componentes que se instalarán. Revisa los detalles y, si todo es correcto, haz clic en **Install** para comenzar la instalación.
 
-    ![](https://drive.google.com/uc?export=view&id=)
+    ![](https://drive.google.com/uc?export=view&id=1duLuQoCDQl4iEXbDZwVHnAZhrP2OGugb)
 
-3.  Verás una barra de progreso que indica el estado de la instalación. Una vez que la instalación se complete, haz clic en **Next**.
+11. Verás una barra de progreso que indica el estado de la instalación. Una vez que la instalación se complete, haz clic en **Next**.
 
-    ![](https://drive.google.com/uc?export=view&id=)
+    ![](https://drive.google.com/uc?export=view&id=1dmraNEauSmaf03_6IjIv97DHgeCzv1oS)
 
-4.  Se te presenta una opción para iniciar JDeveloper inmediatamente después de la instalación. Esta casilla está marcada por defecto. Si deseas iniciar JDeveloper, deja marcada la casilla `Start JDeveloper`.
+12. Se te presenta una opción para iniciar JDeveloper inmediatamente después de la instalación. Esta casilla está marcada por defecto. Si deseas iniciar JDeveloper, deja marcada la casilla `Start JDeveloper`.
 Si prefieres no iniciar JDeveloper en este momento, desmarca la casilla. Haz clic en **Finish** para completar el proceso de instalación y cerrar el asistente de instalación.
 
-    ![](https://drive.google.com/uc?export=view&id=)
+    ![](https://drive.google.com/uc?export=view&id=1e4nqxPzkVtyhm4iIVk9lQVcv4gkutWuA)
 
 ## REPOSITORY CREATION UTILITY (RCU)
 Este manual te guiará a través de los pasos necesarios para crear y configurar un repositorio de base de datos para Oracle Fusion Middleware utilizando la herramienta Repository Creation Utility (RCU). Este proceso incluye la creación de esquemas de base de datos necesarios y la configuración de tablaspaces en una base de datos Oracle.
