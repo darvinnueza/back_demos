@@ -174,11 +174,11 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
    ![](https://drive.google.com/uc?export=view&id=1dWFFZncvV4tj-jxacs4v7Ag7p3n8wyMf)
 
-6.  **Selección de Componentes:** Aquí seleccionarás los componentes de Oracle Fusion Middleware que deseas instalar. Especifica un prefijo único para los esquemas creados (ejemplo: DEV). Marca los componentes que deseas incluir, como *Oracle AS Repository Components, SOA Suite, etc*. Haz clic en Next para continuar.
+6. **Selección de Componentes:** Aquí seleccionarás los componentes de Oracle Fusion Middleware que deseas instalar. Especifica un prefijo único para los esquemas creados (ejemplo: DEV). Marca los componentes que deseas incluir, como *Oracle AS Repository Components, SOA Suite, etc*. Haz clic en Next para continuar.
 
    ![](https://drive.google.com/uc?export=view&id=1dm1q8Z-GvTnBb-Q_rZboq9jnwhhzsBuK)
 
-7.  **Verificación de Prerrequisitos:** El RCU verificará los prerrequisitos para los componentes seleccionados. Haz clic en **OK** para proceder.
+7. **Verificación de Prerrequisitos:** El RCU verificará los prerrequisitos para los componentes seleccionados. Haz clic en **OK** para proceder.
 
    ![](https://drive.google.com/uc?export=view&id=1dk9NNLPcK1rbep8-8jkzdN-f9jTWDbSY)
 
