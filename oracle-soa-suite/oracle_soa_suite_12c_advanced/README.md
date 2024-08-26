@@ -277,8 +277,34 @@ Asegúrate de marcar las opciones:
 
     ![](https://drive.google.com/uc?export=view&id=1byjjrHPuZmEXAkGJzBkMxpyj44dBQu1N)
 
-14. 
+14. **Configuración de Keystore:** En la pantalla de Keystore, puedes configurar los certificados y claves necesarias para la seguridad de tu dominio. Si no necesitas hacer cambios en esta sección, puedes dejarla en blanco y proceder. Haz clic en **Next** para continuar.
 
+    ![](https://drive.google.com/uc?export=view&id=1byhNr9i0zI8iQzZOWBwTZRTCBExg0bGK)
+
+15. **Configuración Avanzada:** En la pantalla de Advanced Configuration, puedes seleccionar las opciones que desees configurar de manera avanzada.
+Las opciones incluyen:
+   - **Administration Server:** Modificar configuraciones del servidor de administración.
+   - **Node Manager:** Configurar Node Manager.
+   - **Topology:** Añadir, eliminar o modificar servidores administrados, clústeres y otras configuraciones de topología.
+   - **Domain Frontend Host Capture:** Configurar el host frontal del dominio.
+   - **Deployments and Services:** Especificar servidores o clústeres de destino.
+   - **File Store:** Modificar configuraciones del File Store.
+
+   Selecciona las configuraciones que desees ajustar y haz clic en **Next** para continuar.
+
+    ![](https://drive.google.com/uc?export=view&id=1cZD_gWtRBi0aOyF4uyZdlG4Fr220cNuh)
+
+16. **Resumen de la Configuración:** En la pantalla de Configuration Summary, se muestra un resumen completo de todas las configuraciones realizadas hasta el momento. Puedes revisar y verificar que todas las configuraciones son correctas. Si todo es correcto, haz clic en **Create** para comenzar a aplicar la configuración.
+
+    ![](https://drive.google.com/uc?export=view&id=1cYQwVbh6-l_GOgo6JFvm7ITBQSAk9nW_)
+
+17. **Progreso de la Configuración:** En la pantalla de Configuration Progress, puedes ver el progreso de la configuración, donde se irán aplicando todas las configuraciones seleccionadas. Este proceso puede tardar unos minutos. Asegúrate de que todo se complete con éxito. Una vez que el progreso llegue al 100%, haz clic en **Next**.
+
+    ![](https://drive.google.com/uc?export=view&id=1cQemA9PBwlWfvGo53rv0XQ3b69I4hRCG)
+
+18. **Finalización de la Configuración:** En la pantalla de End Of Configuration, se muestra un mensaje confirmando que la configuración del dominio ha sido exitosa. Verás la ubicación del nuevo dominio, que generalmente será algo como `/opt/u01/middleware/oracle_home/user_projects/domains/base_domain`. También se proporciona la URL del servidor de administración (por ejemplo, http://osb:7001/console). Esta URL te permitirá acceder a la consola de administración de Oracle WebLogic Server. Es importante guardar esta URL, ya que la necesitarás para administrar tu dominio y sus componentes.
+
+    ![](https://drive.google.com/uc?export=view&id=1cgM8xtHfitc0E4NY87mFZPXQ3E18BdBh)
 
 ## ANEXOS
 ### IMPLEMENTACIÓN DE ORACLE XE 18C EN UN CONTENEDOR DOCKER
