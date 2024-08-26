@@ -145,13 +145,13 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
 ### UTILIDAD DE CREACIÓN DE REPOSITORIO
 
-1. **Pantalla de Bienvenida:** La pantalla de bienvenida del RCU te da una breve introducción sobre lo que esta herramienta puede hacer. Haz clic en **.Next**. para continuar.
+1. **Pantalla de Bienvenida:** La pantalla de bienvenida del RCU te da una breve introducción sobre lo que esta herramienta puede hacer. Haz clic en **Next**. para continuar.
 
    ![](https://drive.google.com/uc?export=view&id=1dpkKrlSaOgb8YvbtDvOZvrVuWBiQ-oap)
 
 2. **Seleccionar la Acción de Creación del Repositorio:** Aquí puedes seleccionar las acciones que deseas realizar con RCU. Selecciona *Create Repository*, luego, selecciona *System Load and Product Load (necesitas privilegios de DBA)* y haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1doGm8Ijh47Nx60FdV_mOegxiHugS4_3G)
 
 3. **Configuración de Conexión a la Base de Datos:** En esta pantalla, se configuran los detalles de la conexión a la base de datos. Configura los siguientes parámetros:
    
@@ -164,7 +164,7 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
    Haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1dWrxFpXQtATR-ZvO8Z3Pg6FPJPbN7L0B)
 
 4. **Advertencia:** Verás un mensaje advirtiendo que la base de datos seleccionada es Oracle XE, que no está certificada para uso en entornos de producción con Oracle Fusion Middleware. Haz clic en **Ignore** para continuar si estás de acuerdo. El RCU verificará los prerrequisitos globales. 
 
