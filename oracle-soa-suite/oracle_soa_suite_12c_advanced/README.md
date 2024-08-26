@@ -261,7 +261,24 @@ Asegúrate de marcar las opciones:
 
     ![](https://drive.google.com/uc?export=view&id=1cA7Zg9K37lvQ57OGU9S7GvX_vkzOJdXH)
 
-10. 
+10. **Configuración de la Base de Datos:** En la pantalla de Database Configuration Type, selecciona *RCU Data* para usar los datos configurados en el Repository Creation Utility (RCU). Ingresa los detalles de conexión a la base de datos, como el *nombre del host*, *puerto*, *nombre del servicio DBMS*, y el *propietario del esquema*. Haz clic en **Get RCU Configuration** para verificar la conexión y obtener los detalles del esquema.
+
+    ![](https://drive.google.com/uc?export=view&id=1bxa86_ChQA3vM5Dz8nTf5P_QWFn7ztsS)
+
+11. Haz clic en **Next** una vez que la conexión se haya verificado.exitosamente.
+
+    ![](https://drive.google.com/uc?export=view&id=1bdX4uAOpPKr0cEuIaOD78IAvGTJCPL0e)
+
+12. **Configuración de Esquemas JDBC:** En la pantalla de Component Datasources, revisa los detalles de conexión para cada esquema de componente Asegúrate de que todos los esquemas relevantes estén seleccionados y configurados correctamente. Haz clic en **Next** para proceder.
+
+    ![](https://drive.google.com/uc?export=view&id=1c4BS0KveDTXIDcZo4Q0esq6OOqIOzWaS)
+
+13. **Prueba de Conexiones JDBC:** En la pantalla de JDBC Component Schema Test, selecciona las conexiones y haz clic en **Test Selected Connections** para asegurarte de que todas las conexiones JDBC sean válidas. Si todas las pruebas son exitosas, haz clic en Next para continuar.
+
+    ![](https://drive.google.com/uc?export=view&id=1byjjrHPuZmEXAkGJzBkMxpyj44dBQu1N)
+
+14. 
+
 
 ## ANEXOS
 ### IMPLEMENTACIÓN DE ORACLE XE 18C EN UN CONTENEDOR DOCKER
