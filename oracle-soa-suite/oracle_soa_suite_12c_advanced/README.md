@@ -133,10 +133,12 @@ Este manual te guiará a través de los pasos necesarios para crear y configurar
 Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de Oracle, es necesario ejecutar la **Utilidad de Creación de Repositorio (RCU)**. A continuación, se detallan los pasos para ejecutar el archivo `rcu` ubicado en el sistema:
 
 1. **Fichero Rcu:** Para ejecutar la utilidad, abre una terminal y navega hasta el directorio donde se encuentra el archivo rcu. 
+
    ```
    cd /opt/u01/middleware/oracle_home/oracle_common/bin
    ```
 2. **Iniciar la Ejecución:** Luego, utiliza el siguiente comando para iniciar el proceso.
+   
    ```
    ./rcu
    ```
@@ -145,11 +147,11 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
 1. **Pantalla de Bienvenida:** La pantalla de bienvenida del RCU te da una breve introducción sobre lo que esta herramienta puede hacer. Haz clic en **.Next**. para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1JtUdda8yn6HxopO70a-5gaMuWu3cFg6y)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 2. **Seleccionar la Acción de Creación del Repositorio:** Aquí puedes seleccionar las acciones que deseas realizar con RCU. Selecciona *Create Repository*, luego, selecciona *System Load and Product Load (necesitas privilegios de DBA)* y haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1K73qsLylBz4XjCQGdOJ48besnKB56XtV)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 3. **Configuración de Conexión a la Base de Datos:** En esta pantalla, se configuran los detalles de la conexión a la base de datos. Configura los siguientes parámetros:
    
@@ -162,42 +164,41 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
    Haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1KNInp6m3DI7FAwdtUMZ5xMQ8GQYuywrK)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 4. **Advertencia:** Verás un mensaje advirtiendo que la base de datos seleccionada es Oracle XE, que no está certificada para uso en entornos de producción con Oracle Fusion Middleware. Haz clic en **Ignore** para continuar si estás de acuerdo. El RCU verificará los prerrequisitos globales. 
 
-   ![](https://drive.google.com/uc?export=view&id=1Jyb5BB_M9BRDSegPwCH8E8kLUPwp07rM)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 5. Una vez completada la verificación, haz clic en **OK** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1K6uKIAeHlGjHYBUHTvpSALyBuBvaVXzN)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 6.  **Selección de Componentes:** Aquí seleccionarás los componentes de Oracle Fusion Middleware que deseas instalar. Especifica un prefijo único para los esquemas creados (ejemplo: DEV). Marca los componentes que deseas incluir, como *Oracle AS Repository Components, SOA Suite, etc*. Haz clic en Next para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1KDlTQNsiEtIbGJe4IcdxrUGYCxm1RJGB)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 7.  **Verificación de Prerrequisitos:** El RCU verificará los prerrequisitos para los componentes seleccionados. Haz clic en **OK** para proceder.
 
-   ![](https://drive.google.com/uc?export=view&id=1JtTCffSjNRHu-s5aSDWBJb2tgZzYDrwm)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 8. **Configuración de Contraseñas de Esquema Descripción:** Configura las contraseñas para los esquemas principales y auxiliares. Selecciona *Use same passwords for all schemas*. Ingresa y confirma la contraseña y haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1K7vAgKx5cvqh65gRto1_ek8B1d_OklLh)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 9. **Custom Variables:** En este paso, configura las variables personalizadas para los componentes seleccionados. He elegido el perfil de base de datos 'Small', adecuado para entornos de desarrollo o pruebas. Para 'Healthcare Integration', selecciona 'Yes' o 'No' según tus necesidades; en este caso, he seleccionado 'No'. Una vez configuradas las opciones, haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1b8i1fUf-3X8gEg1Gl-Q16pA2SB_bPlA3)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 10. **Map Tablespaces:** En este paso, se te presenta un mapeo de los tablespaces para los componentes seleccionados. Cada componente tiene un esquema propietario y un tablespace por defecto asignado. Aquí puedes ver que los tablespaces como DEV_STB, DEV_IAS_OPSS, DEV_ESS, etc. Cada componente también tiene un temporary tablespace asignado, generalmente DEV_IAS_TEMP. Haz clic en Next para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=1bE3BicF8eDseBYH90zfqkpZoRSnVxtlD)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 11. **Crear Tablespaces:** Al hacer clic en **OK**, la utilidad creará los tablespaces necesarios si aún no existen.
 
-   ![](https://drive.google.com/uc?export=view&id=1bE3BicF8eDseBYH90zfqkpZoRSnVxtlD)
+   ![](https://drive.google.com/uc?export=view&id=)
 
 ## ASISTENTE DE CONFIGURACIÓN
-
 
 ## ANEXOS
 ### IMPLEMENTACIÓN DE ORACLE XE 18C EN UN CONTENEDOR DOCKER
