@@ -202,6 +202,13 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
     ![](https://drive.google.com/uc?export=view&id=1bewHg0cfiuLPKc0EULTFyC3I_JF3wYgt)
 
+13. **Resumen de Configuración del Repositorio:** En la pantalla *Summary*, se te mostrará un resumen completo de la configuración del repositorio.
+Los detalles incluyen el nombre de host, puerto, nombre de servicio, usuario conectado, operación a realizar (System and Data Load concurrently), y el prefijo de los esquemas.Revisa cada uno de los componentes que se van a instalar, junto con el esquema propietario y los tablespaces asignados.
+Si todos los detalles son correctos, haz clic en **Create** para iniciar el proceso de carga del sistema.
+
+    ![](https://drive.google.com/uc?export=view&id=1btOKNkbwZPEeBw_JszAfc98aVEIa2wZx)
+
+
 ## ASISTENTE DE CONFIGURACIÓN
 
 ## ANEXOS
