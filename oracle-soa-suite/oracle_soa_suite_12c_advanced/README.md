@@ -208,9 +208,7 @@ Si todos los detalles son correctos, haz clic en **Create** para iniciar el proc
 
     ![](https://drive.google.com/uc?export=view&id=1btOKNkbwZPEeBw_JszAfc98aVEIa2wZx)
 
-14. **Carga del Sistema en el Repositorio:** El RCU comenzará a cargar el sistema en el repositorio, ejecutando operaciones previas a la creación, creación de servicios, y operaciones posteriores. Este proceso incluye la creación de componentes como servicios de infraestructura común, servicios de seguridad de la plataforma Oracle, y servicios de mensajería de usuario.
-
-Una vez completadas todas las tareas, asegúrate de que todos los componentes estén marcados como *Success*.
+14. **Carga del Sistema en el Repositorio:** El RCU comenzará a cargar el sistema en el repositorio, ejecutando operaciones previas a la creación, creación de servicios, y operaciones posteriores. Este proceso incluye la creación de componentes como servicios de infraestructura común, servicios de seguridad de la plataforma Oracle, y servicios de mensajería de usuario. Una vez completadas todas las tareas, asegúrate de que todos los componentes estén marcados como *Success*.
 
     ![](https://drive.google.com/uc?export=view&id=1bnd2MmSHF1fK20chCwHNFPNBHrUejV5A)
 
