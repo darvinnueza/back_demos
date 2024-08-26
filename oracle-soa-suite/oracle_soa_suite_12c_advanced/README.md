@@ -198,6 +198,10 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
     ![](https://drive.google.com/uc?export=view&id=1dPbqE9fIM_P3HE0Wzn1zFBhlvZWTP5SY)
 
+12. **Validación y Creación de Tablespaces:** El RCU validará los requisitos de los tablespaces para los componentes seleccionados. Se creará cada tablespace en la base de datos del repositorio. Una vez completado, recibirás un mensaje de confirmación indicando que la operación se ha completado con éxito. Haz clic en **OK** para continuar al siguiente paso.
+
+    ![](https://drive.google.com/uc?export=view&id=1bewHg0cfiuLPKc0EULTFyC3I_JF3wYgt)
+
 ## ASISTENTE DE CONFIGURACIÓN
 
 ## ANEXOS
