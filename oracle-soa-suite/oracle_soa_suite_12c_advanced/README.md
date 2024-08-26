@@ -124,7 +124,7 @@ Puedes usar la ubicación predeterminada sugerida o elegir una diferente, como p
 12. Se te presenta una opción para iniciar JDeveloper inmediatamente después de la instalación. Esta casilla está marcada por defecto. Si deseas iniciar JDeveloper, deja marcada la casilla `Start JDeveloper`.
 Si prefieres no iniciar JDeveloper en este momento, desmarca la casilla. Haz clic en **Finish** para completar el proceso de instalación y cerrar el asistente de instalación.
 
-   ![](https://drive.google.com/uc?export=view&id=1e4nqxPzkVtyhm4iIVk9lQVcv4gkutWuA)
+    ![](https://drive.google.com/uc?export=view&id=1e4nqxPzkVtyhm4iIVk9lQVcv4gkutWuA)
 
 ## REPOSITORY CREATION UTILITY (RCU)
 Este manual te guiará a través de los pasos necesarios para crear y configurar un repositorio de base de datos para Oracle Fusion Middleware utilizando la herramienta Repository Creation Utility (RCU). Este proceso incluye la creación de esquemas de base de datos necesarios y la configuración de tablaspaces en una base de datos Oracle.
