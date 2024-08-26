@@ -290,9 +290,9 @@ Las opciones incluyen:
    - **Deployments and Services:** Especificar servidores o clústeres de destino.
    - **File Store:** Modificar configuraciones del File Store.
 
-   Selecciona las configuraciones que desees ajustar y haz clic en **Next** para continuar.
+      Selecciona las configuraciones que desees ajustar y haz clic en **Next** para continuar.
 
-    ![](https://drive.google.com/uc?export=view&id=1cZD_gWtRBi0aOyF4uyZdlG4Fr220cNuh)
+      ![](https://drive.google.com/uc?export=view&id=1cZD_gWtRBi0aOyF4uyZdlG4Fr220cNuh)
 
 16. **Resumen de la Configuración:** En la pantalla de Configuration Summary, se muestra un resumen completo de todas las configuraciones realizadas hasta el momento. Puedes revisar y verificar que todas las configuraciones son correctas. Si todo es correcto, haz clic en **Create** para comenzar a aplicar la configuración.
 
