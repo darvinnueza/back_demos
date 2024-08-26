@@ -216,7 +216,52 @@ Si todos los detalles son correctos, haz clic en **Create** para iniciar el proc
 
     ![](https://drive.google.com/uc?export=view&id=1brmSgsEhcMczonMxS3kr7H2vZPR8i53U)
 
-## ASISTENTE DE CONFIGURACIÓN
+## ASISTENTE DE CONFIGURACIÓN DE UN DOMINIO PARA ORACLE SERVICE BUS
+1. **Navegar al Directorio de Configuración:** Utiliza el siguiente comando para navegar al directorio donde se encuentra el script de configuración.
+   
+   ```
+   cd /opt/u01/middleware/oracle_home/oracle_common/common/bin
+   ```
+2. **Ejecutar el Script de Configuración:** Una vez en el directorio correcto, ejecuta el script config.sh utilizando el siguiente comando.
+
+   ```
+   ./config.sh
+   ```
+3. **Iniciar el Oracle Fusion Middleware Configuration Wizard:** Al ejecutar `config.sh`, se iniciará el Oracle Fusion Middleware Configuration Wizard.
+Este asistente te guiará a través de varios pasos para crear un nuevo dominio o actualizar un dominio existente.
+
+4. **Creación de un Nuevo Dominio:** En la pantalla de Configuration Type, selecciona la opción *Create a new domain*. Especifica la ubicación del dominio en el campo Domain Location. Por defecto, esta ubicación podría ser algo como `/u01/middleware/oracle_home/user_projects/domains/base_domain`. Haz clic en **Next** para proceder. 
+
+    ![](https://drive.google.com/uc?export=view&id=1cKq7NIF2zqTgcA3pJSDS2WenojghPknp)
+
+5. **Selección de Plantillas de Producto:** En la pantalla de Templates, selecciona las plantillas necesarias para la configuración de OSB.
+Asegúrate de marcar las opciones: 
+   - Oracle SOA Suite Reference Connfiguration [soa]
+   - Oracle Enterprise Manager [em]
+   - Oracle Service Bus Reference Configuration [osb]
+   - Oracle Enterprise Manager Plugin for ESS [em]
+
+   Haz clic en **Next** para continuar.
+
+    ![](https://drive.google.com/uc?export=view&id=1ciOL_FThYAZQ1U8l3LBio4NPXL92X5N_)
+
+6. **Configuración de Alta Disponibilidad (HA):** En la pantalla de High Availability Options, si deseas habilitar la migración automática de servicios, marca *Enable Automatic Service Migration* y selecciona la opción de migración de base de datos o consenso. Configura la persistencia de logs de transacciones JTA y la persistencia del servidor JMS según tus necesidades. Puedes optar por usar Default Persistent Store o JMS File Store. Haz clic en **Next** para proceder.
+
+    ![](https://drive.google.com/uc?export=view&id=1cMhRYHbIUmXzLBQrLLSptflRXTYv3VbH)
+
+7. **Configuración de Ubicación de Aplicaciones:** En la pantalla de Application Location, especifica la ubicación de las aplicaciones del dominio Esto generalmente está relacionado con la ubicación del dominio que configuraste previamente. Haz clic en **Next** para continuar.
+
+    ![](https://drive.google.com/uc?export=view&id=1bVGmFu6np36F7e4nt6UMsL6H57ks5ICd)
+   
+8. **Configuración de la Cuenta de Administrador:** En la pantalla de Administrator Account, ingresa un nombre de usuario (por ejemplo, weblogic) y una contraseña segura para la cuenta de administrador. Confirma la contraseña y haz clic en **Next**.
+
+    ![](https://drive.google.com/uc?export=view&id=1behWNmchjVejyZopmKB9qIIBR8LUF_lk)
+
+9. **Configuración del Modo de Dominio y JDK:** En la pantalla de Domain Mode and JDK, selecciona el modo de dominio, que puede ser Development o Production. Especifica la ubicación del JDK. Por defecto, el sistema debería seleccionar automáticamente el JDK instalado (por ejemplo, Oracle HotSpot 1.8.0_251). Haz clic en **Next** para proceder.
+
+    ![](https://drive.google.com/uc?export=view&id=1cA7Zg9K37lvQ57OGU9S7GvX_vkzOJdXH)
+
+10. 
 
 ## ANEXOS
 ### IMPLEMENTACIÓN DE ORACLE XE 18C EN UN CONTENEDOR DOCKER
