@@ -155,11 +155,11 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
 3. **Configuración de Conexión a la Base de Datos:** En esta pantalla, se configuran los detalles de la conexión a la base de datos. Configura los siguientes parámetros:
    
-   - Host Name: localhost
+   - Host Name: *tu_dominio_db*
    - Port: 1521
    - Service Name: xepdb1
    - Username: sys
-   - Password: tu_contraseña
+   - Password: *tu_contraseña*
    - Role: SYSDBA
 
    Haz clic en **Next** para continuar.
@@ -168,35 +168,35 @@ Para crear los esquemas de base de datos requeridos por ciertas aplicaciones de 
 
 4. **Advertencia:** Verás un mensaje advirtiendo que la base de datos seleccionada es Oracle XE, que no está certificada para uso en entornos de producción con Oracle Fusion Middleware. Haz clic en **Ignore** para continuar si estás de acuerdo. El RCU verificará los prerrequisitos globales. 
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1dR-AffSzEO-qnfQQ7auJDWj-PPgPJPbV)
 
 5. Una vez completada la verificación, haz clic en **OK** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1dWFFZncvV4tj-jxacs4v7Ag7p3n8wyMf)
 
 6.  **Selección de Componentes:** Aquí seleccionarás los componentes de Oracle Fusion Middleware que deseas instalar. Especifica un prefijo único para los esquemas creados (ejemplo: DEV). Marca los componentes que deseas incluir, como *Oracle AS Repository Components, SOA Suite, etc*. Haz clic en Next para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1dm1q8Z-GvTnBb-Q_rZboq9jnwhhzsBuK)
 
 7.  **Verificación de Prerrequisitos:** El RCU verificará los prerrequisitos para los componentes seleccionados. Haz clic en **OK** para proceder.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1dk9NNLPcK1rbep8-8jkzdN-f9jTWDbSY)
 
 8. **Configuración de Contraseñas de Esquema Descripción:** Configura las contraseñas para los esquemas principales y auxiliares. Selecciona *Use same passwords for all schemas*. Ingresa y confirma la contraseña y haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1dgkKyilsqtt9uFxmgHjYkdW1GgjBgqAq)
 
 9. **Custom Variables:** En este paso, configura las variables personalizadas para los componentes seleccionados. He elegido el perfil de base de datos 'Small', adecuado para entornos de desarrollo o pruebas. Para 'Healthcare Integration', selecciona 'Yes' o 'No' según tus necesidades; en este caso, he seleccionado 'No'. Una vez configuradas las opciones, haz clic en **Next** para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1ctZ8mVtPOwj9SeRAj0Rt8iJpXWYLAvp5)
 
 10. **Map Tablespaces:** En este paso, se te presenta un mapeo de los tablespaces para los componentes seleccionados. Cada componente tiene un esquema propietario y un tablespace por defecto asignado. Aquí puedes ver que los tablespaces como DEV_STB, DEV_IAS_OPSS, DEV_ESS, etc. Cada componente también tiene un temporary tablespace asignado, generalmente DEV_IAS_TEMP. Haz clic en Next para continuar.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1dPjVhZFH4882OMFwlqP67c_mxLF5etSQ)
 
 11. **Crear Tablespaces:** Al hacer clic en **OK**, la utilidad creará los tablespaces necesarios si aún no existen.
 
-   ![](https://drive.google.com/uc?export=view&id=)
+   ![](https://drive.google.com/uc?export=view&id=1dPbqE9fIM_P3HE0Wzn1zFBhlvZWTP5SY)
 
 ## ASISTENTE DE CONFIGURACIÓN
 
