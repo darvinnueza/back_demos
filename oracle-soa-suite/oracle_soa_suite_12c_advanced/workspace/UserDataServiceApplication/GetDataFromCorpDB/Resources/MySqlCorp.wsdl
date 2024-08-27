@@ -1,0 +1,45 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="MySqlCorp"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/UserDataServiceApplication/GetDataFromCorpDB/MySqlCorp"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/UserDataServiceApplication/GetDataFromCorpDB/MySqlCorp"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plt:partnerLinkType name="MySqlCorp_plt">
+        <plt:role name="MySqlCorp_role">
+            <plt:portType name="tns:MySqlCorp_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/MySqlCorp" schemaLocation="MySqlCorp_table.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="UserdataCollection_msg">
+        <wsdl:part name="UserdataCollection" element="top:UserdataCollection"/>
+    </wsdl:message>
+    <wsdl:message name="MySqlCorpSelect_inputParameters">
+        <wsdl:part name="MySqlCorpSelect_inputParameters" element="top:MySqlCorpSelectInputParameters"/>
+    </wsdl:message>
+    <wsdl:portType name="MySqlCorp_ptt">
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:UserdataCollection_msg"/>
+            <wsdl:output message="tns:UserdataCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="update">
+            <wsdl:input message="tns:UserdataCollection_msg"/>
+            <wsdl:output message="tns:UserdataCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="delete">
+            <wsdl:input message="tns:UserdataCollection_msg"/>
+            <wsdl:output message="tns:UserdataCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="MySqlCorpSelect">
+            <wsdl:input message="tns:MySqlCorpSelect_inputParameters"/>
+            <wsdl:output message="tns:UserdataCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>
