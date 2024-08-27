@@ -87,3 +87,10 @@ resilience4j.retry:
           - java.lang.NullPointerException
         retryExceptions: # Lista de excepciones que se deben considerar para aplicar el mecanismo de reintento.
           - java.util.concurrent.TimeoutException
+
+resilience4j.ratelimiter:
+  configs:
+    default:
+      timeoutDuration: 1000 # Esta propiedad define cuánto tiempo (en milisegundos) el Rate Limiter esperará para permitir una llamada. Si una solicitud se hace cuando el límite de tasa ya se ha alcanzado, esperará hasta que este tiempo se agote. En este caso, es 1000 milisegundos (1 segundo). Si el tiempo de espera se agota antes de que se permita la llamada, la solicitud será rechazada.
+      limitRefreshPeriod: 5000 # Define el período (en milisegundos) después del cual el contador de permisos se reinicia. Aquí, se reinicia cada 5000 milisegundos (5 segundos). Básicamente, cada 5 segundos, el limitador de tasa permite un nuevo conjunto de solicitudes.
+      limitForPeriod: 1 # Especifica cuántas llamadas (solicitudes) se permiten en cada período de actualización (limitRefreshPeriod). En este caso, solo se permite 1 llamada cada 5000 milisegundos (5 segundos).

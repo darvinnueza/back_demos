@@ -167,7 +167,7 @@ spring:
         response-timeout: 2s
 ```
 
-## PATRÓN DE REINTENTO (RETRY PATTERN)
+## PATRÓN RETRY
 El patrón de reintento realiza múltiples intentos de reintento configurados cuando un servicio falla temporalmente. Este patrón es muy útil en escenarios como las interrupciones de red, donde la solicitud del cliente puede tener éxito después de un intento de reintento.
 
 Aquí están algunos componentes clave y consideraciones para implementar el patrón de reintento en microservicios:
@@ -243,7 +243,7 @@ A continuación, se detallan los pasos para aplicar el patron `Retry` dentro del
    ...
    ```
 
-## PATRÓN DE LIMITACIÓN DE TASA (RATE LIMITTER PATTERN)
+## PATRÓN RATE LIMITTER
 
 El patrón Rate Limitter en microservicios es una estrategia para controlar y limitar la cantidad de solicitudes que un servicio o API puede recibir en un período determinado. Su propósito es prevenir abusos, proteger los recursos del sistema y garantizar un uso equitativo del servicio.
 
@@ -308,7 +308,35 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
          timeout: 1s
    ```
 
+---
 
+A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dentro del microservicio [accounts](accounts):
+
+1. **Añadir anotaciones para el patrón RateLimiter:** Selecciona un método e incluye la anotación relacionada con el patrón RateLimiter, junto con las configuraciones que se indican a continuación.
+   ```
+   @RateLimiter(name = "getJavaVersion", fallbackMethod = "getJavaVersionFallback")
+   @GetMapping("/java-version")
+   public ResponseEntity<String> getJavaVersion() {
+       String javaHome = environment.getProperty("JAVA_HOME");
+       return ResponseEntity.status(HttpStatus.OK).body(javaHome != null ? javaHome : "JAVA_HOME is not set.");
+   }
+   ```
+2. Luego, crea un método de respaldo (fallback) que coincida con la misma firma del método, tal como discutimos en el curso.
+   ```
+   public ResponseEntity<String> getJavaVersionFallback(Throwable throwable) {
+       String javaHome = environment.getProperty("JAVA_HOME");
+       return ResponseEntity.status(HttpStatus.OK).body("Java 17");
+   }
+   ```
+3. **Agregar propiedades:** Incluye las siguientes propiedades en el archivo [application.yml](accounts/src/main/resources/application.yml).
+   ```
+   resilience4j.ratelimiter:
+     configs:
+       default:
+         timeoutDuration: 1000
+         limitRefreshPeriod: 5000
+         limitForPeriod: 1
+   ```
 
 ## ANEXOS
 ### COMANDOS COMUNES
@@ -339,12 +367,24 @@ Sube varias imágenes Docker al repositorio [Docker Hub](https://hub.docker.com/
 ```
 docker image push darvinueza/configserver:s7 && docker image push darvinueza/accounts:s7 && docker image push darvinueza/loans:s7 && docker image push darvinueza/cards:s7 && docker image push darvinueza/eurekaserver:s7 && docker image push darvinueza/gatewayserver:s7
 ```
+#### DOCKER COMPOSE
+Inicia todos los servicios definidos en el archivo `docker-compose.yml` en segundo plano.
+```
+docker compose up -d
+```
+Detiene y elimina los contenedores, redes y volúmenes definidos en el archivo `docker-compose.yml`.
+```
+docker compose down
+```
+### PRUEBA DE CARGA CONCURRENTE CON APACHEBENCH
+El comando envía 10 solicitudes en total al servidor local en el puerto 8072, con un máximo de 2 solicitudes concurrentes en cualquier momento. La salida del comando proporcionará detalles sobre las conexiones y las respuestas recibidas a un nivel moderado de detalle. Este tipo de prueba es útil para evaluar cómo responde el servidor bajo una carga específica.
+```
+ab -n 10 -c 2 -v 3 http://localhost:8072/focus/accounts/api/contact-info
+```
 
 ### DOCUMENTACIÓN
 - [Resilience4J](https://resilience4j.readme.io/)
 - [Spring Cloud Gateway](https://docs.spring.io/spring-cloud-gateway/docs/4.0.10-SNAPSHOT/reference/html/#gateway-starter)
 - [Spring Cloud Open Feign](https://spring.io/projects/spring-cloud-openfeign)
 - [Feign Spring Cloud CircuitBreaker Support](https://docs.spring.io/spring-cloud-openfeign/docs/4.0.7-SNAPSHOT/reference/html/#spring-cloud-feign-circuitbreaker)
-
-
-https://stripe.com/blog/rate-limiters
+- [Scaling your API with rate limiters](https://stripe.com/blog/rate-limiters)

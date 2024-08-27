@@ -77,7 +77,7 @@
 				<version>3.3.2</version>
 				<configuration>
 					<to>
-						<image>darvinueza/${project.artifactId}:s6</image>
+						<image>darvinueza/${project.artifactId}:s7</image>
 					</to>
 				</configuration>
 			</plugin>
