@@ -191,6 +191,7 @@ A continuación, se detallan los pasos para aplicar el patron `Retry` dentro del
 
 1. **Agregar el filtro de reintento:** Dentro del método donde se crea el bean de `RouteLocator`, añade un filtro de reintento como se muestra a continuación.
    ```
+   
    ...
    @Bean
    public RouteLocator routeConfig(RouteLocatorBuilder routeLocatorBuilder) {
@@ -232,6 +233,7 @@ A continuación, se detallan los pasos para aplicar el patron `Retry` dentro del
    }
    ```
 2. **Añadir propiedades:** Incorpora las propiedades que se detallan a continuación en el archivo [application.yml](accounts).
+
    ```
    ...
    resilience4j.retry:
@@ -261,6 +263,7 @@ Este enfoque también permite aplicar diferentes límites según los niveles de 
 A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dentro del servidor [gatewayserver](gatewayserver):
 
 1. **Añadir dependencia de Maven:** Incluye la dependencia `spring-boot-starter-data-redis-reactive` en el archivo [pom.xml](gatewayserver/pom.xml) del [gatewayserver](gatewayserver). 
+
    ```
    ...
    <dependencies>
@@ -275,6 +278,7 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
    ...
    ```
 2. **Añadir filtro de limitación:** En el método donde se está creando un bean de [RouteLocator](gatewayserver/src/main/java/com/focus/gatewayserver/GatewayserverApplication.java), añade un filtro de limitación de tasa como se muestra a continuación. Además, crea los beans de soporte `RedisRateLimiter` y `KeyResolver`.
+
    ```
    ...
    @Bean
@@ -302,6 +306,7 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
    ...
    ```
 3. **Contenedor de Redis:** Asegúrate de que un contenedor de Redis esté en funcionamiento. Especifica los detalles de conexión a Redis en el archivo [application.yml](gatewayserver/src/main/resources/application.yml).
+
    ```
    spring:
      ...
@@ -318,6 +323,7 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
 A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dentro del microservicio [accounts](accounts):
 
 1. **Añadir anotaciones para el patrón RateLimiter:** Selecciona un método e incluye la anotación relacionada con el patrón RateLimiter, junto con las configuraciones que se indican a continuación.
+
    ```
    @RateLimiter(name = "getJavaVersion", fallbackMethod = "getJavaVersionFallback")
    @GetMapping("/java-version")
@@ -327,6 +333,7 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
    }
    ```
 2. Luego, crea un método de respaldo (fallback) que coincida con la misma firma del método, tal como discutimos en el curso.
+
    ```
    public ResponseEntity<String> getJavaVersionFallback(Throwable throwable) {
        String javaHome = environment.getProperty("JAVA_HOME");
@@ -334,6 +341,7 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
    }
    ```
 3. **Agregar propiedades:** Incluye las siguientes propiedades en el archivo [application.yml](accounts/src/main/resources/application.yml).
+
    ```
    resilience4j.ratelimiter:
      configs:
