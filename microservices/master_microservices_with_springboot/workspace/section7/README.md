@@ -135,8 +135,8 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    }
    ```
 3. **Agregar propiedades:** Incluye las siguientes propiedades en los archivos `application.yml` del microservicio [accounts](accounts).
+
    ```
-   
    ...
    spring:
      cloud:
@@ -190,8 +190,8 @@ Aquí están algunos componentes clave y consideraciones para implementar el pat
 A continuación, se detallan los pasos para aplicar el patron `Retry` dentro del servidor [gatewayserver](gatewayserver):
 
 1. **Agregar el filtro de reintento:** Dentro del método donde se crea el bean de `RouteLocator`, añade un filtro de reintento como se muestra a continuación.
+
    ```
-   
    ...
    @Bean
    public RouteLocator routeConfig(RouteLocatorBuilder routeLocatorBuilder) {
