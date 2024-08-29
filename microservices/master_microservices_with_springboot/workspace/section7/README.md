@@ -250,7 +250,7 @@ A continuación, se detallan los pasos para aplicar el patron `Retry` dentro del
    ...
    ```
 
-## PATRÓN RATE LIMITTER
+## IMPLEMENTACIÓN DEL PATRÓN RATE LIMITTER
 
 El patrón Rate Limitter en microservicios es una estrategia para controlar y limitar la cantidad de solicitudes que un servicio o API puede recibir en un período determinado. Su propósito es prevenir abusos, proteger los recursos del sistema y garantizar un uso equitativo del servicio.
 
