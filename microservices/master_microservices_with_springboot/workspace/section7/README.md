@@ -45,6 +45,7 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
 
 1. **Agregar dependencia de Maven:** Incluye la dependencia `spring-cloud-starter-circuitbreaker-reactor-resilience4j` en el archivo [pom.xml](gatewayserver/pom.xml) del [gatewayserver](gatewayserver).
    ```
+   
    ...
    <dependencies>
         ...
@@ -59,6 +60,7 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    ```
 2. **Agregar filtro de Circuit Breaker:** Dentro del método donde estamos creando un bean de `RouteLocator`, añade un filtro de Circuit Breaker como se muestra a continuación y crea una API REST para manejar el URI de fallback `/contactSupport`.
    ```
+   
    ...
    @Bean
    pulic RouteLocator routeConfig(RouteLocatorBuilder routeLocatorBuilder) {
@@ -75,6 +77,7 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    ```
 3. **Agregar propiedades:** Incluye las siguientes propiedades en el archivo [application.yml](gatewayserver/src/main/resources/application.yml).
    ```
+   
    ...
    resilience4j.circuitbreaker:
      configs:
@@ -92,6 +95,7 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
 
 1. **Agrega la dependencia de Maven:** Incluye la dependencia `spring-cloud-starter-circuitbreaker-resilience4j` en el archivo `pom.xml` del microservicio [accounts](accounts).
    ```
+   
    ...
    <dependencies>
         ...
@@ -132,6 +136,7 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    ```
 3. **Agregar propiedades:** Incluye las siguientes propiedades en los archivos `application.yml` del microservicio [accounts](accounts).
    ```
+   
    ...
    spring:
      cloud:
@@ -167,7 +172,7 @@ spring:
         response-timeout: 2s
 ```
 
-## PATRÓN RETRY
+## IMPLEMENTACIÓN DEL PATRÓN RETRY
 El patrón de reintento realiza múltiples intentos de reintento configurados cuando un servicio falla temporalmente. Este patrón es muy útil en escenarios como las interrupciones de red, donde la solicitud del cliente puede tener éxito después de un intento de reintento.
 
 Aquí están algunos componentes clave y consideraciones para implementar el patrón de reintento en microservicios:
