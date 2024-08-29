@@ -44,8 +44,8 @@ Además de estos estados normales, hay dos estados especiales:
 A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker` dentro del servidor [gatewayserver](gatewayserver):
 
 1. **Agregar dependencia de Maven:** Incluye la dependencia `spring-cloud-starter-circuitbreaker-reactor-resilience4j` en el archivo [pom.xml](gatewayserver/pom.xml) del [gatewayserver](gatewayserver).
+
    ```
-   
    ...
    <dependencies>
         ...
@@ -59,8 +59,8 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    ...
    ```
 2. **Agregar filtro de Circuit Breaker:** Dentro del método donde estamos creando un bean de `RouteLocator`, añade un filtro de Circuit Breaker como se muestra a continuación y crea una API REST para manejar el URI de fallback `/contactSupport`.
+
    ```
-   
    ...
    @Bean
    pulic RouteLocator routeConfig(RouteLocatorBuilder routeLocatorBuilder) {
@@ -75,9 +75,9 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    }
    ...
    ```
-3. **Agregar propiedades:** Incluye las siguientes propiedades en el archivo [application.yml](gatewayserver/src/main/resources/application.yml).
+3. **Agregar propiedades:** Incluye las siguientes propiedades en el archivo [application.yml](gatewayserver/src/main/resources/application.yml).}
+
    ```
-   
    ...
    resilience4j.circuitbreaker:
      configs:
@@ -94,8 +94,8 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
 A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker` dentro del microservicio [accounts](accounts):
 
 1. **Agrega la dependencia de Maven:** Incluye la dependencia `spring-cloud-starter-circuitbreaker-resilience4j` en el archivo `pom.xml` del microservicio [accounts](accounts).
+
    ```
-   
    ...
    <dependencies>
         ...
