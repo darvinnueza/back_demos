@@ -25,6 +25,7 @@ import org.springframework.validation.annotation.Validated;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 
 import java.util.concurrent.TimeoutException;
 
@@ -208,10 +209,16 @@ public class AccountsController {
                     )
             )
     })
+    @RateLimiter(name = "getJavaVersion", fallbackMethod = "getJavaVersionFallback")
     @GetMapping("/java-version")
     public ResponseEntity<String> getJavaVersion() {
         String javaHome = environment.getProperty("JAVA_HOME");
         return ResponseEntity.status(HttpStatus.OK).body(javaHome != null ? javaHome : "JAVA_HOME is not set.");
+    }
+
+    public ResponseEntity<String> getJavaVersionFallback(Throwable throwable) {
+        String javaHome = environment.getProperty("JAVA_HOME");
+        return ResponseEntity.status(HttpStatus.OK).body("Java 17");
     }
 
     @Operation(

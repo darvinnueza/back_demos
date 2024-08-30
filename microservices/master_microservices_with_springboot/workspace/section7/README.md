@@ -44,6 +44,7 @@ Además de estos estados normales, hay dos estados especiales:
 A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker` dentro del servidor [gatewayserver](gatewayserver):
 
 1. **Agregar dependencia de Maven:** Incluye la dependencia `spring-cloud-starter-circuitbreaker-reactor-resilience4j` en el archivo [pom.xml](gatewayserver/pom.xml) del [gatewayserver](gatewayserver).
+
    ```
    ...
    <dependencies>
@@ -58,6 +59,7 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    ...
    ```
 2. **Agregar filtro de Circuit Breaker:** Dentro del método donde estamos creando un bean de `RouteLocator`, añade un filtro de Circuit Breaker como se muestra a continuación y crea una API REST para manejar el URI de fallback `/contactSupport`.
+
    ```
    ...
    @Bean
@@ -73,7 +75,8 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    }
    ...
    ```
-3. **Agregar propiedades:** Incluye las siguientes propiedades en el archivo [application.yml](gatewayserver/src/main/resources/application.yml).
+3. **Agregar propiedades:** Incluye las siguientes propiedades en el archivo [application.yml](gatewayserver/src/main/resources/application.yml).}
+
    ```
    ...
    resilience4j.circuitbreaker:
@@ -91,6 +94,7 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
 A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker` dentro del microservicio [accounts](accounts):
 
 1. **Agrega la dependencia de Maven:** Incluye la dependencia `spring-cloud-starter-circuitbreaker-resilience4j` en el archivo `pom.xml` del microservicio [accounts](accounts).
+
    ```
    ...
    <dependencies>
@@ -131,6 +135,7 @@ A continuación, se detallan los pasos para aplicar el patron ` Circuit Breaker`
    }
    ```
 3. **Agregar propiedades:** Incluye las siguientes propiedades en los archivos `application.yml` del microservicio [accounts](accounts).
+
    ```
    ...
    spring:
@@ -167,7 +172,7 @@ spring:
         response-timeout: 2s
 ```
 
-## PATRÓN DE REINTENTO (RETRY PATTERN)
+## IMPLEMENTACIÓN DEL PATRÓN RETRY
 El patrón de reintento realiza múltiples intentos de reintento configurados cuando un servicio falla temporalmente. Este patrón es muy útil en escenarios como las interrupciones de red, donde la solicitud del cliente puede tener éxito después de un intento de reintento.
 
 Aquí están algunos componentes clave y consideraciones para implementar el patrón de reintento en microservicios:
@@ -185,6 +190,7 @@ Aquí están algunos componentes clave y consideraciones para implementar el pat
 A continuación, se detallan los pasos para aplicar el patron `Retry` dentro del servidor [gatewayserver](gatewayserver):
 
 1. **Agregar el filtro de reintento:** Dentro del método donde se crea el bean de `RouteLocator`, añade un filtro de reintento como se muestra a continuación.
+
    ```
    ...
    @Bean
@@ -227,6 +233,7 @@ A continuación, se detallan los pasos para aplicar el patron `Retry` dentro del
    }
    ```
 2. **Añadir propiedades:** Incorpora las propiedades que se detallan a continuación en el archivo [application.yml](accounts).
+
    ```
    ...
    resilience4j.retry:
@@ -243,7 +250,7 @@ A continuación, se detallan los pasos para aplicar el patron `Retry` dentro del
    ...
    ```
 
-## PATRÓN DE LIMITACIÓN DE TASA (RATE LIMITTER PATTERN)
+## IMPLEMENTACIÓN DEL PATRÓN RATE LIMITTER
 
 El patrón Rate Limitter en microservicios es una estrategia para controlar y limitar la cantidad de solicitudes que un servicio o API puede recibir en un período determinado. Su propósito es prevenir abusos, proteger los recursos del sistema y garantizar un uso equitativo del servicio.
 
@@ -256,6 +263,7 @@ Este enfoque también permite aplicar diferentes límites según los niveles de 
 A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dentro del servidor [gatewayserver](gatewayserver):
 
 1. **Añadir dependencia de Maven:** Incluye la dependencia `spring-boot-starter-data-redis-reactive` en el archivo [pom.xml](gatewayserver/pom.xml) del [gatewayserver](gatewayserver). 
+
    ```
    ...
    <dependencies>
@@ -270,6 +278,7 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
    ...
    ```
 2. **Añadir filtro de limitación:** En el método donde se está creando un bean de [RouteLocator](gatewayserver/src/main/java/com/focus/gatewayserver/GatewayserverApplication.java), añade un filtro de limitación de tasa como se muestra a continuación. Además, crea los beans de soporte `RedisRateLimiter` y `KeyResolver`.
+
    ```
    ...
    @Bean
@@ -297,6 +306,7 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
    ...
    ```
 3. **Contenedor de Redis:** Asegúrate de que un contenedor de Redis esté en funcionamiento. Especifica los detalles de conexión a Redis en el archivo [application.yml](gatewayserver/src/main/resources/application.yml).
+
    ```
    spring:
      ...
@@ -308,7 +318,38 @@ A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dent
          timeout: 1s
    ```
 
+---
 
+A continuación, se detallan los pasos para aplicar el patron `RateLimiter` dentro del microservicio [accounts](accounts):
+
+1. **Añadir anotaciones para el patrón RateLimiter:** Selecciona un método e incluye la anotación relacionada con el patrón RateLimiter, junto con las configuraciones que se indican a continuación.
+
+   ```
+   @RateLimiter(name = "getJavaVersion", fallbackMethod = "getJavaVersionFallback")
+   @GetMapping("/java-version")
+   public ResponseEntity<String> getJavaVersion() {
+       String javaHome = environment.getProperty("JAVA_HOME");
+       return ResponseEntity.status(HttpStatus.OK).body(javaHome != null ? javaHome : "JAVA_HOME is not set.");
+   }
+   ```
+2. Luego, crea un método de respaldo (fallback) que coincida con la misma firma del método, tal como discutimos en el curso.
+
+   ```
+   public ResponseEntity<String> getJavaVersionFallback(Throwable throwable) {
+       String javaHome = environment.getProperty("JAVA_HOME");
+       return ResponseEntity.status(HttpStatus.OK).body("Java 17");
+   }
+   ```
+3. **Agregar propiedades:** Incluye las siguientes propiedades en el archivo [application.yml](accounts/src/main/resources/application.yml).
+
+   ```
+   resilience4j.ratelimiter:
+     configs:
+       default:
+         timeoutDuration: 1000
+         limitRefreshPeriod: 5000
+         limitForPeriod: 1
+   ```
 
 ## ANEXOS
 ### COMANDOS COMUNES
@@ -339,12 +380,69 @@ Sube varias imágenes Docker al repositorio [Docker Hub](https://hub.docker.com/
 ```
 docker image push darvinueza/configserver:s7 && docker image push darvinueza/accounts:s7 && docker image push darvinueza/loans:s7 && docker image push darvinueza/cards:s7 && docker image push darvinueza/eurekaserver:s7 && docker image push darvinueza/gatewayserver:s7
 ```
+#### DOCKER COMPOSE
+Inicia todos los servicios definidos en el archivo `docker-compose.yml` en segundo plano.
+```
+docker compose up -d
+```
+Detiene y elimina los contenedores, redes y volúmenes definidos en el archivo `docker-compose.yml`.
+```
+docker compose down
+```
+### SWAGGER
+- [Accounts Microservice](http://localhost:8080/swagger-ui/index.html)
+- [Loans Microservice](http://localhost:8090/swagger-ui/index.html)
+- [Cards Microservice](http://localhost:9000/swagger-ui/index.html)
+### CONFIGURATION FILES
+#### Archivos de Configuración de Entorno para Servicios de Cuentas (accounts)
+- [accounts-dev.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/accounts-dev.yml): Configuración específica para el entorno de desarrollo del servicio de cuentas.
+- [accounts-qa.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/accounts-qa.yml): Configuración específica para el entorno de pruebas (QA) del servicio de cuentas.
+- [accounts-prod.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/accounts-prod.yml): Configuración específica para el entorno de producción del servicio de cuentas.
+#### Archivos de Configuración de Entorno para Servicios de Tarjetas (cards)
+- [cards-dev.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/cards-dev.yml): Configuración específica para el entorno de desarrollo del servicio de tarjetas.
+- [cards-qa.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/cards-qa.yml): Configuración específica para el entorno de pruebas (QA) del servicio de tarjetas.
+- [cards-prod.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/cards-prod.yml): Configuración específica para el entorno de producción del servicio de tarjetas.
+### Archivos de Configuración de Entorno para Servicios de Préstamos (loans)
+- [loans-dev.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/loans-dev.yml): Configuración específica para el entorno de desarrollo del servicio de préstamos.
+- [loans-qa.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/loans-qa.yml): Configuración específica para el entorno de pruebas (QA) del servicio de préstamos.
+- [loans-prod.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/loans-prod.yml): Configuración específica para el entorno de producción del servicio de préstamos.
+### Archivos de Configuración para el Servidor de Eureka
+- [eurekaserver.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/eurekaserver.yml): Configuración para el servidor de Eureka, que actúa como servidor de registro de servicios para todos los microservicios.
+### Archivos de Configuración para el Servidor de Gateway
+- [gatewayserver.yml](https://github.com/darvinnueza/master-microservices-config/blob/main/gatewayserver.yml): Configuración para el servidor de API Gateway, que maneja el enrutamiento y la comunicación entre los microservicios.
+### CONFIG SERVER
+#### ACCOUNTS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/accounts/dev)
+- [Calidad](http://localhost:8071/accounts/qa)
+- [Producción](http://localhost:8071/accounts/prod)
+#### LOANS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/loans/dev)
+- [Calidad](http://localhost:8071/loans/qa)
+- [Producción](http://localhost:8071/loans/prod)
+#### CARDS ENVIRONMENTS
+- [Desarrollo](http://localhost:8071/loans/dev)
+- [Calidad](http://localhost:8071/loans/qa)
+- [Producción](http://localhost:8071/loans/prod)
+## EUREKA SERVER
+- [Eureka](http://localhost:8070/)
+### RABITMQ
+- [RabbitMQ](http://localhost:15672/#/)
+### CODIGO FUENTE
+- [GitHub Microservice](https://github.com/darvinnueza/back_demos/tree/main/microservices/master_microservices_with_springboot/workspace/section7) 
+- [GitHub Config Files](https://github.com/darvinnueza/master-microservices-config) 
+- [GitHub Registry & Discovery](https://github.com/darvinnueza/back_demos/tree/main/microservices/master_microservices_with_springboot/workspace/section7/eurekaserver) 
+- [Github API Gateway](https://github.com/darvinnueza/back_demos/tree/main/microservices/master_microservices_with_springboot/workspace/section7/gatewayserver)
+### UNIT TEST
+- [Postman](unit_test)
+### PRUEBA DE CARGA CONCURRENTE CON APACHEBENCH
+El comando envía 10 solicitudes en total al servidor local en el puerto 8072, con un máximo de 2 solicitudes concurrentes en cualquier momento. La salida del comando proporcionará detalles sobre las conexiones y las respuestas recibidas a un nivel moderado de detalle. Este tipo de prueba es útil para evaluar cómo responde el servidor bajo una carga específica.
+```
+ab -n 10 -c 2 -v 3 http://localhost:8072/focus/accounts/api/contact-info
+```
 
 ### DOCUMENTACIÓN
 - [Resilience4J](https://resilience4j.readme.io/)
 - [Spring Cloud Gateway](https://docs.spring.io/spring-cloud-gateway/docs/4.0.10-SNAPSHOT/reference/html/#gateway-starter)
 - [Spring Cloud Open Feign](https://spring.io/projects/spring-cloud-openfeign)
 - [Feign Spring Cloud CircuitBreaker Support](https://docs.spring.io/spring-cloud-openfeign/docs/4.0.7-SNAPSHOT/reference/html/#spring-cloud-feign-circuitbreaker)
-
-
-https://stripe.com/blog/rate-limiters
+- [Scaling your API with rate limiters](https://stripe.com/blog/rate-limiters)
