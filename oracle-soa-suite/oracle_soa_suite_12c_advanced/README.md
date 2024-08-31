@@ -351,13 +351,9 @@ Para abrir Oracle JDeveloper desde la instalación ubicada en `/opt/u01/middlewa
 
 ### CREAR UNA MACHINE EN WEBLOGIC SERVER
 1. Abre tu navegador web y accede a la consola de administración de [WebLogic Server](http://osb:7001/console/). Ingresa tus credenciales de administrador para iniciar sesión.
-
    ![](https://drive.google.com/uc?export=view&id=13AoixZEwSBs4Wcb0NuWq1khuFQGthr8C)
-
 2. Una vez que hayas iniciado sesión, en el menú del lado izquierdo, expande la estructura de *Environment*. Haz clic en la opción *Machines* para acceder a la lista de máquinas configuradas en tu dominio. Haz clic en el botón **New** para iniciar el proceso de creación de una nueva Machine.
-
    ![](https://drive.google.com/uc?export=view&id=13BAWdvTSl7HX65Y5T-UbEPZt9QUsluGI)
-
 3. Se abrirá un formulario donde deberás ingresar los siguientes detalles:
    - **Name:** Escribe un nombre para tu machine (por ejemplo, "MachineMix").
    - **Machine OS:** Selecciona el sistema operativo correspondiente de la máquina. Si no estás seguro, selecciona "Other".
@@ -365,7 +361,6 @@ Para abrir Oracle JDeveloper desde la instalación ubicada en `/opt/u01/middlewa
 Listen Address: Ingresa la dirección en la que el Node Manager escuchará, como localhost.
 Listen Port: Ingresa el puerto en el que escuchará el Node Manager, como 5556.
 Haz clic en Finish para completar la creación de la machine.
-
    ![](https://drive.google.com/uc?export=view&id=13BBkaAjbWhG7n7MUO2N7ZvN1NW93mUoL)
 
 4. En la siguiente pantalla, configurarás los detalles del Node Manager:
@@ -374,9 +369,6 @@ Haz clic en Finish para completar la creación de la machine.
    - **Listen Port:** Ingresa el puerto en el que escuchará el Node Manager, como 5556.
 
    Haz clic en Finish para completar la creación de la machine.
-
    ![](https://drive.google.com/uc?export=view&id=13AedpWJwuprXKinjI19OHi8ilcHeJN5C)
-
 5. Una vez que la machine se haya creado correctamente, verás un mensaje de confirmación en la pantalla. La nueva machine aparecerá listada en la tabla bajo Summary of Machines.
-
    ![](https://drive.google.com/uc?export=view&id=13BwecbLQTTOeBpygiiKZ5Mx7tYRohn_g)
