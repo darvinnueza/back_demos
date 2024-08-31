@@ -377,3 +377,22 @@ Haz clic en Finish para completar la creación de la machine.
 5. Una vez que la machine se haya creado correctamente, verás un mensaje de confirmación en la pantalla. La nueva machine aparecerá listada en la tabla bajo Summary of Machines.
 
    ![](https://drive.google.com/uc?export=view&id=13BwecbLQTTOeBpygiiKZ5Mx7tYRohn_g)
+
+### VINCULAR UNA MÁQUINA AL SERVIDOR OSB
+1. En la columna de la izquierda, expande el árbol de navegación hasta llegar a *Servers* bajo el dominio seleccionado. Haz clic en el servidor al cual deseas vincular la máquina, en este caso osb_server1.
+   
+   ![](https://drive.google.com/uc?export=view&id=10pyCboWF9FL3TWBvt0msSPTFjy6OMrpC)
+
+2. En la pantalla de configuración del servidor, ve a la sección *General*. En el campo **Machine**, selecciona la máquina que has creado previamente. En este caso, selecciona `MachineMix`.
+
+   ![](https://drive.google.com/uc?export=view&id=1IW0kXRFHajpe1Mmmu6qTZ3Myxo-ehaXb)
+
+3. Revisa la configuración para asegurarte de que todo esté correcto. Haz clic en el botón **Save** para guardar los cambios.
+
+   ![](https://drive.google.com/uc?export=view&id=1QjRG2UjNQt6dFGYWnDbvB3O-sh6VYHid)
+
+4. Después de guardar, deberías ver un mensaje que confirma que los cambios se han guardado correctamente y que no es necesario reiniciar el servidor. Verifica que la máquina ha sido vinculada correctamente al servidor en la vista de resumen.
+   
+   ![](https://drive.google.com/uc?export=view&id=1apTBU-KVjWi4qwHnezCPeyt1ISFbTTEK)
+
+### VINCULAR UNA MÁQUINA AL SERVIDOR SOA
