@@ -1,0 +1,43 @@
+<wsdl:definitions name="GetAddrress" targetNamespace="http://xmlns.oracle.com/UserDataServiceApplication/GetDataFromCorpDB/GetAddrress" xmlns:tns="http://xmlns.oracle.com/UserDataServiceApplication/GetDataFromCorpDB/GetAddrress" xmlns:inp1="http://TargetNamespace.com/GetAddrress_getAddrress_response" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <plnk:partnerLinkType name="GetAddrress">
+        <plnk:role name="GetAddrressProvider" portType="tns:GetAddrress_ptt"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/GetAddrress_getAddrress_response" schemaLocation="response_address.xsd"/>
+        </xsd:schema>
+        <schema targetNamespace="http://xmlns.oracle.com/UserDataServiceApplication/GetDataFromCorpDB/GetAddrress" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="getAddrress_params">
+                <complexType>
+                    <sequence>
+                        <element name="age" type="int"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="getAddrress_inputMessage">
+        <wsdl:part name="request" element="tns:getAddrress_params"/>
+    </wsdl:message>
+    <wsdl:message name="getAddrress_outputMessage">
+        <wsdl:part name="reply" element="inp1:Root-Element"/>
+    </wsdl:message>
+    <wsdl:portType name="GetAddrress_ptt">
+        <wsdl:operation name="getAddrress">
+            <wsdl:input message="tns:getAddrress_inputMessage"/>
+            <wsdl:output message="tns:getAddrress_outputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetAddrress_ptt-binding" type="tns:GetAddrress_ptt">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getAddrress">
+            <soap:operation soapAction="getAddrress"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

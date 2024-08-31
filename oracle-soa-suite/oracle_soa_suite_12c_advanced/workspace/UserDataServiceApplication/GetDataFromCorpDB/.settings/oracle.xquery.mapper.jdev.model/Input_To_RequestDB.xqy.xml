@@ -1,0 +1,6 @@
+<view_states>
+   <function arity="1" name="func">
+      <source_tree_view last.visible.row="0" last.visible.path="/sourceRoot[[0]]/input_arg_age[[0]]" first.visible.path="/sourceRoot[[0]]/input_arg_age[[0]]" expanded.paths="" first.visible.row="0" selected.paths="/sourceRoot[[0]]/input_arg_age[[0]]"/>
+      <target_tree_view last.visible.row="1" last.visible.path="/TargetRoot[[0]]/CustomSQLInput[[0]]/age_parameter[[0]]" first.visible.path="/TargetRoot[[0]]/CustomSQLInput[[0]]" expanded.paths="/TargetRoot[[0]]/CustomSQLInput[[0]]" first.visible.row="0" selected.paths="/TargetRoot[[0]]/CustomSQLInput[[0]]/age_parameter[[0]]"/>
+   </function>
+</view_states>

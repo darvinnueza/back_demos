@@ -1,0 +1,32 @@
+<wsdl:definitions
+     name="CustomSQL"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/UserDataServiceApplication/GetDataFromCorpDB/CustomSQL"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/UserDataServiceApplication/GetDataFromCorpDB/CustomSQL"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/CustomSQL"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="CustomSQL_plt" >
+    <plt:role name="CustomSQL_role" >
+      <plt:portType name="tns:CustomSQL_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/CustomSQL" schemaLocation="CustomSQL.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="CustomSQLInput_msg">
+        <wsdl:part name="CustomSQLInput_msg" element="db:CustomSQLInput"/>
+    </wsdl:message>
+    <wsdl:message name="CustomSQLOutputCollection_msg">
+        <wsdl:part name="CustomSQLOutputCollection" element="db:CustomSQLOutputCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="CustomSQL_ptt">
+        <wsdl:operation name="CustomSQL">
+            <wsdl:input message="tns:CustomSQLInput_msg"/>
+            <wsdl:output message="tns:CustomSQLOutputCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

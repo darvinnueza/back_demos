@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="GetDataFromCorpDB/Resources/GetAddrress"/>
+            <con:binding>
+                <con:name>GetAddrress_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/UserDataServiceApplication/GetDataFromCorpDB/GetAddrress</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-7f000001.N24a718f8.0.191a51142fe.N7f9b">
+            <con:stage id="_StageId-7f000001.N24a718f8.0.191a51142fe.N7f99" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="get" namespace="http://xmlns.oracle.com/UserDataServiceApplication/GetDataFromCorpDB/GetAddrress" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                    <con1:userNsDecl prefix="get1" namespace="http://TargetNamespace.com/GetAddrress_getAddrress_response" xmlns:con1="http://www.bea.com/wli/sb/stages/config"/>
+                </con:context>
+                <con:actions>
+                    <con1:wsCallout xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000001.N24a718f8.0.191a51142fe.N7f95</con2:id>
+                        <con1:service ref="GetDataFromCorpDB/CustomSQL" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                        <con1:operation>CustomSQL</con1:operation>
+                        <con1:request>
+                            <con1:body wrapped="false">request</con1:body>
+                        </con1:request>
+                        <con1:response>
+                            <con1:body wrapped="false">response</con1:body>
+                        </con1:response>
+                        <con1:requestTransform>
+                            <con1:assign varName="request">
+                                <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000001.N24a718f8.0.191a51142fe.N7f92</con2:id>
+                                <con1:expr>
+                                    <con2:xqueryTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                        <con2:resource ref="GetDataFromCorpDB/Input_To_RequestDB"/>
+                                        <con2:param name="input_arg_age">
+                                            <con2:path>$body/get:getAddrress_params/get:age/text()</con2:path>
+                                        </con2:param>
+                                    </con2:xqueryTransform>
+                                </con1:expr>
+                            </con1:assign>
+                        </con1:requestTransform>
+                        <con1:responseTransform>
+                            <con1:assign varName="parseResponse">
+                                <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000001.43d59c4d.0.191a5516404.N7ffe</con2:id>
+                                <con1:expr>
+                                    <con2:xqueryTransform xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+                                        <con2:resource ref="GetDataFromCorpDB/Output_To_JsonResponse"/>
+                                        <con2:param name="response">
+                                            <con2:path>$response</con2:path>
+                                        </con2:param>
+                                    </con2:xqueryTransform>
+                                </con1:expr>
+                            </con1:assign>
+                        </con1:responseTransform>
+                    </con1:wsCallout>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000001.N24a718f8.0.191a51142fe.N7f9a">
+            <con:stage id="_StageId-7f000001.N24a718f8.0.191a51142fe.N7f98" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con1:replace varName="body" contents-only="true" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+                        <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-7f000001.43d59c4d.0.191a5516404.N7ffb</con2:id>
+                        <con1:location>
+                            <con2:xpathText xmlns:con2="http://www.bea.com/wli/sb/stages/config">.</con2:xpathText>
+                        </con1:location>
+                        <con1:expr>
+                            <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">$parseResponse</con2:xqueryText>
+                        </con1:expr>
+                    </con1:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="Pipeline Pair Node1">
+                <con:request>request-7f000001.N24a718f8.0.191a51142fe.N7f9b</con:request>
+                <con:response>response-7f000001.N24a718f8.0.191a51142fe.N7f9a</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

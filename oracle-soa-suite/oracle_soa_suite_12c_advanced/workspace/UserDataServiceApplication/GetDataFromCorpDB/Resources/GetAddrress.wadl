@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="GetAddrress">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/GetAddrress_getAddrress_response" schemaLocation="response_address.xsd"/>
+        </xsd:schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/UserDataServiceApplication/GetDataFromCorpDB/GetAddrress" elementFormDefault="qualified">
+            <element name="getAddrress_params">
+                <complexType>
+                    <sequence>
+                        <element name="age" type="int"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/getAddrress">
+         <method name="GET" soa:wsdlOperation="getAddrress">
+            <request soa:paramElement="pns:getAddrress_params" xmlns:pns="http://xmlns.oracle.com/UserDataServiceApplication/GetDataFromCorpDB/GetAddrress">
+               <param name="age" style="query" soa:expression="$msg.request/pns:age" type="xsd:int"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/GetAddrress_getAddrress_response"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

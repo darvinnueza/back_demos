@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/CustomSQL" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/CustomSQL" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="CustomSQLInput" type="CustomSQLInput"/>
+   <xs:complexType name="CustomSQLInput">
+      <xs:sequence>
+         <xs:element name="age_parameter" type="xs:int" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="CustomSQLOutputCollection" type="CustomSQLOutputCollection"/>
+   <xs:complexType name="CustomSQLOutputCollection">
+      <xs:sequence>
+         <xs:element name="CustomSQLOutput" type="CustomSQLOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="CustomSQLOutput">
+      <xs:sequence>
+         <xs:element name="firstName" type="xs:string" nillable="true"/>
+         <xs:element name="lastName" type="xs:string" nillable="true"/>
+         <xs:element name="age" type="xs:int" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
