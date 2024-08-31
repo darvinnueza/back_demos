@@ -314,7 +314,7 @@ Navegar al directorio donde están los scripts de inicio de WebLogic y Node Mana
 cd /opt/u01/middleware/oracle_home/user_projects/domains/base_domain/bin
 ```
 
-Para iniciar WebLogic Server, ejecuta el siguiente comando
+Para iniciar WebLogic Server, ejecuta el siguiente comando.
 
 ```
 ./startWebLogic.sh &
@@ -451,3 +451,8 @@ Haz clic en Finish para completar la creación de la machine.
 4. Después de guardar, deberías ver un mensaje que confirma que los cambios se han guardado correctamente y que no es necesario reiniciar el servidor. Verifica que la máquina ha sido vinculada correctamente al servidor en la vista de resumen.
    
    ![](https://drive.google.com/uc?export=view&id=13Dn-ME_C3ew7a2Nh0ceEazvv1L-jAeZd)
+
+### CONSOLAS
+- [Weblogic](http://localhost:7001/console)
+- [Servicebus](http://localhost:7001/servicebus)
+- [Enterprise Manager](http://localhost:7001/em)
