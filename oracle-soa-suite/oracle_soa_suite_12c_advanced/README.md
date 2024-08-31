@@ -345,14 +345,14 @@ Espera hasta que el estado cambie a `RUNNING`, lo que indica que el servidor OSB
 
 ![](https://drive.google.com/uc?export=view&id=13FiV1JVhLu9EqKnIpdQsbcawNiLcmBbu)
 
-### INICIAR OSB SERVER
-> **ℹ️ NOTA:** Antes de proceder con esta actividad, asegúrate de haber [creado la máquina](#crear-una-machine-en-weblogic-server) y de haberla [vinculado al servidor OSB](#vincular-una-máquina-al-servidor-soa).
+### INICIAR SOA SERVER
+> **ℹ️ NOTA:** Antes de proceder con esta actividad, asegúrate de haber [creado la máquina](#crear-una-machine-en-weblogic-server) y de haberla [vinculado al servidor SOA](#vincular-una-máquina-al-servidor-soa).
 
 En el panel de la izquierda, expande la opción *Environment* y luego selecciona *Servers*. Selecciona la pestaña **Control**.
 
 ![](https://drive.google.com/uc?export=view&id=13G3pxS4tFKR4VVUTTSwjyL9dXh4QMMPX)
 
-Marca la casilla junto al servidor OSB (por ejemplo, soa_server1). En la parte superior de la tabla, haz clic en el botón **Start** para iniciar el servidor seleccionado.
+Marca la casilla junto al servidor SOA (por ejemplo, soa_server1). En la parte superior de la tabla, haz clic en el botón **Start** para iniciar el servidor seleccionado.
 
 ![](https://drive.google.com/uc?export=view&id=13GKu2PHWSppx3pdQgtP-VgOc_dMmRfLC)
 
