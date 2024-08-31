@@ -308,21 +308,42 @@ Las opciones incluyen:
 
 ## GUÍA DE INICIO DE ORACLE SOA SUITE
 ### INICIAR WEBLOGIC SERVER Y NODE MANAGER
-Navegar al directorio donde están los scripts de inicio de WebLogic y Node Manager.
-   
-```
-cd /opt/u01/middleware/oracle_home/user_projects/domains/base_domain/bin
-```
-Para iniciar WebLogic Server, ejecuta el siguiente comando
-   
-```
-./startWebLogic.sh &
-```
+1. Navegar al directorio donde están los scripts de inicio de WebLogic y Node Manager.
 
-Para iniciar Node Manager, ejecuta el siguiente comando.
-```
-./startNodeManager.sh &
-```
+   ```
+   cd /opt/u01/middleware/oracle_home/user_projects/domains/base_domain/bin
+   ```
+
+2. Para iniciar WebLogic Server, ejecuta el siguiente comando
+
+   ```
+   ./startWebLogic.sh &
+   ```
+
+3. Para iniciar Node Manager, ejecuta el siguiente comando.
+
+   ```
+   ./startNodeManager.sh &
+   ```
+
+### INICIAR OSB SERVER
+1. En el panel de la izquierda, expande la opción *Environment* y luego selecciona *Servers*. Selecciona la pestaña **Control**.
+
+   ![](https://drive.google.com/uc?export=view&id=13FDcB8dwTUmdDfHlFRStFru0tgf1n82D)
+
+2. Marca la casilla junto al servidor OSB (por ejemplo, osb_server1). En la parte superior de la tabla, haz clic en el botón **Start** para iniciar el servidor seleccionado.
+
+   ![](https://drive.google.com/uc?export=view&id=13FLuJX4ZrukoiHpGW7nLkcuTUGxMMnw0)
+
+3. Después de hacer clic en **Start**, observa el progreso en la columna de estado. Verás un mensaje que indica que la tarea de inicio está en progreso. 
+
+   ![](https://drive.google.com/uc?export=view&id=13Ew4ZL-ZLHxIRs_-P6dZPZrHiCkGQF4M)
+   
+4. Espera hasta que el estado cambie a `RUNNING`, lo que indica que el servidor OSB ha sido iniciado exitosamente.
+   
+   ![](https://drive.google.com/uc?export=view&id=13FiV1JVhLu9EqKnIpdQsbcawNiLcmBbu)
+
+### INICIAR OSB SERVER
 
 ## ANEXOS
 ### IMPLEMENTACIÓN DE ORACLE XE 18C EN UN CONTENEDOR DOCKER
@@ -396,3 +417,18 @@ Haz clic en Finish para completar la creación de la machine.
    ![](https://drive.google.com/uc?export=view&id=1apTBU-KVjWi4qwHnezCPeyt1ISFbTTEK)
 
 ### VINCULAR UNA MÁQUINA AL SERVIDOR SOA
+1. En la columna de la izquierda, expande el árbol de navegación hasta llegar a *Servers* bajo el dominio seleccionado. Haz clic en el servidor al cual deseas vincular la máquina, en este caso soa_server1.
+   
+   ![](https://drive.google.com/uc?export=view&id=13Esv9_Sl4iyqaIukET0-rUheFGgfpCQK)
+
+2. En la pantalla de configuración del servidor, ve a la sección *General*. En el campo **Machine**, selecciona la máquina que has creado previamente. En este caso, selecciona `MachineMix`.
+
+   ![](https://drive.google.com/uc?export=view&id=13EF_jY0lB4BLaD9o_tDyGe6CK72b2dPa)
+
+3. Revisa la configuración para asegurarte de que todo esté correcto. Haz clic en el botón **Save** para guardar los cambios.
+
+   ![](https://drive.google.com/uc?export=view&id=13EBCpzU50UwYss6IBnELeA5LtY-E54zs)
+
+4. Después de guardar, deberías ver un mensaje que confirma que los cambios se han guardado correctamente y que no es necesario reiniciar el servidor. Verifica que la máquina ha sido vinculada correctamente al servidor en la vista de resumen.
+   
+   ![](https://drive.google.com/uc?export=view&id=13Dn-ME_C3ew7a2Nh0ceEazvv1L-jAeZd)
