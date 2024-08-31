@@ -347,6 +347,7 @@ Espera hasta que el estado cambie a `RUNNING`, lo que indica que el servidor OSB
 
 ### INICIAR OSB SERVER
 > **ℹ️ NOTA:** Antes de proceder con esta actividad, asegúrate de haber [creado la máquina](#crear-una-machine-en-weblogic-server) y de haberla [vinculado al servidor OSB](#vincular-una-máquina-al-servidor-soa).
+
 En el panel de la izquierda, expande la opción *Environment* y luego selecciona *Servers*. Selecciona la pestaña **Control**.
 
 ![](https://drive.google.com/uc?export=view&id=13G3pxS4tFKR4VVUTTSwjyL9dXh4QMMPX)
