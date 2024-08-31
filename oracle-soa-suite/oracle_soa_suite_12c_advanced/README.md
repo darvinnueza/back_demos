@@ -328,20 +328,14 @@ Para iniciar Node Manager, ejecuta el siguiente comando.
 
 ### INICIAR OSB SERVER
 > **ℹ️ NOTA:** Antes de proceder con esta actividad, asegúrate de haber [creado la máquina](#crear-una-machine-en-weblogic-server) y de haberla [vinculado al servidor OSB](#vincular-una-máquina-al-servidor-osb).
+
 En el panel de la izquierda, expande la opción *Environment* y luego selecciona *Servers*. Selecciona la pestaña **Control**.
-
 ![](https://drive.google.com/uc?export=view&id=13FDcB8dwTUmdDfHlFRStFru0tgf1n82D)
-
 Marca la casilla junto al servidor OSB (por ejemplo, osb_server1). En la parte superior de la tabla, haz clic en el botón **Start** para iniciar el servidor seleccionado.
-
 ![](https://drive.google.com/uc?export=view&id=13FLuJX4ZrukoiHpGW7nLkcuTUGxMMnw0)
-
 Después de hacer clic en **Start**, observa el progreso en la columna de estado. Verás un mensaje que indica que la tarea de inicio está en progreso. 
-
 ![](https://drive.google.com/uc?export=view&id=13Ew4ZL-ZLHxIRs_-P6dZPZrHiCkGQF4M)
-   
 Espera hasta que el estado cambie a `RUNNING`, lo que indica que el servidor OSB ha sido iniciado exitosamente.
-   
 ![](https://drive.google.com/uc?export=view&id=13FiV1JVhLu9EqKnIpdQsbcawNiLcmBbu)
 
 ### INICIAR OSB SERVER
