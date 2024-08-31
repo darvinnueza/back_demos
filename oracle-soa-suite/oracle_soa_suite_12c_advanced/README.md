@@ -308,42 +308,59 @@ Las opciones incluyen:
 
 ## GUÍA DE INICIO DE ORACLE SOA SUITE
 ### INICIAR WEBLOGIC SERVER Y NODE MANAGER
-1. Navegar al directorio donde están los scripts de inicio de WebLogic y Node Manager.
+Navegar al directorio donde están los scripts de inicio de WebLogic y Node Manager.
 
-   ```
-   cd /opt/u01/middleware/oracle_home/user_projects/domains/base_domain/bin
-   ```
+```
+cd /opt/u01/middleware/oracle_home/user_projects/domains/base_domain/bin
+```
 
-2. Para iniciar WebLogic Server, ejecuta el siguiente comando
+Para iniciar WebLogic Server, ejecuta el siguiente comando
 
-   ```
-   ./startWebLogic.sh &
-   ```
+```
+./startWebLogic.sh &
+```
 
-3. Para iniciar Node Manager, ejecuta el siguiente comando.
+Para iniciar Node Manager, ejecuta el siguiente comando.
 
-   ```
-   ./startNodeManager.sh &
-   ```
-
-### INICIAR OSB SERVER
-1. En el panel de la izquierda, expande la opción *Environment* y luego selecciona *Servers*. Selecciona la pestaña **Control**.
-
-   ![](https://drive.google.com/uc?export=view&id=13FDcB8dwTUmdDfHlFRStFru0tgf1n82D)
-
-2. Marca la casilla junto al servidor OSB (por ejemplo, osb_server1). En la parte superior de la tabla, haz clic en el botón **Start** para iniciar el servidor seleccionado.
-
-   ![](https://drive.google.com/uc?export=view&id=13FLuJX4ZrukoiHpGW7nLkcuTUGxMMnw0)
-
-3. Después de hacer clic en **Start**, observa el progreso en la columna de estado. Verás un mensaje que indica que la tarea de inicio está en progreso. 
-
-   ![](https://drive.google.com/uc?export=view&id=13Ew4ZL-ZLHxIRs_-P6dZPZrHiCkGQF4M)
-   
-4. Espera hasta que el estado cambie a `RUNNING`, lo que indica que el servidor OSB ha sido iniciado exitosamente.
-   
-   ![](https://drive.google.com/uc?export=view&id=13FiV1JVhLu9EqKnIpdQsbcawNiLcmBbu)
+```
+./startNodeManager.sh &
+```
 
 ### INICIAR OSB SERVER
+> **ℹ️ NOTA:** Antes de proceder con esta actividad, asegúrate de haber [creado la máquina](#crear-una-machine-en-weblogic-server) y de haberla [vinculado al servidor OSB](#vincular-una-máquina-al-servidor-osb).
+En el panel de la izquierda, expande la opción *Environment* y luego selecciona *Servers*. Selecciona la pestaña **Control**.
+
+![](https://drive.google.com/uc?export=view&id=13FDcB8dwTUmdDfHlFRStFru0tgf1n82D)
+
+Marca la casilla junto al servidor OSB (por ejemplo, osb_server1). En la parte superior de la tabla, haz clic en el botón **Start** para iniciar el servidor seleccionado.
+
+![](https://drive.google.com/uc?export=view&id=13FLuJX4ZrukoiHpGW7nLkcuTUGxMMnw0)
+
+Después de hacer clic en **Start**, observa el progreso en la columna de estado. Verás un mensaje que indica que la tarea de inicio está en progreso. 
+
+![](https://drive.google.com/uc?export=view&id=13Ew4ZL-ZLHxIRs_-P6dZPZrHiCkGQF4M)
+   
+Espera hasta que el estado cambie a `RUNNING`, lo que indica que el servidor OSB ha sido iniciado exitosamente.
+   
+![](https://drive.google.com/uc?export=view&id=13FiV1JVhLu9EqKnIpdQsbcawNiLcmBbu)
+
+### INICIAR OSB SERVER
+> **ℹ️ NOTA:** Antes de proceder con esta actividad, asegúrate de haber [creado la máquina](#crear-una-machine-en-weblogic-server) y de haberla [vinculado al servidor OSB](#vincular-una-máquina-al-servidor-soa).
+En el panel de la izquierda, expande la opción *Environment* y luego selecciona *Servers*. Selecciona la pestaña **Control**.
+
+![](https://drive.google.com/uc?export=view&id=13G3pxS4tFKR4VVUTTSwjyL9dXh4QMMPX)
+
+Marca la casilla junto al servidor OSB (por ejemplo, soa_server1). En la parte superior de la tabla, haz clic en el botón **Start** para iniciar el servidor seleccionado.
+
+![](https://drive.google.com/uc?export=view&id=13GKu2PHWSppx3pdQgtP-VgOc_dMmRfLC)
+
+Después de hacer clic en **Start**, observa el progreso en la columna de estado. Verás un mensaje que indica que la tarea de inicio está en progreso. 
+
+![](https://drive.google.com/uc?export=view&id=13GCKjtagPxk2y3wW9W4cmRCHX7c8pUKe)
+   
+Espera hasta que el estado cambie a `RUNNING`, lo que indica que el servidor OSB ha sido iniciado exitosamente.
+   
+![](https://drive.google.com/uc?export=view&id=13GLCawh1uhxCrQlKx7vgszXM9h7Vop4K)
 
 ## ANEXOS
 ### IMPLEMENTACIÓN DE ORACLE XE 18C EN UN CONTENEDOR DOCKER
