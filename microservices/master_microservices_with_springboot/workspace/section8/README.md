@@ -1,4 +1,4 @@
-MONITOREO Y OBSERVABILIDAD EFICIENTE DE MICROSERVICIOS
+MONITOREO Y OBSERVABILIDAD DE MICROSERVICIOS
 ===
 ## ¿QUÉ ES LA OBSERVABILIDAD?
 La observabilidad es la capacidad de comprender el estado interno de un sistema al observar sus salidas. En el contexto de microservicios, la observabilidad se logra mediante la recolección y análisis de datos provenientes de diversas fuentes, como métricas, logs y trazas.
