@@ -36,3 +36,27 @@ La observabilidad va un paso más allá, proporcionando la capacidad de comprend
 En otras palabras, el monitoreo se trata de recolectar datos, mientras que la observabilidad consiste en entender esos datos.
 
 Mientras el monitoreo reacciona ante los problemas, la observabilidad permite resolverlos en tiempo real.
+
+## LOGGING
+**Logs** son registros de eventos que ocurren en una aplicación, con información como la hora, el contexto y el tipo de evento. Son cruciales para depurar y solucionar problemas, permitiendo reconstruir lo que sucedió en un momento específico. Los logs se clasifican por severidad: trace, debug, info, warn y error.
+
+### LOGGING EN APLICACIONES MONOLÍTICAS
+En aplicaciones monolíticas, todo el código está en una única base de código, lo que significa que todos los logs también se encuentran en una sola ubicación. Esto facilita la identificación y resolución de problemas, ya que solo es necesario revisar un único lugar para encontrar los registros relevantes.
+
+### LOGGING EN MICROSERVICIOS
+El logging en microservicios es más complejo. Cada servicio genera sus propios logs, lo que implica que para rastrear un problema en particular es necesario revisar múltiples ubicaciones.
+
+Para resolver este desafío, las arquitecturas de microservicios suelen utilizar logging centralizado. El logging centralizado recopila los logs de todos los servicios en la arquitectura y los almacena en un único lugar. Esto simplifica la búsqueda y resolución de problemas, ya que solo se necesita revisar una ubicación para acceder a todos los registros.
+
+## GESTIÓN DE LOGS CON GRAFANA, LOKI & PROMTAIL
+![](https://drive.google.com/uc?export=view&id=1sRgnyK23AYW99-7hIS9KsjfN4gyrMaz6)
+
+- **Grafana:** Es una aplicación web de código abierto para análisis y visualización interactiva. Permite crear gráficos, tablas y alertas conectándose a diversas fuentes de datos compatibles. Su instalación es sencilla utilizando Docker o Docker Compose.  Es una herramienta muy popular para la visualización de métricas, logs y trazas de múltiples fuentes. Es utilizada por organizaciones de todos los tamaños para monitorear sus aplicaciones e infraestructura, brindando una vista completa y en tiempo real del estado del sistema. 
+- **Grafana Loki:** Es un sistema de agregación de logs horizontalmente escalable, altamente disponible y rentable. Está diseñado para ser fácil de usar y capaz de escalar para satisfacer las necesidades de las aplicaciones más exigentes. 
+- **Promtail:** Es un agente de logs ligero que envía los registros de tus contenedores a Loki. Es fácil de configurar y puede recopilar logs de una amplia variedad de fuentes.
+
+Juntos, Grafana Loki y Promtail ofrecen una solución de logging poderosa que te permite comprender y solucionar problemas en tus aplicaciones. Grafana se encarga de visualizar las líneas de logs capturadas por Loki, proporcionando una interfaz clara y eficiente para el análisis.
+
+## ANEXOS
+### DOCUMENTACIÓN
+- [Grafana](https://grafana.com/)
