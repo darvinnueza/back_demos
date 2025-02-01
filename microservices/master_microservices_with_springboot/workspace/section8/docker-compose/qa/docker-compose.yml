@@ -1,0 +1,185 @@
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping | grep PONG" ]
+      timeout: 10s
+      retries: 10
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
+  accountsdb:
+    container_name: accountsdb
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: accountsdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+  loansdb:
+    container_name: loansdb
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: loansdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+  cardsdb:
+    container_name: cardsdb
+    ports:
+      - 3308:3306
+    environment:
+      MYSQL_DATABASE: cardsdb
+    extends:
+      file: common-config.yml
+      service: microservice-db-config
+
+  rabbit:
+    image: rabbitmq:3.13-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s # La verificación de salud se ejecuta cada 10 segundos.
+      timeout: 5s # Si la verificación de salud no responde en 5 segundos, se considera que ha fallado.
+      retries: 10 # Docker intentará la verificación de salud hasta 10 veces antes de marcar el contenedor como no saludable.
+      start_period: 10s # Durante los primeros 10 segundos después de que el contenedor se inicie, Docker permitirá que el contenedor se inicie y no contará los fallos de las verificaciones de salud.
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+
+  configserver:
+    image: "darvinueza/configserver:s7"
+    container_name: configserver
+    ports:
+      - "8071:8071"
+    depends_on:
+      rabbit:
+        condition: service_healthy
+    healthcheck:
+      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s # La verificación de salud se ejecuta cada 10 segundos.
+      timeout: 5s # Si la verificación de salud no responde en 5 segundos, se considera que ha fallado.
+      retries: 10 # Docker intentará la verificación de salud hasta 10 veces antes de marcar el contenedor como no saludable.
+      start_period: 10s # Durante los primeros 10 segundos después de que el contenedor se inicie, Docker permitirá que el contenedor se inicie y no contará los fallos de las verificaciones de salud.
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
+
+  eurekaserver:
+    image: "darvinueza/eurekaserver:s7"
+    container_name: eurekaserver
+    ports:
+      - "8070:8070"
+    healthcheck:
+      test: "curl --fail --silent localhost:8070/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s # La verificación de salud se ejecuta cada 10 segundos.
+      timeout: 5s # Si la verificación de salud no responde en 5 segundos, se considera que ha fallado.
+      retries: 10 # Docker intentará la verificación de salud hasta 10 veces antes de marcar el contenedor como no saludable.
+      start_period: 10s # Durante los primeros 10 segundos después de que el contenedor se inicie, Docker permitirá que el contenedor se inicie y no contará los fallos de las verificaciones de salud.
+    extends:
+      file: common-config.yml
+      service: microservice-configserver-config
+    environment:
+      SPRING_APPLICATION_NAME: "eurekaserver"
+
+  accounts:
+    image: "darvinueza/accounts:s7"
+    container_name: accounts-ms
+    ports:
+      - "8080:8080"
+    healthcheck: # Esta verificación de salud se asegura de que la aplicación dentro del contenedor esté funcionando correctamente.
+      test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s # La verificación de salud se ejecuta cada 10 segundos.
+      timeout: 5s # Si la verificación de salud no responde en 5 segundos, se considera que ha fallado.
+      retries: 10 # Docker intentará la verificación de salud hasta 10 veces antes de marcar el contenedor como no saludable.
+      start_period: 10s # Durante los primeros 10 segundos después de que el contenedor se inicie, Docker permitirá que el contenedor se inicie y no contará los fallos de las verificaciones de salud.
+    environment:
+      SPRING_APPLICATION_NAME: "accounts"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
+    depends_on:
+      accountsdb:
+        condition: service_healthy
+    extends:
+      file: common-config.yml
+      service: microservice-eureka-config
+
+  loans:
+    image: "darvinueza/loans:s7"
+    container_name: loans-ms
+    ports:
+      - "8090:8090"
+    healthcheck: # Esta verificación de salud se asegura de que la aplicación dentro del contenedor esté funcionando correctamente.
+      test: "curl --fail --silent localhost:8090/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s # La verificación de salud se ejecuta cada 10 segundos.
+      timeout: 5s # Si la verificación de salud no responde en 5 segundos, se considera que ha fallado.
+      retries: 10 # Docker intentará la verificación de salud hasta 10 veces antes de marcar el contenedor como no saludable.
+      start_period: 10s # Durante los primeros 10 segundos después de que el contenedor se inicie, Docker permitirá que el contenedor se inicie y no contará los fallos de las verificaciones de salud.
+    environment:
+      SPRING_APPLICATION_NAME: "loans"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://loansdb:3306/loansdb"
+    depends_on:
+      loansdb:
+        condition: service_healthy
+    extends:
+      file: common-config.yml
+      service:  microservice-eureka-config
+
+  cards:
+    image: "darvinueza/cards:s7"
+    container_name: cards-ms
+    ports:
+      - "9000:9000"
+    healthcheck: # Esta verificación de salud se asegura de que la aplicación dentro del contenedor esté funcionando correctamente.
+      test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s # La verificación de salud se ejecuta cada 10 segundos.
+      timeout: 5s # Si la verificación de salud no responde en 5 segundos, se considera que ha fallado.
+      retries: 10 # Docker intentará la verificación de salud hasta 10 veces antes de marcar el contenedor como no saludable.
+      start_period: 10s # Durante los primeros 10 segundos después de que el contenedor se inicie, Docker permitirá que el contenedor se inicie y no contará los fallos de las verificaciones de salud.
+    environment:
+      SPRING_APPLICATION_NAME: "cards"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsdb:3306/cardsdb"
+    depends_on:
+      cardsdb:
+        condition: service_healthy
+    extends:
+      file: common-config.yml
+      service: microservice-eureka-config
+
+  gatewayserver:
+    image: "darvinueza/gatewayserver:s7"
+    container_name: gatewayserver
+    restart: always
+    ports:
+      - "8072:8072"
+    depends_on: # Establece dependencias entre servicios y asegura que un servicio solo se inicie si los servicios de los que depende están saludables.
+      accounts:
+        condition: service_healthy # Indica que el servicio solo debe comenzar cuando el servicio accounts esté en un estado saludable.
+      loans:
+        condition: service_healthy # Indica que el servicio solo debe comenzar cuando el servicio loans esté en un estado saludable.
+      cards:
+        condition: service_healthy # Indica que el servicio solo debe comenzar cuando el servicio cards esté en un estado saludable.
+      redis:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "gatewayserver"
+      SPRING_DATA_REDIS_CONNECT-TIMEOUT: 2s
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      SPRING_DATA_REDIS_TIMEOUT: 1s
+    extends:
+      file: common-config.yml
+      service: microservice-eureka-config
+
+networks:
+  focusbank:
+    driver: "bridge"

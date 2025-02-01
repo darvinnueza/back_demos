@@ -1,0 +1,11 @@
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to EazyBank accounts related prod APIs"
+  contactDetails:
+    name: "Dario Vinueza - Product Owner"
+    email: "darvinnueza@gmail.com"
+  onCallSupport:
+    - (555)555-1234
+    - (555)523-1345

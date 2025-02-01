@@ -1,0 +1,96 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: "accounts"
+  profiles:
+    active: "dev"
+  datasource:
+    url: jdbc:mysql://localhost:3306/accountsdb
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  sql:
+    init:
+      mode: always
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Expone todos los endpoints de gestión a través de la web. El asterisco ("*") indica que todos los endpoints deben estar disponibles para ser accedidos.
+  endpoint:
+    shutdown:
+      enabled: true # Habilita el endpoint de apagado (/actuator/shutdown). Este endpoint permite cerrar la aplicación de manera controlada a través de una solicitud HTTP.
+    health:
+      probes:
+        enabled: true # Habilita las sondas (probes) de salud en el endpoint de salud (/actuator/health). Las sondas de salud permiten verificar el estado de salud de la aplicación de manera más granular.
+  health:
+    readiness-state:
+      enabled: true # Habilita el estado de preparación (readiness state) en el endpoint de salud. El estado de preparación indica si la aplicación está lista para recibir tráfico.
+    liveness-state:
+      enabled: true # Habilita el estado de vida (liveness state) en el endpoint de salud. El estado de vida indica si la aplicación está funcionando correctamente.
+  info:
+    env:
+      enabled: true # Habilita la información del entorno (environment info) en el endpoint de información (/actuator/info). Esto incluye detalles sobre las variables de entorno y propiedades de configuración.
+
+info:
+  app:
+    name: "accounts"
+    description: "Accounts Application"
+    version: "1.0"
+
+logging:
+  level:
+    com:
+      focus:
+        accounts: DEBUG
+
+resilience4j.circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10 # Define el tamaño de la ventana deslizante utilizada para calcular la tasa de fallos. En este caso, el tamaño es de 10, lo que significa que el Circuit Breaker evaluará las últimas 10 llamadas para determinar si el servicio está fallando.
+        permittedNumberOfCallsInHalfOpenState: 2 # Especifica el número de llamadas permitidas durante el estado semi-abierto (HALF_OPEN) para evaluar si el servicio ha recuperado su estabilidad. Aquí se permiten 2 llamadas para probar si el servicio puede manejar las solicitudes nuevamente.
+        failureRateThreshold: 50 # Define el umbral de tasa de fallos que activa el estado abierto (OPEN). En este caso, el umbral es del 50%, lo que significa que si más del 50% de las solicitudes fallan, el Circuit Breaker cambiará al estado OPEN.
+        waitDurationInOpenState: 10000 # Establece el tiempo, en milisegundos, que el Circuit Breaker permanecerá en estado abierto (OPEN) antes de intentar transitar al estado semi-abierto (HALF_OPEN). Aquí se configura un tiempo de espera de 10,000 milisegundos (10 segundos).
+
+resilience4j.retry:
+    configs:
+      default:
+        maxRetryAttempts: 3 # Número máximo de intentos de reintento permitidos antes de abandonar la operación.
+        waitDuration: 500 # Tiempo en milisegundos a esperar entre reintentos cuando no se utiliza el retroceso exponencial.
+        enableExponentialBackoff: true # Habilita el retroceso exponencial entre los intentos de reintento. Cuando está habilitado, el tiempo de espera entre reintentos se incrementará exponencialmente.
+        exponentialBackofffMultiplier: 2 # Factor por el cual se multiplica el tiempo de espera en cada intento de reintento cuando se usa el retroceso exponencial.
+        ignoreExceptions: # Lista de excepciones que se deben ignorar y no se deben contar como fallos para el reintento.
+          - java.lang.NullPointerException
+        retryExceptions: # Lista de excepciones que se deben considerar para aplicar el mecanismo de reintento.
+          - java.util.concurrent.TimeoutException
+
+resilience4j.ratelimiter:
+  configs:
+    default:
+      timeoutDuration: 1000 # Esta propiedad define cuánto tiempo (en milisegundos) el Rate Limiter esperará para permitir una llamada. Si una solicitud se hace cuando el límite de tasa ya se ha alcanzado, esperará hasta que este tiempo se agote. En este caso, es 1000 milisegundos (1 segundo). Si el tiempo de espera se agota antes de que se permita la llamada, la solicitud será rechazada.
+      limitRefreshPeriod: 5000 # Define el período (en milisegundos) después del cual el contador de permisos se reinicia. Aquí, se reinicia cada 5000 milisegundos (5 segundos). Básicamente, cada 5 segundos, el limitador de tasa permite un nuevo conjunto de solicitudes.
+      limitForPeriod: 1 # Especifica cuántas llamadas (solicitudes) se permiten en cada período de actualización (limitRefreshPeriod). En este caso, solo se permite 1 llamada cada 5000 milisegundos (5 segundos).

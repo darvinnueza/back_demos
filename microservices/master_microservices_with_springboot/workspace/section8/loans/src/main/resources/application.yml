@@ -1,0 +1,65 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: "loans"
+  profiles:
+    active: "dev"
+  datasource:
+    url: jdbc:mysql://localhost:3307/loansdb
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+  sql:
+    init:
+      mode: always
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Expone todos los endpoints de gestión a través de la web. El asterisco ("*") indica que todos los endpoints deben estar disponibles para ser accedidos.
+  endpoint:
+    shutdown:
+      enabled: true # Habilita el endpoint de apagado (/actuator/shutdown). Este endpoint permite cerrar la aplicación de manera controlada a través de una solicitud HTTP.
+    health:
+      probes:
+        enabled: true # Habilita las sondas (probes) de salud en el endpoint de salud (/actuator/health). Las sondas de salud permiten verificar el estado de salud de la aplicación de manera más granular.
+  health:
+    readiness-state:
+      enabled: true # Habilita el estado de preparación (readiness state) en el endpoint de salud. El estado de preparación indica si la aplicación está lista para recibir tráfico.
+    liveness-state:
+      enabled: true # Habilita el estado de vida (liveness state) en el endpoint de salud. El estado de vida indica si la aplicación está funcionando correctamente.
+  info:
+    env:
+      enabled: true # Habilita la información del entorno (environment info) en el endpoint de información (/actuator/info). Esto incluye detalles sobre las variables de entorno y propiedades de configuración.
+
+info:
+  app:
+    name: "loans"
+    description: "Loans Application"
+    version: "1.0"
+
+logging:
+  level:
+    com:
+      focus:
+        loans: DEBUG

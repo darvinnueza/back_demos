@@ -51,7 +51,7 @@ Para resolver este desafío, las arquitecturas de microservicios suelen utilizar
 ## GESTIÓN DE LOGS CON GRAFANA, LOKI & PROMTAIL
 ![](https://drive.google.com/uc?export=view&id=1sRgnyK23AYW99-7hIS9KsjfN4gyrMaz6)
 
-- **Grafana:** Es una aplicación web de código abierto para análisis y visualización interactiva. Permite crear gráficos, tablas y alertas conectándose a diversas fuentes de datos compatibles. Su instalación es sencilla utilizando Docker o Docker Compose.  Es una herramienta muy popular para la visualización de métricas, logs y trazas de múltiples fuentes. Es utilizada por organizaciones de todos los tamaños para monitorear sus aplicaciones e infraestructura, brindando una vista completa y en tiempo real del estado del sistema. 
+- **Grafana:** Es una aplicación web de código abierto para análisis y visualización interactiva. Permite crear gráficos, tablas y alertas conectándose a diversas fuentes de datos compatibles. Su instalación es sencilla utilizando Docker o Docker Compose.  Es una herramienta muy popular para la visualización de métricas, logs y trazas de múltiples fuentes. 
 - **Grafana Loki:** Es un sistema de agregación de logs horizontalmente escalable, altamente disponible y rentable. Está diseñado para ser fácil de usar y capaz de escalar para satisfacer las necesidades de las aplicaciones más exigentes. 
 - **Promtail:** Es un agente de logs ligero que envía los registros de tus contenedores a Loki. Es fácil de configurar y puede recopilar logs de una amplia variedad de fuentes.
 
@@ -60,3 +60,4 @@ Juntos, Grafana Loki y Promtail ofrecen una solución de logging poderosa que te
 ## ANEXOS
 ### DOCUMENTACIÓN
 - [Grafana](https://grafana.com/)
+- [Grafana - Quick Start](https://grafana.com/docs/loki/latest/get-started/quick-start/)

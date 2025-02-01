@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: "gatewayserver"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+      httpclient:
+        connect-timeout: 1000 # Establece el tiempo máximo de espera para que se establezca una conexión con un servidor remoto. El valor está en milisegundos (1 segundo en este caso).
+        response-timeout: 10s # Establece el tiempo máximo que se esperará por una respuesta del servidor una vez que la conexión esté establecida. Este valor está especificado en segundos (10 segundos en este caso).
+  data:
+    redis: # Indica que la configuración es para Redis, un almacén de datos en memoria.
+      connect-timeout: 2s # Establece un tiempo de espera de 2 segundos para establecer una conexión con el servidor Redis. Si no se puede establecer la conexión en ese tiempo, fallará.
+      host: localhost # Especifica que el servidor Redis se está ejecutando en la misma máquina donde se ejecuta la aplicación.
+      port: 6379 # Indica que la conexión a Redis se realizará a través del puerto 6379, que es el puerto por defecto para Redis.
+      timeout: 1s # Define un tiempo de espera de 1 segundo para operaciones específicas (por ejemplo, leer o escribir datos) una vez que se haya establecido la conexión con Redis. Si una operación no se completa dentro de este tiempo, se considerará fallida.
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # Expone todos los endpoints de gestión a través de la web. El asterisco ("*") indica que todos los endpoints deben estar disponibles para ser accedidos.
+  endpoint:
+    shutdown:
+      enabled: true # Habilita el endpoint de apagado (/actuator/shutdown). Este endpoint permite cerrar la aplicación de manera controlada a través de una solicitud HTTP.
+    health:
+      probes:
+        enabled: true # Habilita las sondas (probes) de salud en el endpoint de salud (/actuator/health). Las sondas de salud permiten verificar el estado de salud de la aplicación de manera más granular.
+  health:
+    readiness-state:
+      enabled: true # Habilita el estado de preparación (readiness state) en el endpoint de salud. El estado de preparación indica si la aplicación está lista para recibir tráfico.
+    liveness-state:
+      enabled: true # Habilita el estado de vida (liveness state) en el endpoint de salud. El estado de vida indica si la aplicación está funcionando correctamente.
+  info:
+    env:
+      enabled: true # Habilita la información del entorno (environment info) en el endpoint de información (/actuator/info). Esto incluye detalles sobre las variables de entorno y propiedades de configuración.
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Gateway Server Application"
+    version: "1.0"
+
+logging:
+  level:
+    com:
+      focus:
+        gatewayserver: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10 # Define el tamaño de la ventana deslizante utilizada para calcular la tasa de fallos. En este caso, el tamaño es de 10, lo que significa que el Circuit Breaker evaluará las últimas 10 llamadas para determinar si el servicio está fallando.
+        permittedNumberOfCallsInHalfOpenState: 2 # Especifica el número de llamadas permitidas durante el estado semi-abierto (HALF_OPEN) para evaluar si el servicio ha recuperado su estabilidad. Aquí se permiten 2 llamadas para probar si el servicio puede manejar las solicitudes nuevamente.
+        failureRateThreshold: 50 # Define el umbral de tasa de fallos que activa el estado abierto (OPEN). En este caso, el umbral es del 50%, lo que significa que si más del 50% de las solicitudes fallan, el Circuit Breaker cambiará al estado OPEN.
+        waitDurationInOpenState: 10000 # Establece el tiempo, en milisegundos, que el Circuit Breaker permanecerá en estado abierto (OPEN) antes de intentar transitar al estado semi-abierto (HALF_OPEN). Aquí se configura un tiempo de espera de 10,000 milisegundos (10 segundos).

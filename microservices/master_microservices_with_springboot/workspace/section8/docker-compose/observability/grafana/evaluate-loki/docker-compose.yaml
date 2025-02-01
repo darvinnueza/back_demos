@@ -1,0 +1,198 @@
+---
+version: "3"
+
+# Definición de redes para los servicios
+networks:
+  loki:  # Red compartida por todos los servicios
+    driver: bridge
+
+services:
+  # Servicio Loki para lectura (read)
+  read:
+    image: grafana/loki:3.1.0  # Imagen de Loki versión 3.1.0
+    command: "-config.file=/etc/loki/config.yaml -target=read"  # Configura Loki en modo solo lectura
+    ports:
+      - 3101:3100  # Expone el puerto 3101 para acceder a Loki desde fuera del contenedor
+      - 7946  # Puerto de comunicación entre instancias de Loki
+      - 9095  # Puerto para métricas de salud
+    volumes:
+      - ./loki-config.yaml:/etc/loki/config.yaml  # Mapea el archivo de configuración local a la ruta dentro del contenedor
+    depends_on:
+      - minio  # Espera que MinIO esté activo antes de iniciar
+    healthcheck:  # Comprobación de salud para asegurarse de que el servicio está listo
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3100/ready || exit 1" ]
+      interval: 10s  # Revisa cada 10 segundos
+      timeout: 5s
+      retries: 5
+    networks: &loki-dns  # Define la red compartida
+      loki:
+        aliases:  # Alias DNS para simplificar el enrutamiento
+          - loki
+
+  # Servicio Loki para escritura (write)
+  write:
+    image: grafana/loki:3.1.0  # Utiliza la misma imagen que el servicio read
+    command: "-config.file=/etc/loki/config.yaml -target=write"  # Configura Loki en modo escritura
+    ports:
+      - 3102:3100  # Puerto 3102 asignado para las escrituras
+      - 7946
+      - 9095
+    volumes:
+      - ./loki-config.yaml:/etc/loki/config.yaml  # Mapea el archivo de configuración de Loki
+    healthcheck:
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3100/ready || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      - minio  # También depende del servicio MinIO
+    networks:
+      <<: *loki-dns  # Usa el mismo alias DNS que el servicio read
+
+  # Servicio Alloy (componentes adicionales de Grafana)
+  alloy:
+    image: grafana/alloy:latest  # Imagen de Alloy
+    volumes:
+      - ./alloy-local-config.yaml:/etc/alloy/config.alloy:ro  # Mapea el archivo de configuración de Alloy
+      - /var/run/docker.sock:/var/run/docker.sock  # Acceso al socket de Docker
+    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+    ports:
+      - 12345:12345  # Expone el puerto 12345
+    depends_on:
+      - gateway  # Depende del servicio gateway
+    networks:
+      - loki
+
+  # Servicio MinIO para almacenamiento de objetos
+  minio:
+    image: minio/minio
+    entrypoint:  # Comandos para crear los directorios de almacenamiento y lanzar el servidor
+      - sh
+      - -euc
+      - |
+        mkdir -p /data/loki-data && \
+        mkdir -p /data/loki-ruler && \
+        minio server /data
+    environment:  # Configuración de credenciales de MinIO
+      - MINIO_ROOT_USER=loki
+      - MINIO_ROOT_PASSWORD=supersecret
+      - MINIO_PROMETHEUS_AUTH_TYPE=public
+      - MINIO_UPDATE=off
+    ports:
+      - 9000  # Puerto para el servicio de MinIO
+    volumes:
+      - ./.data/minio:/data  # Mapea los datos de MinIO a un directorio local
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]  # Verifica el estado de MinIO
+      interval: 15s
+      timeout: 20s
+      retries: 5
+    networks:
+      - loki
+
+  # Servicio Grafana para visualización
+  grafana:
+    image: grafana/grafana:latest  # Imagen de Grafana más reciente
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning  # Ruta para las configuraciones de provisionamiento
+      - GF_AUTH_ANONYMOUS_ENABLED=true  # Permite acceso anónimo
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin  # Rol de administrador para los usuarios anónimos
+    depends_on:
+      - gateway  # Espera que el servicio gateway esté disponible
+    entrypoint:  # Configura el origen de datos de Grafana para Loki
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+          - name: Loki
+            type: loki
+            access: proxy
+            url: http://gateway:3100
+            jsonData:
+              httpHeaderName1: "X-Scope-OrgID"
+            secureJsonData:
+              httpHeaderValue1: "tenant1"
+        EOF
+        /run.sh
+    ports:
+      - "3000:3000"  # Expone el puerto 3000 para acceder a la interfaz web de Grafana
+    healthcheck:  # Verificación de salud
+      test: [ "CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - loki
+
+  # Servicio Backend de Loki
+  backend:
+    image: grafana/loki:3.1.0  # Utiliza la misma imagen que read/write
+    volumes:
+      - ./loki-config.yaml:/etc/loki/config.yaml  # Archivo de configuración de Loki
+    ports:
+      - "3100"  # Puerto 3100 para procesamiento de logs
+      - "7946"
+    command: "-config.file=/etc/loki/config.yaml -target=backend -legacy-read-mode=false"
+    depends_on:
+      - gateway  # Depende del servicio gateway
+    networks:
+      - loki
+
+  # Puerta de enlace (gateway) con NGINX
+  gateway:
+    image: nginx:latest  # Imagen más reciente de NGINX
+    depends_on:
+      - read  # Depende de los servicios read y write de Loki
+      - write
+    entrypoint:  # Configuración de NGINX para enrutar tráfico entre servicios read y write
+      - sh
+      - -euc
+      - |
+        cat <<EOF > /etc/nginx/nginx.conf
+        user  nginx;
+        worker_processes  5;  ## Default: 1
+        events {
+          worker_connections   1000;
+        }
+        http {
+          resolver 127.0.0.11;
+          server {
+            listen 3100;
+            location = / {
+              return 200 'OK';
+              auth_basic off;
+            }
+            location = /api/prom/push {
+              proxy_pass http://write:3100\$$request_uri;
+            }
+            location = /api/prom/tail {
+              proxy_pass http://read:3100\$$request_uri;
+              proxy_set_header Upgrade \$$http_upgrade;
+              proxy_set_header Connection "upgrade";
+            }
+            location ~ /api/prom/.* {
+              proxy_pass http://read:3100\$$request_uri;
+            }
+          }
+        }
+        EOF
+        /docker-entrypoint.sh nginx -g "daemon off;"
+    ports:
+      - "3100:3100"  # Exponer el puerto para enrutar las peticiones de logs
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - loki
+
+  # Servicio flog para generar logs falsos
+  flog:
+    image: mingrammer/flog  # Generador de logs
+    command: -f json -d 200ms -l  # Genera logs en formato JSON cada 200ms
+    networks:
+      - loki  # Usa la red loki
